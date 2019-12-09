@@ -5,9 +5,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BCrypt;
 
 namespace StudentHousingApp
 {
@@ -33,7 +35,9 @@ namespace StudentHousingApp
                         orderby u.Name
                         select u;
 
-            MessageBox.Show(query.First<User>().Name);
+            string passwordHash = BCrypt.Net.BCrypt.HashPassword("my password");
+
+            MessageBox.Show(passwordHash);   
         }
 
         public bool CheckConnection()
