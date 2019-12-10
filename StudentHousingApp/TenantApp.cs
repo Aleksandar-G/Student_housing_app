@@ -13,10 +13,10 @@ using BCrypt;
 
 namespace StudentHousingApp
 {
-    public partial class Form1 : Form
+    public partial class TenantApp : Form
     {
         AppContext db;
-        public Form1()
+        public TenantApp()
         {
             InitializeComponent();
         }

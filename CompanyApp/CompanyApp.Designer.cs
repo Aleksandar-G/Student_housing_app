@@ -1,6 +1,6 @@
 ﻿namespace CompanyApp
 {
-    partial class Form1
+    partial class CompanyApp
     {
         /// <summary>
         /// Required designer variable.
