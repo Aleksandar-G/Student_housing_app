@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{99B18FC3-9EDC-40AC-8D4D-ADB1D526D37D}</ProjectGuid>
+    <ProjectGuid>{63FE0592-0A10-4ED3-8979-2DB8746A4104}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CompanyApp</RootNamespace>
-    <AssemblyName>CompanyApp</AssemblyName>
+    <RootNamespace>TenantApp</RootNamespace>
+    <AssemblyName>TenantApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Models">
+      <HintPath>..\Models\bin\Debug\Models.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,17 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompanyApp.cs">
+    <Compile Include="TenantApp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CompanyApp.Designer.cs">
-      <DependentUpon>CompanyApp.cs</DependentUpon>
+    <Compile Include="TenantApp.Designer.cs">
+      <DependentUpon>TenantApp.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CompanyApp.resx">
-      <DependentUpon>CompanyApp.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -66,6 +66,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TenantApp.resx">
+      <DependentUpon>TenantApp.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentHousingApp.Properties
+namespace TenantApp.Properties
 {
 
 
