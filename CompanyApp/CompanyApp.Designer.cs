@@ -41,8 +41,8 @@
             // 
             this.tabControl1.Controls.Add(this.Login);
             this.tabControl1.Controls.Add(this.AddTenant);
-            this.tabControl1.Controls.Add(this.ShowComplaints);
             this.tabControl1.Controls.Add(this.RemoveTenant);
+            this.tabControl1.Controls.Add(this.ShowComplaints);
             this.tabControl1.Controls.Add(this.ShowTenantDetails);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -97,13 +97,13 @@
             this.ShowTenantDetails.Text = "Show Tenant Details";
             this.ShowTenantDetails.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // CompanyApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
+            this.Name = "CompanyApp";
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);

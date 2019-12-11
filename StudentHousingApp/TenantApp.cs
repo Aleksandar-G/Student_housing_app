@@ -59,5 +59,17 @@ namespace StudentHousingApp
         {
             db.Database.Connection.Close();
         }
+
+        private void BtnCreateAppoitment_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnGoCreateAppoitment_Click(object sender, EventArgs e)
+        {
+            FormCreateAppoitment formCreateAppoitment = new FormCreateAppoitment();
+
+            formCreateAppoitment.Show();
+        }
     }
 }

@@ -31,21 +31,21 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Login = new System.Windows.Forms.TabPage();
             this.ShowAppointments = new System.Windows.Forms.TabPage();
+            this.btnGoCreateAppoitment = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.btnPrevDate = new System.Windows.Forms.Button();
+            this.btnNextDate = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.CreateAppointment = new System.Windows.Forms.TabPage();
-            this.SplitBill = new System.Windows.Forms.TabPage();
-            this.CreateComplaint = new System.Windows.Forms.TabPage();
-            this.Notifications = new System.Windows.Forms.TabPage();
+            this.btnCreateAppoitment = new System.Windows.Forms.Button();
+            this.rtbDescriptionAppoitment = new System.Windows.Forms.RichTextBox();
+            this.dTPickerCreateAppoitment = new System.Windows.Forms.DateTimePicker();
             this.tbRoom = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dTPickerCreateAppoitment = new System.Windows.Forms.DateTimePicker();
-            this.rtbDescriptionAppoitment = new System.Windows.Forms.RichTextBox();
-            this.btnCreateAppoitment = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.btnNextDate = new System.Windows.Forms.Button();
-            this.btnPrevDate = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.btnGoCreateAppoitment = new System.Windows.Forms.Button();
+            this.SplitBill = new System.Windows.Forms.TabPage();
+            this.CreateComplaint = new System.Windows.Forms.TabPage();
+            this.Notifications = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.ShowAppointments.SuspendLayout();
             this.CreateAppointment.SuspendLayout();
@@ -90,6 +90,49 @@
             this.ShowAppointments.Text = "Show Appointments";
             this.ShowAppointments.UseVisualStyleBackColor = true;
             // 
+            // btnGoCreateAppoitment
+            // 
+            this.btnGoCreateAppoitment.Location = new System.Drawing.Point(323, 354);
+            this.btnGoCreateAppoitment.Name = "btnGoCreateAppoitment";
+            this.btnGoCreateAppoitment.Size = new System.Drawing.Size(172, 36);
+            this.btnGoCreateAppoitment.TabIndex = 4;
+            this.btnGoCreateAppoitment.Text = "Create Appoitment";
+            this.btnGoCreateAppoitment.UseVisualStyleBackColor = true;
+            this.btnGoCreateAppoitment.Click += new System.EventHandler(this.BtnGoCreateAppoitment_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(157, 97);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(455, 225);
+            this.listBox1.TabIndex = 3;
+            // 
+            // btnPrevDate
+            // 
+            this.btnPrevDate.Location = new System.Drawing.Point(234, 43);
+            this.btnPrevDate.Name = "btnPrevDate";
+            this.btnPrevDate.Size = new System.Drawing.Size(30, 20);
+            this.btnPrevDate.TabIndex = 2;
+            this.btnPrevDate.Text = "<";
+            this.btnPrevDate.UseVisualStyleBackColor = true;
+            // 
+            // btnNextDate
+            // 
+            this.btnNextDate.Location = new System.Drawing.Point(474, 43);
+            this.btnNextDate.Name = "btnNextDate";
+            this.btnNextDate.Size = new System.Drawing.Size(30, 20);
+            this.btnNextDate.TabIndex = 1;
+            this.btnNextDate.Text = ">";
+            this.btnNextDate.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(268, 43);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 0;
+            // 
             // CreateAppointment
             // 
             this.CreateAppointment.Controls.Add(this.btnCreateAppoitment);
@@ -105,6 +148,56 @@
             this.CreateAppointment.TabIndex = 1;
             this.CreateAppointment.Text = "Create Appointments";
             this.CreateAppointment.UseVisualStyleBackColor = true;
+            // 
+            // btnCreateAppoitment
+            // 
+            this.btnCreateAppoitment.Location = new System.Drawing.Point(362, 363);
+            this.btnCreateAppoitment.Name = "btnCreateAppoitment";
+            this.btnCreateAppoitment.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateAppoitment.TabIndex = 10;
+            this.btnCreateAppoitment.Text = "Create";
+            this.btnCreateAppoitment.UseVisualStyleBackColor = true;
+            this.btnCreateAppoitment.Click += new System.EventHandler(this.BtnCreateAppoitment_Click);
+            // 
+            // rtbDescriptionAppoitment
+            // 
+            this.rtbDescriptionAppoitment.Location = new System.Drawing.Point(158, 156);
+            this.rtbDescriptionAppoitment.Name = "rtbDescriptionAppoitment";
+            this.rtbDescriptionAppoitment.Size = new System.Drawing.Size(466, 178);
+            this.rtbDescriptionAppoitment.TabIndex = 9;
+            this.rtbDescriptionAppoitment.Text = "";
+            // 
+            // dTPickerCreateAppoitment
+            // 
+            this.dTPickerCreateAppoitment.Location = new System.Drawing.Point(288, 40);
+            this.dTPickerCreateAppoitment.Name = "dTPickerCreateAppoitment";
+            this.dTPickerCreateAppoitment.Size = new System.Drawing.Size(200, 20);
+            this.dTPickerCreateAppoitment.TabIndex = 8;
+            // 
+            // tbRoom
+            // 
+            this.tbRoom.Location = new System.Drawing.Point(288, 89);
+            this.tbRoom.Name = "tbRoom";
+            this.tbRoom.Size = new System.Drawing.Size(100, 20);
+            this.tbRoom.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(216, 92);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Pick a room:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(218, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Pick a date:";
             // 
             // SplitBill
             // 
@@ -133,97 +226,6 @@
             this.Notifications.TabIndex = 6;
             this.Notifications.Text = "Notifications";
             this.Notifications.UseVisualStyleBackColor = true;
-            // 
-            // tbRoom
-            // 
-            this.tbRoom.Location = new System.Drawing.Point(288, 89);
-            this.tbRoom.Name = "tbRoom";
-            this.tbRoom.Size = new System.Drawing.Size(100, 20);
-            this.tbRoom.TabIndex = 7;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(216, 92);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Pick a room:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(218, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Pick a date:";
-            // 
-            // dTPickerCreateAppoitment
-            // 
-            this.dTPickerCreateAppoitment.Location = new System.Drawing.Point(288, 40);
-            this.dTPickerCreateAppoitment.Name = "dTPickerCreateAppoitment";
-            this.dTPickerCreateAppoitment.Size = new System.Drawing.Size(200, 20);
-            this.dTPickerCreateAppoitment.TabIndex = 8;
-            // 
-            // rtbDescriptionAppoitment
-            // 
-            this.rtbDescriptionAppoitment.Location = new System.Drawing.Point(158, 156);
-            this.rtbDescriptionAppoitment.Name = "rtbDescriptionAppoitment";
-            this.rtbDescriptionAppoitment.Size = new System.Drawing.Size(466, 178);
-            this.rtbDescriptionAppoitment.TabIndex = 9;
-            this.rtbDescriptionAppoitment.Text = "";
-            // 
-            // btnCreateAppoitment
-            // 
-            this.btnCreateAppoitment.Location = new System.Drawing.Point(362, 363);
-            this.btnCreateAppoitment.Name = "btnCreateAppoitment";
-            this.btnCreateAppoitment.Size = new System.Drawing.Size(75, 23);
-            this.btnCreateAppoitment.TabIndex = 10;
-            this.btnCreateAppoitment.Text = "Create";
-            this.btnCreateAppoitment.UseVisualStyleBackColor = true;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(268, 43);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 0;
-            // 
-            // btnNextDate
-            // 
-            this.btnNextDate.Location = new System.Drawing.Point(474, 43);
-            this.btnNextDate.Name = "btnNextDate";
-            this.btnNextDate.Size = new System.Drawing.Size(30, 20);
-            this.btnNextDate.TabIndex = 1;
-            this.btnNextDate.Text = ">";
-            this.btnNextDate.UseVisualStyleBackColor = true;
-            // 
-            // btnPrevDate
-            // 
-            this.btnPrevDate.Location = new System.Drawing.Point(234, 43);
-            this.btnPrevDate.Name = "btnPrevDate";
-            this.btnPrevDate.Size = new System.Drawing.Size(30, 20);
-            this.btnPrevDate.TabIndex = 2;
-            this.btnPrevDate.Text = "<";
-            this.btnPrevDate.UseVisualStyleBackColor = true;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(157, 97);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(455, 225);
-            this.listBox1.TabIndex = 3;
-            // 
-            // btnGoCreateAppoitment
-            // 
-            this.btnGoCreateAppoitment.Location = new System.Drawing.Point(323, 354);
-            this.btnGoCreateAppoitment.Name = "btnGoCreateAppoitment";
-            this.btnGoCreateAppoitment.Size = new System.Drawing.Size(172, 36);
-            this.btnGoCreateAppoitment.TabIndex = 4;
-            this.btnGoCreateAppoitment.Text = "Create Appoitment";
-            this.btnGoCreateAppoitment.UseVisualStyleBackColor = true;
             // 
             // TenantApp
             // 
