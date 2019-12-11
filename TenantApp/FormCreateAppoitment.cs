@@ -10,18 +10,16 @@ using System.Windows.Forms;
 
 namespace TenantApp
 {
-    public partial class TenantApp : Form
+    public partial class FormCreateAppoitment : Form
     {
-        public TenantApp()
+        public FormCreateAppoitment()
         {
             InitializeComponent();
         }
 
         private void BtnCreateAppoitment_Click(object sender, EventArgs e)
         {
-            FormCreateAppoitment formCreateAppoitment = new FormCreateAppoitment();
-
-            formCreateAppoitment.Show();
+            this.Close();
         }
     }
 }

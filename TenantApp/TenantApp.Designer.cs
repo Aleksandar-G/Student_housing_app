@@ -36,19 +36,23 @@
             this.lbEmail = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ShowAppointments = new System.Windows.Forms.TabPage();
-            this.CreateAppointment = new System.Windows.Forms.TabPage();
             this.SplitBill = new System.Windows.Forms.TabPage();
             this.CreateComplaint = new System.Windows.Forms.TabPage();
             this.Notifications = new System.Windows.Forms.TabPage();
+            this.lbAppoitments = new System.Windows.Forms.ListBox();
+            this.btnGoCreateAppoitment = new System.Windows.Forms.Button();
+            this.btnPrevDate = new System.Windows.Forms.Button();
+            this.btnNextDate = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tabControl1.SuspendLayout();
             this.Login.SuspendLayout();
+            this.ShowAppointments.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.Login);
             this.tabControl1.Controls.Add(this.ShowAppointments);
-            this.tabControl1.Controls.Add(this.CreateAppointment);
             this.tabControl1.Controls.Add(this.SplitBill);
             this.tabControl1.Controls.Add(this.CreateComplaint);
             this.tabControl1.Controls.Add(this.Notifications);
@@ -116,6 +120,11 @@
             // 
             // ShowAppointments
             // 
+            this.ShowAppointments.Controls.Add(this.dateTimePicker1);
+            this.ShowAppointments.Controls.Add(this.btnNextDate);
+            this.ShowAppointments.Controls.Add(this.btnPrevDate);
+            this.ShowAppointments.Controls.Add(this.btnGoCreateAppoitment);
+            this.ShowAppointments.Controls.Add(this.lbAppoitments);
             this.ShowAppointments.Location = new System.Drawing.Point(4, 22);
             this.ShowAppointments.Name = "ShowAppointments";
             this.ShowAppointments.Padding = new System.Windows.Forms.Padding(3);
@@ -123,16 +132,6 @@
             this.ShowAppointments.TabIndex = 3;
             this.ShowAppointments.Text = "Show Appointments";
             this.ShowAppointments.UseVisualStyleBackColor = true;
-            // 
-            // CreateAppointment
-            // 
-            this.CreateAppointment.Location = new System.Drawing.Point(4, 22);
-            this.CreateAppointment.Name = "CreateAppointment";
-            this.CreateAppointment.Padding = new System.Windows.Forms.Padding(3);
-            this.CreateAppointment.Size = new System.Drawing.Size(780, 412);
-            this.CreateAppointment.TabIndex = 1;
-            this.CreateAppointment.Text = "Create Appointments";
-            this.CreateAppointment.UseVisualStyleBackColor = true;
             // 
             // SplitBill
             // 
@@ -162,6 +161,49 @@
             this.Notifications.Text = "Notifications";
             this.Notifications.UseVisualStyleBackColor = true;
             // 
+            // lbAppoitments
+            // 
+            this.lbAppoitments.FormattingEnabled = true;
+            this.lbAppoitments.Location = new System.Drawing.Point(219, 108);
+            this.lbAppoitments.Name = "lbAppoitments";
+            this.lbAppoitments.Size = new System.Drawing.Size(375, 199);
+            this.lbAppoitments.TabIndex = 0;
+            // 
+            // btnGoCreateAppoitment
+            // 
+            this.btnGoCreateAppoitment.Location = new System.Drawing.Point(329, 347);
+            this.btnGoCreateAppoitment.Name = "btnGoCreateAppoitment";
+            this.btnGoCreateAppoitment.Size = new System.Drawing.Size(167, 40);
+            this.btnGoCreateAppoitment.TabIndex = 1;
+            this.btnGoCreateAppoitment.Text = "Create Appointment";
+            this.btnGoCreateAppoitment.UseVisualStyleBackColor = true;
+            this.btnGoCreateAppoitment.Click += new System.EventHandler(this.BtnCreateAppoitment_Click);
+            // 
+            // btnPrevDate
+            // 
+            this.btnPrevDate.Location = new System.Drawing.Point(242, 42);
+            this.btnPrevDate.Name = "btnPrevDate";
+            this.btnPrevDate.Size = new System.Drawing.Size(32, 20);
+            this.btnPrevDate.TabIndex = 2;
+            this.btnPrevDate.Text = "<";
+            this.btnPrevDate.UseVisualStyleBackColor = true;
+            // 
+            // btnNextDate
+            // 
+            this.btnNextDate.Location = new System.Drawing.Point(513, 41);
+            this.btnNextDate.Name = "btnNextDate";
+            this.btnNextDate.Size = new System.Drawing.Size(36, 20);
+            this.btnNextDate.TabIndex = 3;
+            this.btnNextDate.Text = ">";
+            this.btnNextDate.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(296, 41);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 4;
+            // 
             // TenantApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -173,6 +215,7 @@
             this.tabControl1.ResumeLayout(false);
             this.Login.ResumeLayout(false);
             this.Login.PerformLayout();
+            this.ShowAppointments.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -187,10 +230,14 @@
         private System.Windows.Forms.Label lbEmail;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TabPage ShowAppointments;
-        private System.Windows.Forms.TabPage CreateAppointment;
         private System.Windows.Forms.TabPage SplitBill;
         private System.Windows.Forms.TabPage CreateComplaint;
         private System.Windows.Forms.TabPage Notifications;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button btnNextDate;
+        private System.Windows.Forms.Button btnPrevDate;
+        private System.Windows.Forms.Button btnGoCreateAppoitment;
+        private System.Windows.Forms.ListBox lbAppoitments;
     }
 }
 
