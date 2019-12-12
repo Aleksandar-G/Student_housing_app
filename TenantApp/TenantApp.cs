@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Models;
 
 namespace TenantApp
 {
@@ -22,6 +23,11 @@ namespace TenantApp
             FormCreateAppoitment formCreateAppoitment = new FormCreateAppoitment();
 
             formCreateAppoitment.Show();
+
+        }
+        private void TenantApp_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
