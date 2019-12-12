@@ -36,8 +36,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Login = new System.Windows.Forms.TabPage();
             this.AddTenant = new System.Windows.Forms.TabPage();
-            this.ShowComplaints = new System.Windows.Forms.TabPage();
             this.RemoveTenant = new System.Windows.Forms.TabPage();
+            this.ShowComplaints = new System.Windows.Forms.TabPage();
             this.ShowTenantDetails = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -92,11 +92,12 @@
             this.tabControl1.Controls.Add(this.RemoveTenant);
             this.tabControl1.Controls.Add(this.ShowComplaints);
             this.tabControl1.Controls.Add(this.ShowTenantDetails);
-            this.tabControl1.Location = new System.Drawing.Point(6, 6);
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(788, 438);
             this.tabControl1.TabIndex = 10;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
             // Login
             // 
@@ -118,15 +119,6 @@
             this.AddTenant.Text = "Add Tenant";
             this.AddTenant.UseVisualStyleBackColor = true;
             // 
-            // ShowComplaints
-            // 
-            this.ShowComplaints.Location = new System.Drawing.Point(4, 22);
-            this.ShowComplaints.Name = "ShowComplaints";
-            this.ShowComplaints.Size = new System.Drawing.Size(780, 412);
-            this.ShowComplaints.TabIndex = 2;
-            this.ShowComplaints.Text = "Show Complaints";
-            this.ShowComplaints.UseVisualStyleBackColor = true;
-            // 
             // RemoveTenant
             // 
             this.RemoveTenant.Location = new System.Drawing.Point(4, 22);
@@ -135,6 +127,15 @@
             this.RemoveTenant.TabIndex = 3;
             this.RemoveTenant.Text = "Remove Tenant";
             this.RemoveTenant.UseVisualStyleBackColor = true;
+            // 
+            // ShowComplaints
+            // 
+            this.ShowComplaints.Location = new System.Drawing.Point(4, 22);
+            this.ShowComplaints.Name = "ShowComplaints";
+            this.ShowComplaints.Size = new System.Drawing.Size(780, 412);
+            this.ShowComplaints.TabIndex = 2;
+            this.ShowComplaints.Text = "Show Complaints";
+            this.ShowComplaints.UseVisualStyleBackColor = true;
             // 
             // ShowTenantDetails
             // 

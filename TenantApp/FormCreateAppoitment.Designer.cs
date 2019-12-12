@@ -100,6 +100,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormCreateAppoitment";
             this.Text = "FormCreateAppoitment";
+            this.Load += new System.EventHandler(this.FormCreateAppoitment_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

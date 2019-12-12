@@ -32,5 +32,35 @@ namespace Models
 
             this.connection = new MySqlConnection(connectionString);
         }
+
+        public bool OpenConnection()
+        {
+            try
+            {
+                connection.Open();
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
+        public bool CloseConnection()
+        {
+            try
+            {
+                connection.Close();
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
     }
 }

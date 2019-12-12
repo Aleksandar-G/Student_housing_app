@@ -12,9 +12,15 @@ namespace CompanyApp
 {
     public partial class CompanyApp : Form
     {
+
         public CompanyApp()
         {
             InitializeComponent();
+        }
+
+        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
