@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Models;
 
 namespace TenantApp
 {
@@ -15,6 +16,10 @@ namespace TenantApp
         public TenantApp()
         {
             InitializeComponent();
+        }
+
+        private void TenantApp_Load(object sender, EventArgs e)
+        {
         }
     }
 }
