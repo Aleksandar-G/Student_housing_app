@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Models;
 namespace TenantApp
 {
     public partial class TenantApp : Form
@@ -15,6 +15,8 @@ namespace TenantApp
         public TenantApp()
         {
             InitializeComponent();
+           
         }
+        
     }
 }
