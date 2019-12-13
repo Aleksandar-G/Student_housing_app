@@ -8,22 +8,22 @@ namespace Models
 {
     public class Complaint
     {
-        private string title;
-        private string description;
-        private string buildingAddress;
-        public Complaint(string title,string description, string address)
+        public string title { get; }
+        public string description { get; }
+        public string buildingAddress { get; }
+        public Complaint(string title, string description, string address)
         {
             this.title = title;
             this.description = description;
             this.buildingAddress = address;
         }
-        public string InsertIntoDB()
+        public string QueryInsertIntoDB()
         {
-            return $"INSERT INTO Complaints(description, buildingId, title) VALUES({this.description},(SELECT id FROM Buildings WHERE address = {this.buildingAddress}),{this.title});";
+            return $"INSERT INTO Complaints(description, buildingId, title) VALUES('{this.description}',(SELECT id FROM Buildings WHERE address = '{this.buildingAddress}'),'{this.title}');";
         }
         public string SelectFromDB()
         {
-            return "SELECT * FROM Complaints LIMIT 10";
+            return "SELECT * FROM Complaints ORDER BY id ASC";
         }
 
 

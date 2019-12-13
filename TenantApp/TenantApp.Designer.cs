@@ -39,15 +39,15 @@
             this.CreateAppointment = new System.Windows.Forms.TabPage();
             this.SplitBill = new System.Windows.Forms.TabPage();
             this.CreateComplaint = new System.Windows.Forms.TabPage();
-            this.btnSubmit = new System.Windows.Forms.Button();
+            this.cbBuildingId = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnSubmitComplaint = new System.Windows.Forms.Button();
             this.tbMessage = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbTitle = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Notifications = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cbBuildingId = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.Login.SuspendLayout();
             this.CreateComplaint.SuspendLayout();
@@ -67,6 +67,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1051, 539);
             this.tabControl1.TabIndex = 1;
+            this.tabControl1.TabIndexChanged += new System.EventHandler(this.TabControl1_TabIndexChanged);
             // 
             // Login
             // 
@@ -157,7 +158,7 @@
             this.SplitBill.Location = new System.Drawing.Point(4, 25);
             this.SplitBill.Margin = new System.Windows.Forms.Padding(4);
             this.SplitBill.Name = "SplitBill";
-            this.SplitBill.Padding = new System.Windows.Forms.Padding(4);
+            this.SplitBill.Padding = new System.Windows.Forms.Padding(3);
             this.SplitBill.Size = new System.Drawing.Size(1043, 510);
             this.SplitBill.TabIndex = 4;
             this.SplitBill.Text = "Split Bill";
@@ -167,7 +168,7 @@
             // 
             this.CreateComplaint.Controls.Add(this.cbBuildingId);
             this.CreateComplaint.Controls.Add(this.label4);
-            this.CreateComplaint.Controls.Add(this.btnSubmit);
+            this.CreateComplaint.Controls.Add(this.btnSubmitComplaint);
             this.CreateComplaint.Controls.Add(this.tbMessage);
             this.CreateComplaint.Controls.Add(this.label3);
             this.CreateComplaint.Controls.Add(this.tbTitle);
@@ -182,15 +183,33 @@
             this.CreateComplaint.Text = "Create Compaint";
             this.CreateComplaint.UseVisualStyleBackColor = true;
             // 
-            // btnSubmit
+            // cbBuildingId
             // 
-            this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmit.Location = new System.Drawing.Point(337, 433);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(385, 56);
-            this.btnSubmit.TabIndex = 5;
-            this.btnSubmit.Text = "Submit Complaint";
-            this.btnSubmit.UseVisualStyleBackColor = true;
+            this.cbBuildingId.FormattingEnabled = true;
+            this.cbBuildingId.Location = new System.Drawing.Point(670, 123);
+            this.cbBuildingId.Name = "cbBuildingId";
+            this.cbBuildingId.Size = new System.Drawing.Size(322, 33);
+            this.cbBuildingId.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(493, 131);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(162, 25);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Buiilding number:";
+            // 
+            // btnSubmitComplaint
+            // 
+            this.btnSubmitComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubmitComplaint.Location = new System.Drawing.Point(337, 433);
+            this.btnSubmitComplaint.Name = "btnSubmitComplaint";
+            this.btnSubmitComplaint.Size = new System.Drawing.Size(385, 56);
+            this.btnSubmitComplaint.TabIndex = 5;
+            this.btnSubmitComplaint.Text = "Submit Complaint";
+            this.btnSubmitComplaint.UseVisualStyleBackColor = true;
+            this.btnSubmitComplaint.Click += new System.EventHandler(this.BtnSubmitComplaint_Click);
             // 
             // tbMessage
             // 
@@ -245,23 +264,6 @@
             this.Notifications.Text = "Notifications";
             this.Notifications.UseVisualStyleBackColor = true;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(493, 131);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(162, 25);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Buiilding number:";
-            // 
-            // cbBuildingId
-            // 
-            this.cbBuildingId.FormattingEnabled = true;
-            this.cbBuildingId.Location = new System.Drawing.Point(670, 123);
-            this.cbBuildingId.Name = "cbBuildingId";
-            this.cbBuildingId.Size = new System.Drawing.Size(322, 33);
-            this.cbBuildingId.TabIndex = 7;
-            // 
             // TenantApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -271,6 +273,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TenantApp";
             this.Text = "TenantApp";
+            this.Load += new System.EventHandler(this.TenantApp_Load);
             this.tabControl1.ResumeLayout(false);
             this.Login.ResumeLayout(false);
             this.Login.PerformLayout();
@@ -299,7 +302,7 @@
         private System.Windows.Forms.TextBox tbTitle;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnSubmit;
+        private System.Windows.Forms.Button btnSubmitComplaint;
         private System.Windows.Forms.ComboBox cbBuildingId;
         private System.Windows.Forms.Label label4;
     }
