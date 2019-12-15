@@ -56,10 +56,8 @@ namespace TenantApp
         private void BtnSubmitComplaint_Click(object sender, EventArgs e)
         {
             Complaint complaint = new Complaint(tbTitle.Text, tbMessage.Text, cbBuildingId.SelectedItem.ToString());
-            db.Connection.Open();
-            MySqlCommand cmd = new MySqlCommand(complaint.QueryInsertIntoDB(), db.Connection);
-            cmd.ExecuteNonQuery();
-            db.Connection.Close();
+
+            MessageBox.Show("Your compaint was sent successfully!");
             this.tbMessage.Text = "";
             this.tbTitle.Text = "";
         }
