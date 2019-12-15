@@ -17,44 +17,45 @@ namespace Models
         private string pictureUrl;
         private Database db;
 
-        public int UserId { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Phone { get; set; }
-        public string PictureUrl { get; set; }
+        public int UserId
+        {
+            get
+            {
+                return this.userId;
+            }
+        }
+        public string Name { get; }
+        public string Email { get; }
+        public string Password { get; }
+        public string Phone { get; }
+        public string PictureUrl { get; }
 
         public User(string name, string email, string password)
         {
             this.name = name;
             this.email = email;
-            this.password = password;
-            InsertIntoDB();
+            this.password = BCrypt.Net.BCrypt.HashPassword(password);
         }
 
         public User(string name, string email, string password, string phone)
         {
             this.name = name;
             this.email = email;
-            this.password = password;
+            this.password = BCrypt.Net.BCrypt.HashPassword(password);
             this.phone = phone;
-            InsertIntoDB();
         }
 
         public User(string name, string email, string password, string phone, string pictureUrl)
         {
             this.name = name;
             this.email = email;
-            this.password = password;
+            this.password = BCrypt.Net.BCrypt.HashPassword(password);
             this.phone = phone;
             this.pictureUrl = pictureUrl;
-            InsertIntoDB();
         }
 
-        private bool InsertIntoDB()
+        public User InsertIntoDB()
         {
-            bool result;
-
             try
             {
                 db = new Database();
@@ -65,10 +66,40 @@ namespace Models
                     db.Connection
                 );
                 cmd.ExecuteNonQuery();
-                result = true;
-            } catch (Exception)
+
+                cmd = new MySqlCommand($"SELECT * FROM Users WHERE name = {name} AND email = {email}", db.Connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                this.userId = Convert.ToInt32(dataReader["id"]);
+                
+            } catch (Exception) {}
+            finally
             {
-                result = false;
+                db.Connection.Close();
+            }
+
+            return this;
+        }
+
+        public static bool Authenticate(string email, string password)
+        {
+            bool result = false;
+            Database db = new Database();
+            try
+            {
+                db.Connection.Open();
+
+                MySqlCommand cmd = new MySqlCommand(
+                    $"SELECT * FROM Users WHERE email = '{email}';",
+                    db.Connection
+                );
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                dataReader.Read();
+                result = BCrypt.Net.BCrypt.Verify(password, dataReader["password"].ToString());
+                dataReader.Close();
+            } catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
             finally
             {
