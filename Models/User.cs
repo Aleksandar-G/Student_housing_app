@@ -34,14 +34,14 @@ namespace Models
         {
             this.name = name;
             this.email = email;
-            this.password = password;
+            this.password = BCrypt.Net.BCrypt.HashPassword(password);
         }
 
         public User(string name, string email, string password, string phone)
         {
             this.name = name;
             this.email = email;
-            this.password = password;
+            this.password = BCrypt.Net.BCrypt.HashPassword(password);
             this.phone = phone;
         }
 
@@ -49,7 +49,7 @@ namespace Models
         {
             this.name = name;
             this.email = email;
-            this.password = password;
+            this.password = BCrypt.Net.BCrypt.HashPassword(password);
             this.phone = phone;
             this.pictureUrl = pictureUrl;
         }
@@ -79,6 +79,34 @@ namespace Models
             }
 
             return this;
+        }
+
+        public static bool Authenticate(string email, string password)
+        {
+            bool result = false;
+            Database db = new Database();
+            try
+            {
+                db.Connection.Open();
+
+                MySqlCommand cmd = new MySqlCommand(
+                    $"SELECT * FROM Users WHERE email = '{email}';",
+                    db.Connection
+                );
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                dataReader.Read();
+                result = BCrypt.Net.BCrypt.Verify(password, dataReader["password"].ToString());
+                dataReader.Close();
+            } catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                db.Connection.Close();
+            }
+
+            return result;
         }
     }
 }

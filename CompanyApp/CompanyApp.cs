@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Models;
-using BCrypt;
 
 namespace CompanyApp
 {
@@ -24,7 +17,7 @@ namespace CompanyApp
         {
             string name = tbAddTenantName.Text;
             string email = tbAddTenantEmail.Text;
-            string password = BCrypt.Net.BCrypt.HashPassword(tbAddTenantPassword.Text);
+            string password = tbAddTenantPassword.Text;
             string phone = tbAddTenantPhone.Text;
             Building building = buildings.Find(b => b.Address == cbAddTenantAddress.SelectedItem.ToString());
             int roomId = Convert.ToInt32(cbAddTenantRoomNumber.SelectedItem.ToString());
@@ -32,6 +25,8 @@ namespace CompanyApp
             User tenant = new User(name, email, password, phone);
             tenant.InsertIntoDB();
             Room.GetRooms(building.Id).Find(r => r.Id == roomId).AssignRoomTo(tenant.UserId);
+
+            MessageBox.Show("Tenant added successfully!");
         }
 
         private void CompanyApp_Load(object sender, EventArgs e)

@@ -19,7 +19,6 @@ namespace TenantApp
         public TenantApp()
         {
             InitializeComponent();
-
         }
         public void Building_Complaints()
         {
@@ -55,10 +54,25 @@ namespace TenantApp
         private void BtnSubmitComplaint_Click(object sender, EventArgs e)
         {
             Complaint complaint = new Complaint(tbTitle.Text, tbMessage.Text, cbBuildingId.SelectedItem.ToString());
+            complaint.InsertIntoDB();
 
             MessageBox.Show("Your compaint was sent successfully!");
             this.tbMessage.Text = "";
             this.tbTitle.Text = "";
+        }
+
+        private void BtnLogin_Click(object sender, EventArgs e)
+        {
+            string email = tbLoginEmail.Text;
+            string password = tbLoginPassword.Text;
+
+            if (User.Authenticate(email, password))
+            {
+                MessageBox.Show("Logged in successfully!");
+            } else
+            {
+                MessageBox.Show("Wrong credentials!");
+            }
         }
     }
 }

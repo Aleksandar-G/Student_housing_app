@@ -20,10 +20,9 @@ namespace Models
             this.title = title;
             this.description = description;
             this.buildingAddress = address;
-            InsertIntoDB();
         }
 
-        private void InsertIntoDB()
+        public void InsertIntoDB()
         {
             string query = $"INSERT INTO Complaints(description, buildingId, title) VALUES('{this.description}', (SELECT id FROM Buildings WHERE address = '{this.buildingAddress}'), '{this.title}');";
             this.db = new Database();
