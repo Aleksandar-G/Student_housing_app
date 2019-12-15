@@ -17,19 +17,24 @@ namespace Models
         private string pictureUrl;
         private Database db;
 
-        public int UserId { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Phone { get; set; }
-        public string PictureUrl { get; set; }
+        public int UserId
+        {
+            get
+            {
+                return this.userId;
+            }
+        }
+        public string Name { get; }
+        public string Email { get; }
+        public string Password { get; }
+        public string Phone { get; }
+        public string PictureUrl { get; }
 
         public User(string name, string email, string password)
         {
             this.name = name;
             this.email = email;
             this.password = password;
-            InsertIntoDB();
         }
 
         public User(string name, string email, string password, string phone)
@@ -38,7 +43,6 @@ namespace Models
             this.email = email;
             this.password = password;
             this.phone = phone;
-            InsertIntoDB();
         }
 
         public User(string name, string email, string password, string phone, string pictureUrl)
@@ -48,13 +52,10 @@ namespace Models
             this.password = password;
             this.phone = phone;
             this.pictureUrl = pictureUrl;
-            InsertIntoDB();
         }
 
-        private bool InsertIntoDB()
+        public User InsertIntoDB()
         {
-            bool result;
-
             try
             {
                 db = new Database();
@@ -65,17 +66,19 @@ namespace Models
                     db.Connection
                 );
                 cmd.ExecuteNonQuery();
-                result = true;
-            } catch (Exception)
-            {
-                result = false;
-            }
+
+                cmd = new MySqlCommand($"SELECT * FROM Users WHERE name = {name} AND email = {email}", db.Connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                this.userId = Convert.ToInt32(dataReader["id"]);
+                
+            } catch (Exception) {}
             finally
             {
                 db.Connection.Close();
             }
 
-            return result;
+            return this;
         }
     }
 }

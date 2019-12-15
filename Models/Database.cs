@@ -25,7 +25,17 @@ namespace Models
                 return this.connection;
             }
         }
-        public MySqlDataReader DataReader { get; set; }
+        public MySqlDataReader DataReader
+        {
+            get
+            {
+                return this.dataReader;
+            }
+            set
+            {
+                this.dataReader = value;
+            }
+        }
 
         public Database()
         {

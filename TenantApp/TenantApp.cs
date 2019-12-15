@@ -49,7 +49,6 @@ namespace TenantApp
 
         private void TabControl1_TabIndexChanged(object sender, EventArgs e)
         {
-
            
         }
 
