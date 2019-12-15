@@ -74,5 +74,18 @@ namespace TenantApp
                 MessageBox.Show("Wrong credentials!");
             }
         }
+
+        private void BtnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.InitialDirectory = @"C:\";
+            openFileDialog1.DefaultExt = "jpg";
+            openFileDialog1.Filter = "Image Files|*.jpg;*.png";
+
+            openFileDialog1.ShowDialog();
+
+            pbBill.ImageLocation = openFileDialog1.FileName;
+        }
     }
 }
