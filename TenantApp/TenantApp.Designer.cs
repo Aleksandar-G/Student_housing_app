@@ -39,7 +39,6 @@
             this.CreateAppointment = new System.Windows.Forms.TabPage();
             this.SplitBill = new System.Windows.Forms.TabPage();
             this.btnSplit = new System.Windows.Forms.Button();
-            this.pbBill = new System.Windows.Forms.PictureBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.tbPrice = new System.Windows.Forms.TextBox();
             this.lblPicture = new System.Windows.Forms.Label();
@@ -48,6 +47,7 @@
             this.CreateComplaint = new System.Windows.Forms.TabPage();
             this.Notifications = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.pbBill = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.Login.SuspendLayout();
             this.SplitBill.SuspendLayout();
@@ -155,8 +155,8 @@
             // 
             // SplitBill
             // 
-            this.SplitBill.Controls.Add(this.btnSplit);
             this.SplitBill.Controls.Add(this.pbBill);
+            this.SplitBill.Controls.Add(this.btnSplit);
             this.SplitBill.Controls.Add(this.btnBrowse);
             this.SplitBill.Controls.Add(this.tbPrice);
             this.SplitBill.Controls.Add(this.lblPicture);
@@ -179,15 +179,6 @@
             this.btnSplit.TabIndex = 6;
             this.btnSplit.Text = "Split bill";
             this.btnSplit.UseVisualStyleBackColor = true;
-            // 
-            // pbBill
-            // 
-            this.pbBill.Location = new System.Drawing.Point(265, 178);
-            this.pbBill.Name = "pbBill";
-            this.pbBill.Size = new System.Drawing.Size(472, 362);
-            this.pbBill.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pbBill.TabIndex = 5;
-            this.pbBill.TabStop = false;
             // 
             // btnBrowse
             // 
@@ -263,6 +254,15 @@
             this.openFileDialog1.RestoreDirectory = true;
             this.openFileDialog1.Title = "Browse Bill Picture";
             // 
+            // pbBill
+            // 
+            this.pbBill.Location = new System.Drawing.Point(295, 178);
+            this.pbBill.Name = "pbBill";
+            this.pbBill.Size = new System.Drawing.Size(415, 379);
+            this.pbBill.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbBill.TabIndex = 7;
+            this.pbBill.TabStop = false;
+            // 
             // TenantApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -298,13 +298,13 @@
         private System.Windows.Forms.TabPage CreateComplaint;
         private System.Windows.Forms.TabPage Notifications;
         private System.Windows.Forms.Button btnSplit;
-        private System.Windows.Forms.PictureBox pbBill;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.TextBox tbPrice;
         private System.Windows.Forms.Label lblPicture;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblGroceries;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.PictureBox pbBill;
     }
 }
 
