@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data;
 using MySql.Data.MySqlClient;
 
 namespace Models
@@ -24,7 +25,17 @@ namespace Models
                 return this.connection;
             }
         }
-        public MySqlDataReader DataReader { get; set; }
+        public MySqlDataReader DataReader
+        {
+            get
+            {
+                return this.dataReader;
+            }
+            set
+            {
+                this.dataReader = value;
+            }
+        }
 
         public Database()
         {
