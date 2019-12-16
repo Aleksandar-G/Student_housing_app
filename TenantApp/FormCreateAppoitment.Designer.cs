@@ -50,13 +50,13 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(89, 44);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.Size = new System.Drawing.Size(91, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Pick a Date:";
+            this.label2.Text = "Pick a Start Date:";
             // 
             // dtpCreateAppoitment
             // 
-            this.dtpCreateAppoitment.Location = new System.Drawing.Point(161, 44);
+            this.dtpCreateAppoitment.Location = new System.Drawing.Point(186, 38);
             this.dtpCreateAppoitment.Name = "dtpCreateAppoitment";
             this.dtpCreateAppoitment.Size = new System.Drawing.Size(200, 20);
             this.dtpCreateAppoitment.TabIndex = 2;
@@ -64,6 +64,13 @@
             // cbRooms
             // 
             this.cbRooms.FormattingEnabled = true;
+            this.cbRooms.Items.AddRange(new object[] {
+            "Kitchen",
+            "DinnigRoom",
+            "FrontYard",
+            "BackYard",
+            "ChillRoom",
+            "GameRoom"});
             this.cbRooms.Location = new System.Drawing.Point(166, 99);
             this.cbRooms.Name = "cbRooms";
             this.cbRooms.Size = new System.Drawing.Size(121, 21);

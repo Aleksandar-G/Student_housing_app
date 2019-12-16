@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using MySql.Data.MySqlClient;
+using System.Globalization;
 
 namespace Models
 {
@@ -12,16 +13,27 @@ namespace Models
         public int ID { get; set; }
         public int UserID { get; set; }
         public string Description { get; set; }
-        public DateTime AppointmentDate { get; set; }
+        public DateTime AppointmentStartDate { get; set; }
+        public DateTime AppointmentEndDate { get; set; }
 
         public Appointments()
         {
+            CultureInfo ci = new CultureInfo(CultureInfo.CurrentCulture.Name);
 
+            // ci.DateTimeFormat.ShortDatePattern = "dd'/'MM'/'yyyy";
+
+            ci.DateTimeFormat.ShortDatePattern = "yyyy'-'MM'-'dd";
+
+            ci.DateTimeFormat.LongTimePattern = "hh:mm:ss";
+
+            Thread.CurrentThread.CurrentCulture = ci;
+
+            Thread.CurrentThread.CurrentUICulture = ci;
         }
 
-        public void AddAppointment(int userId,string description, string appointmentDate)
+        public void AddAppointment(int userId, string description, string StartDate, string EndDate, string room)
         {
-            string query = $"INSERT INTO Appointments (userId,description,appointmentDate) VALUES('{userId}', '{description}', '{appointmentDate}')";
+            string query = $"INSERT INTO Appointments (userId,description,StartDate,EndDate,room) VALUES('{userId}', '{description}', '{StartDate}', '{EndDate}', '{room}' )";
             //DBConnection con = new DBConnection();
             Database database = new Database();
             //if (con.OpenConnection() == true)
@@ -49,9 +61,9 @@ namespace Models
             }
         }
 
-        public List<string> ShowAppointment(string dateOfappointments)
+        public List<string> ShowAppointment(string StartdateOfappointments)
         {
-            string query = $"SELECT userId,appointmentDate FROM Appointments WHERE appointmentDate LIKE \'{dateOfappointments}%\' ORDER BY appointmentDate";
+            string query = $"SELECT userId,description,StartDate,endDate,room FROM Appointments WHERE StartDate LIKE \'{StartdateOfappointments}%\' ORDER BY StartDate";
 
 
             List<string> result = new List<string>();
@@ -69,7 +81,9 @@ namespace Models
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    result.Add("UserID: " + dataReader["userId"] + " Date of the appointmnet " + dataReader["appointmentDate"]+ "");
+                    DateTime startDate = Convert.ToDateTime(dataReader["startDate"]);
+                    DateTime endDate = Convert.ToDateTime(dataReader["endDate"]);
+                    result.Add("UserID: " + dataReader["userId"] + " in "+dataReader["room"]+" " + $"from: { startDate.ToShortDateString()}" + $" ends: {endDate.ToShortDateString()}" );
                 }
 
                 //close Data Reader
@@ -86,6 +100,74 @@ namespace Models
                 return null;
             }
 
+        }
+
+        public string SearchForDescription(int userId, string startDate,string endDate)
+        {
+            string query = $"SELECT description FROM Appointments WHERE userId = {userId} AND DATE(startDate) = '{startDate}' AND DATE(endDate) = '{endDate}' LIMIT 1";
+
+            string desctiptoon = "";
+
+            Database database = new Database();
+
+            if (database.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, database.Connection);
+
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    desctiptoon = dataReader["description"].ToString();
+                }
+
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                database.CloseConnection();
+
+                return desctiptoon;
+
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public string SearchForName(int userId)
+        {
+            string query = $"SELECT name FROM Users WHERE id = {userId}";
+
+            string name = "";
+
+            Database database = new Database();
+
+            if (database.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, database.Connection);
+
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    name = dataReader["name"] + "";
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                database.CloseConnection();
+
+                return name;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

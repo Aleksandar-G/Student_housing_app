@@ -195,6 +195,7 @@
             this.lbAppoitments.Name = "lbAppoitments";
             this.lbAppoitments.Size = new System.Drawing.Size(375, 199);
             this.lbAppoitments.TabIndex = 0;
+            this.lbAppoitments.DoubleClick += new System.EventHandler(this.LbAppoitments_DoubleClick);
             // 
             // SplitBill
             // 

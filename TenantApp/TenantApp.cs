@@ -15,10 +15,8 @@ namespace TenantApp
 {
     public partial class TenantApp : Form
     {
-
         private Database db = new Database();
-
-
+        int dtpDate = 0;
         public TenantApp()
         {
             InitializeComponent();
@@ -79,20 +77,27 @@ namespace TenantApp
 
         private void BtnNextDate_Click(object sender, EventArgs e)
         {
-            dtpShowAppointments.Value = DateTime.Today.AddDays(+1);
+            dtpDate++;
+
+            dtpShowAppointments.Value = DateTime.Today.AddDays(dtpDate);
             ShowTodaysAppointments();
+            
         }
 
         private void BtnPrevDate_Click(object sender, EventArgs e)
         {
-            dtpShowAppointments.Value = DateTime.Today.AddDays(-1);
+            dtpDate--;
+
+            dtpShowAppointments.Value = DateTime.Today.AddDays(dtpDate);
             ShowTodaysAppointments();
+
         }
 
         private void ShowTodaysAppointments()
         {
             Appointments appointments = new Appointments();
             string dateOfAppointments = dtpShowAppointments.Value.Date.ToShortDateString();
+           
 
 
             List<string> recentAppoitments = appointments.ShowAppointment(dateOfAppointments);
@@ -101,6 +106,35 @@ namespace TenantApp
             {
                 lbAppoitments.Items.Add(item);
             }
+            //for (int i = 0; i < recentAppoitments.Count; i++)
+            //{
+            //    if (i == recentAppoitments.Count - 1)
+            //    {
+            //       Convert.ToDateTime(recentAppoitments[i]).ToString("u");
+            //    }
+            //    lbAppoitments.Items.Add(recentAppoitments[i]);
+            //}
+        }
+
+        private void LbAppoitments_DoubleClick(object sender, EventArgs e)
+        {
+            List<string> appointmentList = lbAppoitments.SelectedItem.ToString().Split(' ').ToList();
+
+            Appointments appointment = new Appointments();
+
+            int userIDFromAppointment = Convert.ToInt32(appointmentList[1]);
+            string startDateOfAppointment = appointmentList[appointmentList.Count - 1];
+            string endDateOfAppointment = appointmentList[appointmentList.Count - 3];
+            string descriptionAppointment = appointment.SearchForDescription(userIDFromAppointment, startDateOfAppointment, endDateOfAppointment); 
+            string room = appointmentList[3];
+            //for (int i = 2; i < appointmentList.Count-3; i++)
+            //{
+            //    descriptionAppointment += appointmentList[i]+ " ";
+            //}
+            
+            AppointmentDetails appointmentDetails = new AppointmentDetails(userIDFromAppointment, startDateOfAppointment, endDateOfAppointment, descriptionAppointment,room);
+
+            appointmentDetails.Show();
         }
 
         private void TabControl1_TabIndexChanged(object sender, EventArgs e)
