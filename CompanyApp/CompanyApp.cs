@@ -24,7 +24,7 @@ namespace CompanyApp
 
             User tenant = new User(name, email, password, phone);
             tenant.InsertIntoDB();
-            Room.GetRooms(building.Id).Find(r => r.Id == roomId).AssignRoomTo(tenant.UserId);
+            Room.GetRooms(building.Id).Find(r => r.Id == roomId).AssignRoomTo(tenant.Id);
 
             MessageBox.Show("Tenant added successfully!");
         }
@@ -32,7 +32,10 @@ namespace CompanyApp
         private void CompanyApp_Load(object sender, EventArgs e)
         {
             buildings = new List<Building>(Building.GetBuildings());
-            buildings.ForEach(b => cbAddTenantAddress.Items.Add(b.Address));
+            buildings.ForEach(b => {
+                cbAddTenantAddress.Items.Add(b.Address);
+                cbRemoveTenantAddress.Items.Add(b.Address);
+            });
         }
 
         private void CbAddTenantAddress_SelectedIndexChanged(object sender, EventArgs e)
@@ -40,6 +43,23 @@ namespace CompanyApp
             Building selectedBuilding = buildings.Find(b => cbAddTenantAddress.SelectedItem.ToString() == b.Address);
             List<Room> rooms = new List<Room>(Room.GetRooms(selectedBuilding.Id));
             rooms.ForEach(r => cbAddTenantRoomNumber.Items.Add(r.Id));
+        }
+
+        private void CbRemoveTenantAddress_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbRemoveTenantEmail.Items.Clear();
+            Building selectedBuilding = buildings.Find(b => cbRemoveTenantAddress.SelectedItem.ToString() == b.Address);
+            List<User> users = new List<User>(User.GetUsersByBuilding(selectedBuilding.Id));
+            users.ForEach(u => cbRemoveTenantEmail.Items.Add(u.Email));
+        }
+
+        private void BtnRemoveTenant_Click(object sender, EventArgs e)
+        {
+            Building selectedBuilding = buildings.Find(b => cbRemoveTenantAddress.SelectedItem.ToString() == b.Address);
+            List<User> users = new List<User>(User.GetUsersByBuilding(selectedBuilding.Id));
+            users.Find(u => cbRemoveTenantEmail.SelectedItem.ToString() == u.Email).DeleteFromDB();
+            cbRemoveTenantEmail.Items.RemoveAt(cbRemoveTenantEmail.SelectedIndex);
+            cbRemoveTenantEmail.Text = "";
         }
     }
 }

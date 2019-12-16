@@ -9,7 +9,7 @@ namespace Models
 {
     public class User
     {
-        private int userId;
+        private int id;
         private string name;
         private string email;
         private string password;
@@ -17,18 +17,46 @@ namespace Models
         private string pictureUrl;
         private Database db;
 
-        public int UserId
+        public int Id
         {
             get
             {
-                return this.userId;
+                return this.id;
             }
         }
-        public string Name { get; }
-        public string Email { get; }
-        public string Password { get; }
-        public string Phone { get; }
-        public string PictureUrl { get; }
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+        }
+        public string Email {
+            get
+            {
+                return this.email;
+            }
+        }
+        public string Password
+        {
+            get
+            {
+                return this.password;
+            }
+        }
+        public string Phone
+        {
+            get
+            {
+                return this.phone;
+            }
+        }
+        public string PictureUrl {
+            get
+            {
+                return this.pictureUrl;
+            }
+        }
 
         public User(string name, string email, string password)
         {
@@ -43,6 +71,16 @@ namespace Models
             this.email = email;
             this.password = BCrypt.Net.BCrypt.HashPassword(password);
             this.phone = phone;
+        }
+
+        public User(int id, string name, string email, string password, string phone, string pictureUrl)
+        {
+            this.id = id;
+            this.name = name;
+            this.email = email;
+            this.password = BCrypt.Net.BCrypt.HashPassword(password);
+            this.phone = phone;
+            this.pictureUrl = pictureUrl;
         }
 
         public User(string name, string email, string password, string phone, string pictureUrl)
@@ -67,18 +105,43 @@ namespace Models
                 );
                 cmd.ExecuteNonQuery();
 
-                cmd = new MySqlCommand($"SELECT * FROM Users WHERE name = {name} AND email = {email}", db.Connection);
+                cmd = new MySqlCommand($"SELECT * FROM Users WHERE name = '{name}' AND email = '{email}'", db.Connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
+                dataReader.Read();
+                this.id = Convert.ToInt32(dataReader["id"]);
 
-                this.userId = Convert.ToInt32(dataReader["id"]);
-                
-            } catch (Exception) {}
+            }
+            catch (Exception) { }
             finally
             {
                 db.Connection.Close();
             }
 
             return this;
+        }
+
+        public void DeleteFromDB()
+        {
+            try
+            {
+                db = new Database();
+                db.Connection.Open();
+
+                MySqlCommand cmd = new MySqlCommand(
+                    $"UPDATE BuildingRooms SET userId = null WHERE userId = {this.id}",
+                    db.Connection
+                );
+                cmd.ExecuteNonQuery();
+
+                cmd = new MySqlCommand($"DELETE FROM Users WHERE id = {this.id};", db.Connection);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception) { }
+            finally
+            {
+                db.Connection.Close();
+            }
         }
 
         public static bool Authenticate(string email, string password)
@@ -97,7 +160,8 @@ namespace Models
                 dataReader.Read();
                 result = BCrypt.Net.BCrypt.Verify(password, dataReader["password"].ToString());
                 dataReader.Close();
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -107,6 +171,43 @@ namespace Models
             }
 
             return result;
+        }
+
+        public static List<User> GetUsersByBuilding(int buildingId)
+        {
+            List<User> users = new List<User>();
+            Database db = new Database();
+
+            try
+            {
+                db.Connection.Open();
+
+                MySqlCommand cmd = new MySqlCommand(
+                    $"SELECT * FROM Users u INNER JOIN BuildingRooms br ON u.id = br.userId WHERE br.buildingId = {buildingId};",
+                    db.Connection
+                );
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    users.Add(new User(Convert.ToInt32(dataReader["userId"]),
+                                       dataReader["name"].ToString(),
+                                       dataReader["email"].ToString(),
+                                       dataReader["password"].ToString(),
+                                       dataReader["phone"].ToString(),
+                                       dataReader["pictureUrl"].ToString()));
+                }
+                dataReader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                db.Connection.Close();
+            }
+
+            return users;
         }
     }
 }
