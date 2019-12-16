@@ -67,12 +67,9 @@
     <Compile Include="Building.cs" />
     <Compile Include="Complaint.cs" />
     <Compile Include="Database.cs" />
-    
-    <Compile Include="Appointments.cs" />
+    <Compile Include="Appointment.cs" />
     <Compile Include="DBConnection.cs" />
-
     <Compile Include="Room.cs" />
-
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

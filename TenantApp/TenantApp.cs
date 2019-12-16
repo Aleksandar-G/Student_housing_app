@@ -69,7 +69,7 @@ namespace TenantApp
         private void TabControl1_Selected(object sender, TabControlEventArgs e)
         {
 
-            ShowTodaysAppointments();
+            ShowAppointmentsForDate();
             //Appointments appointments = new Appointments();
 
             //List<string> recentAppoitments= appointments.ShowAppointment();
@@ -80,7 +80,7 @@ namespace TenantApp
             dtpDate++;
 
             dtpShowAppointments.Value = DateTime.Today.AddDays(dtpDate);
-            ShowTodaysAppointments();
+            ShowAppointmentsForDate();
             
         }
 
@@ -89,16 +89,15 @@ namespace TenantApp
             dtpDate--;
 
             dtpShowAppointments.Value = DateTime.Today.AddDays(dtpDate);
-            ShowTodaysAppointments();
+            ShowAppointmentsForDate();
 
         }
 
-        private void ShowTodaysAppointments()
+        private void ShowAppointmentsForDate()
         {
-            Appointments appointments = new Appointments();
+            Appointment appointments = new Appointment();
             string dateOfAppointments = dtpShowAppointments.Value.Date.ToShortDateString();
            
-
 
             List<string> recentAppoitments = appointments.ShowAppointment(dateOfAppointments);
             lbAppoitments.Items.Clear();
@@ -120,7 +119,7 @@ namespace TenantApp
         {
             List<string> appointmentList = lbAppoitments.SelectedItem.ToString().Split(' ').ToList();
 
-            Appointments appointment = new Appointments();
+            Appointment appointment = new Appointment();
 
             int userIDFromAppointment = Convert.ToInt32(appointmentList[1]);
             string startDateOfAppointment = appointmentList[appointmentList.Count - 1];

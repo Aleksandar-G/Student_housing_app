@@ -29,7 +29,7 @@ namespace TenantApp
             this.Description = description;
             this.Room = room;
 
-            Appointments appointment = new Appointments();
+            Appointment appointment = new Appointment();
 
             LbUserName.Text = appointment.SearchForName(this.UserId);
             lbDateTime.Text = this.StartDateTime;

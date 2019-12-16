@@ -8,7 +8,7 @@ using System.Globalization;
 
 namespace Models
 {
-    public class Appointments
+    public class Appointment
     {
         public int ID { get; set; }
         public int UserID { get; set; }
@@ -16,7 +16,7 @@ namespace Models
         public DateTime AppointmentStartDate { get; set; }
         public DateTime AppointmentEndDate { get; set; }
 
-        public Appointments()
+        public Appointment()
         {
             CultureInfo ci = new CultureInfo(CultureInfo.CurrentCulture.Name);
 
@@ -153,7 +153,7 @@ namespace Models
 
                 while (dataReader.Read())
                 {
-                    name = dataReader["name"] + "";
+                    name = dataReader["name"].ToString();
                 }
 
                 //close Data Reader

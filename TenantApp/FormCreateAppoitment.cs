@@ -28,7 +28,7 @@ namespace TenantApp
             //dtpCreateAppoitment.Format = DateTimePickerFormat.Time;
             //dtpCreateAppoitment.ShowUpDown = true;
 
-            Appointments appointments = new Appointments();
+            Appointment appointments = new Appointment();
 
             string description = rtbCreateAppoitment.Text;
             string appointmentDate = dtpCreateAppoitment.Value.ToString();
