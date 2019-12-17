@@ -14,11 +14,11 @@ namespace TenantApp
     public partial class AppointmentDetails : Form
     {
         int UserId;
-        string StartDateTime;
-        string EndDateTime;
+        DateTime StartDateTime;
+        DateTime EndDateTime;
         string Description;
         string Room;
-        public AppointmentDetails(int userId, string StartdateTime,string endDatetime,  string description, string room)
+        public AppointmentDetails(int userId, DateTime StartdateTime,DateTime endDatetime,  string description, string room)
         {
             InitializeComponent();
 
@@ -32,8 +32,8 @@ namespace TenantApp
             Appointment appointment = new Appointment();
 
             LbUserName.Text = appointment.SearchForName(this.UserId);
-            lbDateTime.Text = this.StartDateTime;
-            lbEndDate.Text = this.EndDateTime;
+            lbDateTime.Text = this.StartDateTime.ToString("HH:mm");
+            lbEndDate.Text = this.EndDateTime.ToString("HH:mm");
             lbDescription.Text = this.Description;
             lbRoom.Text = Room;
 

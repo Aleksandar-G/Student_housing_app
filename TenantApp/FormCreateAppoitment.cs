@@ -23,18 +23,42 @@ namespace TenantApp
 
         private void BtnCreateAppoitment_Click(object sender, EventArgs e)
         {
-             dtpCreateAppoitment.Format = DateTimePickerFormat.Custom;
-             dtpCreateAppoitment.CustomFormat = "YYYY-MM-DD hh:mm:ss";
+             dtpStartDate.Format = DateTimePickerFormat.Custom;
+            dtpStartDate.CustomFormat = "YYYY-MM-DD";
+            //dtpStartDate.CustomFormat = "u";
             //dtpCreateAppoitment.Format = DateTimePickerFormat.Time;
             //dtpCreateAppoitment.ShowUpDown = true;
 
             Appointment appointments = new Appointment();
-
+            //dtpStartDate.CustomFormat = "yyyy-MM-dd";
             string description = rtbCreateAppoitment.Text;
-            string appointmentDate = dtpCreateAppoitment.Value.ToString();
-            string room = cbRooms.SelectedItem.ToString();
+            if (description == "")
+            {
+                MessageBox.Show("Please give a desccription for the appointment");
+                return;
+            }
+            string appointmentStartDateTime = dtpStartDate.Value.ToShortDateString() +" " + dtpStartTime.Value.ToString("HH:mm:ss");
+            string appointmentEndDateTime = dtpEndDate.Value.ToShortDateString() + " " + dtpEndTime.Value.ToString("HH:mm:ss");
 
-            appointments.AddAppointment(13, description, appointmentDate, appointmentDate,room);
+            if (Convert.ToDateTime(appointmentStartDateTime) > Convert.ToDateTime(appointmentEndDateTime))
+            {
+                MessageBox.Show("Please input a correct date of the start and the end of the appointment");
+                return;
+            }
+            string room = "";
+            try
+            {
+                room = cbRooms.SelectedItem.ToString();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please input a room for the appointment");
+                return;
+                
+            }
+            
+            
+            appointments.AddAppointment(13, description, appointmentStartDateTime, appointmentEndDateTime, room);
 
             this.Close();
 
@@ -52,9 +76,11 @@ namespace TenantApp
 
             ci.DateTimeFormat.LongTimePattern = "hh:mm:ss";
 
+
             Thread.CurrentThread.CurrentCulture = ci;
 
             Thread.CurrentThread.CurrentUICulture = ci;
         }
+         
     }
 }

@@ -17,6 +17,7 @@ namespace TenantApp
     {
         private Database db = new Database();
         int dtpDate = 0;
+        List<Appointment> appointmentsForDate = new List<Appointment>();
         public TenantApp()
         {
             InitializeComponent();
@@ -99,38 +100,36 @@ namespace TenantApp
             string dateOfAppointments = dtpShowAppointments.Value.Date.ToShortDateString();
            
 
-            List<string> recentAppoitments = appointments.ShowAppointment(dateOfAppointments);
+            List<Appointment> recentAppoitments = appointments.ShowAppointments(dateOfAppointments);
             lbAppoitments.Items.Clear();
+            appointmentsForDate.Clear();
             foreach (var item in recentAppoitments)
             {
-                lbAppoitments.Items.Add(item);
+                appointmentsForDate.Add(item);
+                lbAppoitments.Items.Add($"{item.room} from: {item.AppointmentStartDate.ToString("HH:mm")} to:{item.AppointmentEndDate.ToString("HH:mm")}" );
             }
-            //for (int i = 0; i < recentAppoitments.Count; i++)
-            //{
-            //    if (i == recentAppoitments.Count - 1)
-            //    {
-            //       Convert.ToDateTime(recentAppoitments[i]).ToString("u");
-            //    }
-            //    lbAppoitments.Items.Add(recentAppoitments[i]);
-            //}
         }
 
         private void LbAppoitments_DoubleClick(object sender, EventArgs e)
         {
-            List<string> appointmentList = lbAppoitments.SelectedItem.ToString().Split(' ').ToList();
+            //List<string> appointmentList = lbAppoitments.SelectedItem.ToString().Split(' ').ToList();
 
-            Appointment appointment = new Appointment();
+            Appointment selectedAppointment = appointmentsForDate[lbAppoitments.SelectedIndex];
 
-            int userIDFromAppointment = Convert.ToInt32(appointmentList[1]);
-            string startDateOfAppointment = appointmentList[appointmentList.Count - 1];
-            string endDateOfAppointment = appointmentList[appointmentList.Count - 3];
-            string descriptionAppointment = appointment.SearchForDescription(userIDFromAppointment, startDateOfAppointment, endDateOfAppointment); 
-            string room = appointmentList[3];
+            //int userIDFromAppointment = Convert.ToInt32(appointmentList[1]);
+            //string startDateOfAppointment = appointmentList[appointmentList.Count - 1];
+            //string endDateOfAppointment = appointmentList[appointmentList.Count - 3];
+            //string descriptionAppointment = appointment.SearchForDescription(userIDFromAppointment, startDateOfAppointment, endDateOfAppointment); 
+            //string room = appointmentList[3];
             //for (int i = 2; i < appointmentList.Count-3; i++)
             //{
             //    descriptionAppointment += appointmentList[i]+ " ";
             //}
-            
+             int userIDFromAppointment = Convert.ToInt32(selectedAppointment.UserID);
+             DateTime startDateOfAppointment = selectedAppointment.AppointmentStartDate;
+             DateTime endDateOfAppointment = selectedAppointment.AppointmentEndDate;
+            string descriptionAppointment = selectedAppointment.Description;
+            string room = selectedAppointment.room;
             AppointmentDetails appointmentDetails = new AppointmentDetails(userIDFromAppointment, startDateOfAppointment, endDateOfAppointment, descriptionAppointment,room);
 
             appointmentDetails.Show();

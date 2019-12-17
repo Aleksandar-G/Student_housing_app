@@ -10,11 +10,22 @@ namespace Models
 {
     public class Appointment
     {
-        public int ID { get; set; }
-        public int UserID { get; set; }
-        public string Description { get; set; }
-        public DateTime AppointmentStartDate { get; set; }
-        public DateTime AppointmentEndDate { get; set; }
+        public int id { get;}
+        public int UserID { get;}
+        public string Description { get;}
+        public DateTime AppointmentStartDate { get;}
+        public DateTime AppointmentEndDate { get;}
+        public string room { get; }
+
+        public Appointment(int Id, int UserId, string description, DateTime appointmentStartDate,DateTime appointmentEndDate, string room)
+        {
+            this.id = Id;
+            this.UserID = UserId;
+            this.Description = description;
+            this.AppointmentStartDate = appointmentStartDate;
+            this.AppointmentEndDate = appointmentEndDate;
+            this.room = room;
+        }
 
         public Appointment()
         {
@@ -61,12 +72,12 @@ namespace Models
             }
         }
 
-        public List<string> ShowAppointment(string StartdateOfappointments)
+        public List<Appointment> ShowAppointments(string StartdateOfappointments)
         {
-            string query = $"SELECT userId,description,StartDate,endDate,room FROM Appointments WHERE StartDate LIKE \'{StartdateOfappointments}%\' ORDER BY StartDate";
+            string query = $"SELECT id, userId,description,StartDate,endDate,room FROM Appointments WHERE StartDate LIKE \'{StartdateOfappointments}%\' ORDER BY StartDate";
 
 
-            List<string> result = new List<string>();
+            List<Appointment> result = new List<Appointment>();
 
             //DBConnection con = new DBConnection();
 
@@ -81,9 +92,20 @@ namespace Models
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
+                    
                     DateTime startDate = Convert.ToDateTime(dataReader["startDate"]);
                     DateTime endDate = Convert.ToDateTime(dataReader["endDate"]);
-                    result.Add("UserID: " + dataReader["userId"] + " in "+dataReader["room"]+" " + $"from: { startDate.ToShortDateString()}" + $" ends: {endDate.ToShortDateString()}" );
+                   // result.Add("UserID: " + dataReader["userId"] + " in "+dataReader["room"]+" " + $"from: { startDate.ToShortDateString()}" + $" ends: {endDate.ToShortDateString()}" );
+                    Appointment appointment = new Appointment(
+                        Convert.ToInt32(dataReader["id"]),
+                        Convert.ToInt32( dataReader["userId"]), 
+                        dataReader["description"].ToString(),
+                        Convert.ToDateTime(dataReader["startDate"]),
+                        Convert.ToDateTime(dataReader["endDate"]) ,
+                        dataReader["room"].ToString()
+                    );
+
+                    result.Add(appointment);
                 }
 
                 //close Data Reader
