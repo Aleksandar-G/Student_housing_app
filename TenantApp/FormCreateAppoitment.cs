@@ -52,7 +52,7 @@ namespace TenantApp
             }
             catch (Exception)
             {
-                MessageBox.Show("Please input a room for the appointment");
+                MessageBox.Show("Please select a room for the appointment");
                 return;
                 
             }
