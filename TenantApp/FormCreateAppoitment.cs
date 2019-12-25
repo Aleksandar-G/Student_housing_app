@@ -14,17 +14,21 @@ namespace TenantApp
 {
     public partial class FormCreateAppoitment : Form
     {
-        public FormCreateAppoitment()
+        public FormCreateAppoitment(int daysChange)
         {
+
+            
             InitializeComponent();
+            dtpStartDate.Value = DateTime.Today.AddDays(daysChange);
+            dtpEndDate.Value = DateTime.Today.AddDays(daysChange);
             //dtpCreateAppoitment.Format = DateTimePickerFormat.Long;
-           // dtpCreateAppoitment.ShowUpDown = true;
+            // dtpCreateAppoitment.ShowUpDown = true;
         }
 
         private void BtnCreateAppoitment_Click(object sender, EventArgs e)
         {
-             dtpStartDate.Format = DateTimePickerFormat.Custom;
-            dtpStartDate.CustomFormat = "YYYY-MM-DD";
+            // dtpStartDate.Format = DateTimePickerFormat.Custom;
+            // dtpStartDate.CustomFormat = "YYYY-MM-DD";
             //dtpStartDate.CustomFormat = "u";
             //dtpCreateAppoitment.Format = DateTimePickerFormat.Time;
             //dtpCreateAppoitment.ShowUpDown = true;
@@ -62,7 +66,13 @@ namespace TenantApp
 
             this.Close();
 
-            
+            if (System.Windows.Forms.Application.OpenForms["TenantApp"] != null)
+            {
+                (System.Windows.Forms.Application.OpenForms["TenantApp"] as TenantApp).ShowAppointmentsForDate();
+            }
+
+
+
         }
 
 

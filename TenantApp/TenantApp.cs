@@ -45,7 +45,7 @@ namespace TenantApp
 
         private void BtnCreateAppoitment_Click(object sender, EventArgs e)
         {
-            FormCreateAppoitment formCreateAppoitment = new FormCreateAppoitment();
+            FormCreateAppoitment formCreateAppoitment = new FormCreateAppoitment(dtpDate);
 
             formCreateAppoitment.Show();
 
@@ -67,7 +67,7 @@ namespace TenantApp
             Building_Complaints();
         }
 
-        private void TabControl1_Selected(object sender, TabControlEventArgs e)
+        public void TabControl1_Selected(object sender, TabControlEventArgs e)
         {
 
             ShowAppointmentsForDate();
@@ -94,7 +94,7 @@ namespace TenantApp
 
         }
 
-        private void ShowAppointmentsForDate()
+        public void ShowAppointmentsForDate()
         {
             Appointment appointments = new Appointment();
             string dateOfAppointments = dtpShowAppointments.Value.Date.ToShortDateString();
