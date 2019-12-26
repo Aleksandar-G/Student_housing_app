@@ -62,5 +62,18 @@ namespace TenantApp
             this.tbMessage.Text = "";
             this.tbTitle.Text = "";
         }
+
+        private void BtnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.InitialDirectory = @"C:\";
+            openFileDialog1.DefaultExt = "jpg";
+            openFileDialog1.Filter = "Image Files|*.jpg;*.png";
+
+            openFileDialog1.ShowDialog();
+
+            pbBill.ImageLocation = openFileDialog1.FileName;
+        }
     }
 }
