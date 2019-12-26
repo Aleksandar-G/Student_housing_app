@@ -173,6 +173,43 @@ namespace Models
             return result;
         }
 
+        public static User GetUserByEmail(string email)
+        {
+            Database db = new Database();
+            User user = null;
+
+            try
+            {
+                db.Connection.Open();
+
+                MySqlCommand cmd = new MySqlCommand(
+                    $"SELECT * FROM Users WHERE email = '{email}';",
+                    db.Connection
+                );
+                cmd.ExecuteNonQuery();
+
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                dataReader.Read();
+                user = new User(
+                    Convert.ToInt32(dataReader["id"]),
+                    dataReader["name"].ToString(),
+                    dataReader["email"].ToString(),
+                    dataReader["password"].ToString(),
+                    dataReader["phone"].ToString(),
+                    dataReader["pictureUrl"].ToString()
+                );
+                dataReader.Close();
+
+            }
+            catch (Exception) { }
+            finally
+            {
+                db.Connection.Close();
+            }
+
+            return user;
+        }
+
         public static List<User> GetUsersByBuilding(int buildingId)
         {
             List<User> users = new List<User>();

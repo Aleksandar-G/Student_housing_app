@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.Login = new System.Windows.Forms.TabPage();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.lbPassword = new System.Windows.Forms.Label();
-            this.tbLoginPassword = new System.Windows.Forms.TextBox();
-            this.lbEmail = new System.Windows.Forms.Label();
-            this.tbLoginEmail = new System.Windows.Forms.TextBox();
             this.ShowAppointments = new System.Windows.Forms.TabPage();
             this.CreateAppointment = new System.Windows.Forms.TabPage();
             this.SplitBill = new System.Windows.Forms.TabPage();
@@ -49,13 +43,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Notifications = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
-            this.Login.SuspendLayout();
             this.CreateComplaint.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.Login);
             this.tabControl1.Controls.Add(this.ShowAppointments);
             this.tabControl1.Controls.Add(this.CreateAppointment);
             this.tabControl1.Controls.Add(this.SplitBill);
@@ -67,64 +59,6 @@
             this.tabControl1.Size = new System.Drawing.Size(788, 438);
             this.tabControl1.TabIndex = 1;
             this.tabControl1.TabIndexChanged += new System.EventHandler(this.TabControl1_TabIndexChanged);
-            // 
-            // Login
-            // 
-            this.Login.Controls.Add(this.btnLogin);
-            this.Login.Controls.Add(this.lbPassword);
-            this.Login.Controls.Add(this.tbLoginPassword);
-            this.Login.Controls.Add(this.lbEmail);
-            this.Login.Controls.Add(this.tbLoginEmail);
-            this.Login.Location = new System.Drawing.Point(4, 22);
-            this.Login.Name = "Login";
-            this.Login.Padding = new System.Windows.Forms.Padding(3);
-            this.Login.Size = new System.Drawing.Size(780, 412);
-            this.Login.TabIndex = 0;
-            this.Login.Text = "Login";
-            this.Login.UseVisualStyleBackColor = true;
-            // 
-            // btnLogin
-            // 
-            this.btnLogin.Location = new System.Drawing.Point(260, 221);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(200, 23);
-            this.btnLogin.TabIndex = 4;
-            this.btnLogin.Text = "Login";
-            this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
-            // 
-            // lbPassword
-            // 
-            this.lbPassword.AutoSize = true;
-            this.lbPassword.Location = new System.Drawing.Point(332, 150);
-            this.lbPassword.Name = "lbPassword";
-            this.lbPassword.Size = new System.Drawing.Size(53, 13);
-            this.lbPassword.TabIndex = 3;
-            this.lbPassword.Text = "Password";
-            // 
-            // tbLoginPassword
-            // 
-            this.tbLoginPassword.Location = new System.Drawing.Point(260, 166);
-            this.tbLoginPassword.Name = "tbLoginPassword";
-            this.tbLoginPassword.PasswordChar = '*';
-            this.tbLoginPassword.Size = new System.Drawing.Size(200, 20);
-            this.tbLoginPassword.TabIndex = 2;
-            // 
-            // lbEmail
-            // 
-            this.lbEmail.AutoSize = true;
-            this.lbEmail.Location = new System.Drawing.Point(343, 87);
-            this.lbEmail.Name = "lbEmail";
-            this.lbEmail.Size = new System.Drawing.Size(32, 13);
-            this.lbEmail.TabIndex = 1;
-            this.lbEmail.Text = "Email";
-            // 
-            // tbLoginEmail
-            // 
-            this.tbLoginEmail.Location = new System.Drawing.Point(260, 103);
-            this.tbLoginEmail.Name = "tbLoginEmail";
-            this.tbLoginEmail.Size = new System.Drawing.Size(200, 20);
-            this.tbLoginEmail.TabIndex = 0;
             // 
             // ShowAppointments
             // 
@@ -272,8 +206,6 @@
             this.Text = "TenantApp";
             this.Load += new System.EventHandler(this.TenantApp_Load);
             this.tabControl1.ResumeLayout(false);
-            this.Login.ResumeLayout(false);
-            this.Login.PerformLayout();
             this.CreateComplaint.ResumeLayout(false);
             this.CreateComplaint.PerformLayout();
             this.ResumeLayout(false);
@@ -283,12 +215,6 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage Login;
-        private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Label lbPassword;
-        private System.Windows.Forms.TextBox tbLoginPassword;
-        private System.Windows.Forms.Label lbEmail;
-        private System.Windows.Forms.TextBox tbLoginEmail;
         private System.Windows.Forms.TabPage ShowAppointments;
         private System.Windows.Forms.TabPage CreateAppointment;
         private System.Windows.Forms.TabPage SplitBill;
