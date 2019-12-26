@@ -31,6 +31,11 @@
             this.ShowTenantDetails = new System.Windows.Forms.TabPage();
             this.ShowComplaints = new System.Windows.Forms.TabPage();
             this.RemoveTenant = new System.Windows.Forms.TabPage();
+            this.btnRemoveTenant = new System.Windows.Forms.Button();
+            this.lbRemoveTenantName = new System.Windows.Forms.Label();
+            this.cbRemoveTenantEmail = new System.Windows.Forms.ComboBox();
+            this.lbRemoveTenantAddress = new System.Windows.Forms.Label();
+            this.cbRemoveTenantAddress = new System.Windows.Forms.ComboBox();
             this.AddTenant = new System.Windows.Forms.TabPage();
             this.cbAddTenantRoomNumber = new System.Windows.Forms.ComboBox();
             this.lblAddTenantRoomId = new System.Windows.Forms.Label();
@@ -46,11 +51,6 @@
             this.lbAddTenantName = new System.Windows.Forms.Label();
             this.lbEmail = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.lbRemoveTenantAddress = new System.Windows.Forms.Label();
-            this.cbRemoveTenantAddress = new System.Windows.Forms.ComboBox();
-            this.lbRemoveTenantName = new System.Windows.Forms.Label();
-            this.cbRemoveTenantEmail = new System.Windows.Forms.ComboBox();
-            this.btnRemoveTenant = new System.Windows.Forms.Button();
             this.RemoveTenant.SuspendLayout();
             this.AddTenant.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -88,6 +88,51 @@
             this.RemoveTenant.Text = "Remove Tenant";
             this.RemoveTenant.UseVisualStyleBackColor = true;
             // 
+            // btnRemoveTenant
+            // 
+            this.btnRemoveTenant.Location = new System.Drawing.Point(270, 271);
+            this.btnRemoveTenant.Name = "btnRemoveTenant";
+            this.btnRemoveTenant.Size = new System.Drawing.Size(200, 23);
+            this.btnRemoveTenant.TabIndex = 25;
+            this.btnRemoveTenant.Text = "Remove Tenant";
+            this.btnRemoveTenant.UseVisualStyleBackColor = true;
+            this.btnRemoveTenant.Click += new System.EventHandler(this.BtnRemoveTenant_Click);
+            // 
+            // lbRemoveTenantName
+            // 
+            this.lbRemoveTenantName.AutoSize = true;
+            this.lbRemoveTenantName.Location = new System.Drawing.Point(350, 171);
+            this.lbRemoveTenantName.Name = "lbRemoveTenantName";
+            this.lbRemoveTenantName.Size = new System.Drawing.Size(41, 13);
+            this.lbRemoveTenantName.TabIndex = 24;
+            this.lbRemoveTenantName.Text = "Tenant";
+            // 
+            // cbRemoveTenantEmail
+            // 
+            this.cbRemoveTenantEmail.FormattingEnabled = true;
+            this.cbRemoveTenantEmail.Location = new System.Drawing.Point(270, 187);
+            this.cbRemoveTenantEmail.Name = "cbRemoveTenantEmail";
+            this.cbRemoveTenantEmail.Size = new System.Drawing.Size(200, 21);
+            this.cbRemoveTenantEmail.TabIndex = 23;
+            // 
+            // lbRemoveTenantAddress
+            // 
+            this.lbRemoveTenantAddress.AutoSize = true;
+            this.lbRemoveTenantAddress.Location = new System.Drawing.Point(350, 82);
+            this.lbRemoveTenantAddress.Name = "lbRemoveTenantAddress";
+            this.lbRemoveTenantAddress.Size = new System.Drawing.Size(45, 13);
+            this.lbRemoveTenantAddress.TabIndex = 22;
+            this.lbRemoveTenantAddress.Text = "Address";
+            // 
+            // cbRemoveTenantAddress
+            // 
+            this.cbRemoveTenantAddress.FormattingEnabled = true;
+            this.cbRemoveTenantAddress.Location = new System.Drawing.Point(270, 98);
+            this.cbRemoveTenantAddress.Name = "cbRemoveTenantAddress";
+            this.cbRemoveTenantAddress.Size = new System.Drawing.Size(200, 21);
+            this.cbRemoveTenantAddress.TabIndex = 21;
+            this.cbRemoveTenantAddress.SelectedIndexChanged += new System.EventHandler(this.CbRemoveTenantAddress_SelectedIndexChanged);
+            // 
             // AddTenant
             // 
             this.AddTenant.Controls.Add(this.cbAddTenantRoomNumber);
@@ -117,7 +162,7 @@
             this.cbAddTenantRoomNumber.Location = new System.Drawing.Point(287, 306);
             this.cbAddTenantRoomNumber.Name = "cbAddTenantRoomNumber";
             this.cbAddTenantRoomNumber.Size = new System.Drawing.Size(200, 21);
-            this.cbAddTenantRoomNumber.TabIndex = 23;
+            this.cbAddTenantRoomNumber.TabIndex = 6;
             // 
             // lblAddTenantRoomId
             // 
@@ -143,7 +188,7 @@
             this.cbAddTenantAddress.Location = new System.Drawing.Point(287, 250);
             this.cbAddTenantAddress.Name = "cbAddTenantAddress";
             this.cbAddTenantAddress.Size = new System.Drawing.Size(200, 21);
-            this.cbAddTenantAddress.TabIndex = 19;
+            this.cbAddTenantAddress.TabIndex = 5;
             this.cbAddTenantAddress.SelectedIndexChanged += new System.EventHandler(this.CbAddTenantAddress_SelectedIndexChanged);
             // 
             // btnAddTenant
@@ -151,7 +196,7 @@
             this.btnAddTenant.Location = new System.Drawing.Point(287, 345);
             this.btnAddTenant.Name = "btnAddTenant";
             this.btnAddTenant.Size = new System.Drawing.Size(200, 23);
-            this.btnAddTenant.TabIndex = 15;
+            this.btnAddTenant.TabIndex = 7;
             this.btnAddTenant.Text = "Add Tenant";
             this.btnAddTenant.UseVisualStyleBackColor = true;
             this.btnAddTenant.Click += new System.EventHandler(this.BtnAddTenant_Click);
@@ -161,14 +206,14 @@
             this.tbAddTenantPhone.Location = new System.Drawing.Point(287, 202);
             this.tbAddTenantPhone.Name = "tbAddTenantPhone";
             this.tbAddTenantPhone.Size = new System.Drawing.Size(200, 20);
-            this.tbAddTenantPhone.TabIndex = 17;
+            this.tbAddTenantPhone.TabIndex = 4;
             // 
             // tbAddTenantName
             // 
             this.tbAddTenantName.Location = new System.Drawing.Point(287, 51);
             this.tbAddTenantName.Name = "tbAddTenantName";
             this.tbAddTenantName.Size = new System.Drawing.Size(200, 20);
-            this.tbAddTenantName.TabIndex = 16;
+            this.tbAddTenantName.TabIndex = 1;
             // 
             // tbAddTenantPassword
             // 
@@ -176,14 +221,14 @@
             this.tbAddTenantPassword.Name = "tbAddTenantPassword";
             this.tbAddTenantPassword.PasswordChar = '*';
             this.tbAddTenantPassword.Size = new System.Drawing.Size(200, 20);
-            this.tbAddTenantPassword.TabIndex = 13;
+            this.tbAddTenantPassword.TabIndex = 3;
             // 
             // tbAddTenantEmail
             // 
             this.tbAddTenantEmail.Location = new System.Drawing.Point(287, 101);
             this.tbAddTenantEmail.Name = "tbAddTenantEmail";
             this.tbAddTenantEmail.Size = new System.Drawing.Size(200, 20);
-            this.tbAddTenantEmail.TabIndex = 11;
+            this.tbAddTenantEmail.TabIndex = 2;
             // 
             // lbAddTenantPhone
             // 
@@ -236,51 +281,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(788, 438);
             this.tabControl1.TabIndex = 10;
-            // 
-            // lbRemoveTenantAddress
-            // 
-            this.lbRemoveTenantAddress.AutoSize = true;
-            this.lbRemoveTenantAddress.Location = new System.Drawing.Point(350, 82);
-            this.lbRemoveTenantAddress.Name = "lbRemoveTenantAddress";
-            this.lbRemoveTenantAddress.Size = new System.Drawing.Size(45, 13);
-            this.lbRemoveTenantAddress.TabIndex = 22;
-            this.lbRemoveTenantAddress.Text = "Address";
-            // 
-            // cbRemoveTenantAddress
-            // 
-            this.cbRemoveTenantAddress.FormattingEnabled = true;
-            this.cbRemoveTenantAddress.Location = new System.Drawing.Point(270, 98);
-            this.cbRemoveTenantAddress.Name = "cbRemoveTenantAddress";
-            this.cbRemoveTenantAddress.Size = new System.Drawing.Size(200, 21);
-            this.cbRemoveTenantAddress.TabIndex = 21;
-            this.cbRemoveTenantAddress.SelectedIndexChanged += new System.EventHandler(this.CbRemoveTenantAddress_SelectedIndexChanged);
-            // 
-            // lbRemoveTenantName
-            // 
-            this.lbRemoveTenantName.AutoSize = true;
-            this.lbRemoveTenantName.Location = new System.Drawing.Point(350, 171);
-            this.lbRemoveTenantName.Name = "lbRemoveTenantName";
-            this.lbRemoveTenantName.Size = new System.Drawing.Size(41, 13);
-            this.lbRemoveTenantName.TabIndex = 24;
-            this.lbRemoveTenantName.Text = "Tenant";
-            // 
-            // cbRemoveTenantName
-            // 
-            this.cbRemoveTenantEmail.FormattingEnabled = true;
-            this.cbRemoveTenantEmail.Location = new System.Drawing.Point(270, 187);
-            this.cbRemoveTenantEmail.Name = "cbRemoveTenantName";
-            this.cbRemoveTenantEmail.Size = new System.Drawing.Size(200, 21);
-            this.cbRemoveTenantEmail.TabIndex = 23;
-            // 
-            // btnRemoveTenant
-            // 
-            this.btnRemoveTenant.Location = new System.Drawing.Point(270, 271);
-            this.btnRemoveTenant.Name = "btnRemoveTenant";
-            this.btnRemoveTenant.Size = new System.Drawing.Size(200, 23);
-            this.btnRemoveTenant.TabIndex = 25;
-            this.btnRemoveTenant.Text = "Remove Tenant";
-            this.btnRemoveTenant.UseVisualStyleBackColor = true;
-            this.btnRemoveTenant.Click += new System.EventHandler(this.BtnRemoveTenant_Click);
             // 
             // CompanyApp
             // 
