@@ -128,7 +128,7 @@ namespace Models
         {
             string query = $"SELECT description FROM Appointments WHERE userId = {userId} AND DATE(startDate) = '{startDate}' AND DATE(endDate) = '{endDate}' LIMIT 1";
 
-            string desctiptoon = "";
+            string description = "";
 
             Database database = new Database();
 
@@ -140,7 +140,7 @@ namespace Models
 
                 while (dataReader.Read())
                 {
-                    desctiptoon = dataReader["description"].ToString();
+                    description = dataReader["description"].ToString();
                 }
 
 
@@ -150,7 +150,7 @@ namespace Models
                 //close Connection
                 database.CloseConnection();
 
-                return desctiptoon;
+                return description;
 
             }
             else

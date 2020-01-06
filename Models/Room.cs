@@ -37,8 +37,9 @@ namespace Models
             try
             {
                 db.Connection.Open();
-                string query = $"UPDATE BuildingRooms SET userId = {userId} WHERE buildingId = {this.buildingId}";
+                string query = $"UPDATE BuildingRooms SET userId = {userId} WHERE buildingId = {this.buildingId} AND id = {this.id}";
                 MySqlCommand cmd = new MySqlCommand(query, db.Connection);
+                cmd.ExecuteNonQuery();
             }
             catch (Exception) { }
             finally

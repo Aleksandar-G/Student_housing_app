@@ -16,11 +16,16 @@ namespace TenantApp
     public partial class TenantApp : Form
     {
         private Database db = new Database();
+
         int dtpDate = 0;
         List<Appointment> appointmentsForDate = new List<Appointment>();
-        public TenantApp()
+        
+        private User currentUser;
+
+        public TenantApp(User user)
         {
             InitializeComponent();
+            this.currentUser = user;
         }
         public void Building_Complaints()
         {
@@ -150,18 +155,17 @@ namespace TenantApp
             this.tbTitle.Text = "";
         }
 
-        private void BtnLogin_Click(object sender, EventArgs e)
+        private void BtnBrowse_Click(object sender, EventArgs e)
         {
-            string email = tbLoginEmail.Text;
-            string password = tbLoginPassword.Text;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
-            if (User.Authenticate(email, password))
-            {
-                MessageBox.Show("Logged in successfully!");
-            } else
-            {
-                MessageBox.Show("Wrong credentials!");
-            }
+            openFileDialog1.InitialDirectory = @"C:\";
+            openFileDialog1.DefaultExt = "jpg";
+            openFileDialog1.Filter = "Image Files|*.jpg;*.png";
+
+            openFileDialog1.ShowDialog();
+
+            pbBill.ImageLocation = openFileDialog1.FileName;
         }
     }
 }

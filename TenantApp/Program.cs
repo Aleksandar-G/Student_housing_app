@@ -16,7 +16,14 @@ namespace TenantApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TenantApp());
+
+            LoginForm loginForm = new LoginForm();
+            Application.Run(loginForm);
+
+            if (loginForm.currentUser != null)
+            {
+                Application.Run(new TenantApp(loginForm.currentUser));
+            }
         }
     }
 }
