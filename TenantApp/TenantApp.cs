@@ -71,6 +71,7 @@ namespace TenantApp
         {
 
             ShowAppointmentsForDate();
+
             //Appointments appointments = new Appointments();
 
             //List<string> recentAppoitments= appointments.ShowAppointment();
@@ -161,6 +162,18 @@ namespace TenantApp
             } else
             {
                 MessageBox.Show("Wrong credentials!");
+            }
+        }
+
+        private void ShowNotificationsFordate()
+        {
+            List<Notification>notificationsForDate = Notification.GetNotificationForDate(DateTime.Today.ToString());
+
+            for (int i = 0; i < notificationsForDate.Count; i++)
+            {
+                Panel panel = new Panel();
+                
+                this.tabControl1.TabPages[4].Controls.Add();
             }
         }
     }
