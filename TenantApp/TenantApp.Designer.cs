@@ -55,9 +55,7 @@
             this.tabControl1.SuspendLayout();
             this.Login.SuspendLayout();
             this.ShowAppointments.SuspendLayout();
-
             this.CreateComplaint.SuspendLayout();
-
             this.SuspendLayout();
             // 
             // tabControl1
@@ -72,14 +70,12 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(788, 438);
             this.tabControl1.TabIndex = 1;
-
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabControl1_Selected);
-
             this.tabControl1.TabIndexChanged += new System.EventHandler(this.TabControl1_TabIndexChanged);
-
             // 
             // Login
             // 
+            this.Login.AutoScroll = true;
             this.Login.Controls.Add(this.btnLogin);
             this.Login.Controls.Add(this.lbPassword);
             this.Login.Controls.Add(this.tbLoginPassword);
@@ -201,11 +197,7 @@
             // 
             this.SplitBill.Location = new System.Drawing.Point(4, 22);
             this.SplitBill.Name = "SplitBill";
-
-            this.SplitBill.Padding = new System.Windows.Forms.Padding(3);
-
             this.SplitBill.Padding = new System.Windows.Forms.Padding(2);
-
             this.SplitBill.Size = new System.Drawing.Size(780, 412);
             this.SplitBill.TabIndex = 4;
             this.SplitBill.Text = "Split Bill";
@@ -247,8 +239,7 @@
             this.label4.Size = new System.Drawing.Size(69, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "Building:";
-
-    // 
+            // 
             // btnSubmitComplaint
             // 
             this.btnSubmitComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -322,6 +313,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tabControl1);
             this.Name = "TenantApp";
@@ -330,12 +322,9 @@
             this.tabControl1.ResumeLayout(false);
             this.Login.ResumeLayout(false);
             this.Login.PerformLayout();
-
             this.ShowAppointments.ResumeLayout(false);
-
             this.CreateComplaint.ResumeLayout(false);
             this.CreateComplaint.PerformLayout();
-
             this.ResumeLayout(false);
 
         }

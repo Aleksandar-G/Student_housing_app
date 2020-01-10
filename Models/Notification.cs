@@ -15,6 +15,10 @@ namespace Models
         public string Title { get; set; }
         public string Description { get; set; }
 
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public string Room { get; set; }
+
         public Notification(string title, string description)
         {
             this.Title = title;
@@ -24,7 +28,8 @@ namespace Models
         }
         public static List<Notification> GetNotificationForDate(string date)
         {
-            string query = $"SELECT * from Appointments WHERE StartDate = {date}";
+            string query = $"SELECT * from Appointments WHERE date(startDate) LIKE '{date}';";
+
 
             List<Notification> result = new List<Notification>();
 

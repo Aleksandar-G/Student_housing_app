@@ -71,6 +71,18 @@ namespace TenantApp
         {
 
             ShowAppointmentsForDate();
+            ShowNotificationsFordate();
+           // Label label = new Label();
+           // label.Text = "Hello";
+           // label.Location = new Point(50, 50);
+           // Panel panel = new Panel();
+           // panel.Controls.Add(label);
+           // panel.Height = 100;
+           // panel.Width = 100;
+           // panel.Visible = true;
+           // panel.BackColor = Color.Red;
+           // panel.Location = new Point(100, 100);
+           // this.tabControl1.TabPages[4].Controls.Add(panel);
 
             //Appointments appointments = new Appointments();
 
@@ -165,16 +177,31 @@ namespace TenantApp
             }
         }
 
-        private void ShowNotificationsFordate()
+        public void ShowNotificationsFordate()
         {
-            List<Notification>notificationsForDate = Notification.GetNotificationForDate(DateTime.Today.ToString());
+            List<Notification>notificationsForDate = Notification.GetNotificationForDate(DateTime.Today.ToShortDateString());
 
-            for (int i = 0; i < notificationsForDate.Count; i++)
+            for (int i = 1; i <= notificationsForDate.Count; i++)
             {
                 Panel panel = new Panel();
-                
-                this.tabControl1.TabPages[4].Controls.Add();
+                Label desc = new Label();
+                Label title = new Label();
+                title.Text = notificationsForDate[i - 1].Title;
+                title.Location = new Point(10, 10);
+                // desc.Text = $ "{notificationForDate}{}" \n {notificationsForDate[i-1].Description}";
+                desc.Text = notificationsForDate[i - 1].Description;
+                desc.Location = new Point(35, 65);
+                panel.Controls.Add(title);
+                panel.Controls.Add(desc);
+                panel.Height = 100;
+                panel.Width = 300;
+                panel.Visible = true;
+                panel.Location = new Point(250, 30*(i*4));
+                panel.BackColor = Color.LightGray;
+                this.tabControl1.TabPages[4].Controls.Add(panel);
             }
+
+
         }
     }
 }

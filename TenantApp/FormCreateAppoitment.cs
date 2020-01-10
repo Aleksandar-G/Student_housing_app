@@ -69,6 +69,7 @@ namespace TenantApp
             if (System.Windows.Forms.Application.OpenForms["TenantApp"] != null)
             {
                 (System.Windows.Forms.Application.OpenForms["TenantApp"] as TenantApp).ShowAppointmentsForDate();
+                (System.Windows.Forms.Application.OpenForms["TenantApp"] as TenantApp).ShowNotificationsFordate();
             }
 
 
