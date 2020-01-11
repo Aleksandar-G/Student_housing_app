@@ -14,11 +14,15 @@ namespace TenantApp
 {
     public partial class FormCreateAppoitment : Form
     {
-        public FormCreateAppoitment(int daysChange)
+        private User CurrUser;
+        private List<Appointment> appointmetsForDate;
+        public FormCreateAppoitment(int daysChange,User currUser,List<Appointment> appointmentsForDate)
         {
 
             
             InitializeComponent();
+            this.CurrUser = currUser;
+            this.appointmetsForDate  = appointmentsForDate;
             dtpStartDate.Value = DateTime.Today.AddDays(daysChange);
             dtpEndDate.Value = DateTime.Today.AddDays(daysChange);
             //dtpCreateAppoitment.Format = DateTimePickerFormat.Long;
@@ -60,9 +64,24 @@ namespace TenantApp
                 return;
                 
             }
+
+            List<Appointment> appo =  appointmetsForDate.Select(x => x).Where(x => x.room == room).ToList();
+
+            foreach (var item in appo)
+            {
+                if (Convert.ToDateTime(appointmentEndDateTime) >= item.AppointmentStartDate && Convert.ToDateTime(appointmentEndDateTime) <= item.AppointmentEndDate)
+                {
+                    MessageBox.Show("There is another appointment at that time in that room");
+                    return;
+                }
+                else if (Convert.ToDateTime(appointmentStartDateTime) >= item.AppointmentStartDate && Convert.ToDateTime(appointmentStartDateTime) <= item.AppointmentEndDate)
+                {
+                    MessageBox.Show("There is another appointment at that time in that room");
+                    return;
+                }
+            }
             
-            
-            appointments.AddAppointment(13, description, appointmentStartDateTime, appointmentEndDateTime, room);
+            appointments.AddAppointment(CurrUser.Id, description, appointmentStartDateTime, appointmentEndDateTime, room,User.GetUsersBuildingId(CurrUser.Id));
 
             this.Close();
 
@@ -70,9 +89,6 @@ namespace TenantApp
             {
                 (System.Windows.Forms.Application.OpenForms["TenantApp"] as TenantApp).ShowAppointmentsForDate();
             }
-
-
-
         }
 
 

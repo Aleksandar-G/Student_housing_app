@@ -50,7 +50,7 @@ namespace TenantApp
 
         private void BtnCreateAppoitment_Click(object sender, EventArgs e)
         {
-            FormCreateAppoitment formCreateAppoitment = new FormCreateAppoitment(dtpDate);
+            FormCreateAppoitment formCreateAppoitment = new FormCreateAppoitment(dtpDate,currentUser, appointmentsForDate);
 
             formCreateAppoitment.Show();
 
@@ -70,12 +70,13 @@ namespace TenantApp
             Thread.CurrentThread.CurrentUICulture = ci;
 
             Building_Complaints();
+            ShowAppointmentsForDate();
         }
 
         public void TabControl1_Selected(object sender, TabControlEventArgs e)
         {
 
-            ShowAppointmentsForDate();
+            //ShowAppointmentsForDate();
             //Appointments appointments = new Appointments();
 
             //List<string> recentAppoitments= appointments.ShowAppointment();
@@ -101,11 +102,12 @@ namespace TenantApp
 
         public void ShowAppointmentsForDate()
         {
+            
             Appointment appointments = new Appointment();
             string dateOfAppointments = dtpShowAppointments.Value.Date.ToShortDateString();
            
 
-            List<Appointment> recentAppoitments = appointments.ShowAppointments(dateOfAppointments);
+            List<Appointment> recentAppoitments = appointments.ShowAppointments(dateOfAppointments,User.GetUsersBuildingId(currentUser.Id));
             lbAppoitments.Items.Clear();
             appointmentsForDate.Clear();
             foreach (var item in recentAppoitments)
