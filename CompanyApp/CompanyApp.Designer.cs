@@ -28,6 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            ////this.btnLogin = new System.Windows.Forms.Button();
+            //this.lbPassword = new System.Windows.Forms.Label();
+            ////this.textBox2 = new System.Windows.Forms.TextBox();
+            //this.lbEmail = new System.Windows.Forms.Label();
+            ////this.textBox1 = new System.Windows.Forms.TextBox();
+            //this.tabControl1 = new System.Windows.Forms.TabControl();
+            ////this.Login = new System.Windows.Forms.TabPage();
+            //this.AddTenant = new System.Windows.Forms.TabPage();
+            //this.RemoveTenant = new System.Windows.Forms.TabPage();
+            //this.ShowComplaints = new System.Windows.Forms.TabPage();
+            //this.ShowTenantDetails = new System.Windows.Forms.TabPage();
+
             this.ShowTenantDetails = new System.Windows.Forms.TabPage();
             this.ShowComplaints = new System.Windows.Forms.TabPage();
             this.RemoveTenant = new System.Windows.Forms.TabPage();
@@ -184,6 +196,26 @@
             // 
             // cbAddTenantAddress
             // 
+            //this.tabControl1.Controls.Add(this.Login);
+            this.tabControl1.Controls.Add(this.AddTenant);
+            this.tabControl1.Controls.Add(this.RemoveTenant);
+            this.tabControl1.Controls.Add(this.ShowComplaints);
+            this.tabControl1.Controls.Add(this.ShowTenantDetails);
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(788, 438);
+            this.tabControl1.TabIndex = 10;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
+
+            this.lbPassword.AutoSize = true;
+            this.lbPassword.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbPassword.Location = new System.Drawing.Point(359, 135);
+            this.lbPassword.Name = "lbPassword";
+            this.lbPassword.Size = new System.Drawing.Size(53, 13);
+            this.lbPassword.TabIndex = 14;
+            this.lbPassword.Text = "Password";
+
             this.cbAddTenantAddress.FormattingEnabled = true;
             this.cbAddTenantAddress.Location = new System.Drawing.Point(287, 250);
             this.cbAddTenantAddress.Name = "cbAddTenantAddress";
@@ -230,6 +262,9 @@
             this.tbAddTenantEmail.Size = new System.Drawing.Size(200, 20);
             this.tbAddTenantEmail.TabIndex = 2;
             // 
+
+            // RemoveTenant
+
             // lbAddTenantPhone
             // 
             this.lbAddTenantPhone.AutoSize = true;
@@ -240,7 +275,47 @@
             this.lbAddTenantPhone.TabIndex = 18;
             this.lbAddTenantPhone.Text = "Phone";
             // 
+
+            // tbAddTenantPhone
+            // 
+            this.tbAddTenantPhone.Location = new System.Drawing.Point(287, 202);
+            this.tbAddTenantPhone.Name = "tbAddTenantPhone";
+            this.tbAddTenantPhone.Size = new System.Drawing.Size(200, 20);
+            this.tbAddTenantPhone.TabIndex = 17;
+            // 
+            // ShowComplaints
+            // 
+            this.ShowComplaints.Location = new System.Drawing.Point(4, 22);
+            this.ShowComplaints.Name = "ShowComplaints";
+            this.ShowComplaints.Size = new System.Drawing.Size(780, 412);
+            this.ShowComplaints.TabIndex = 2;
+            this.ShowComplaints.Text = "Show Complaints";
+            this.ShowComplaints.UseVisualStyleBackColor = true;
+            // 
+            // ShowTenantDetails
+            // btnAddTenant
+            // 
+            this.btnAddTenant.Location = new System.Drawing.Point(287, 345);
+            this.btnAddTenant.Name = "btnAddTenant";
+            this.btnAddTenant.Size = new System.Drawing.Size(200, 23);
+            this.btnAddTenant.TabIndex = 15;
+            this.btnAddTenant.Text = "Add Tenant";
+            this.btnAddTenant.UseVisualStyleBackColor = true;
+            this.btnAddTenant.Click += new System.EventHandler(this.BtnAddTenant_Click);
+            // 
+            // cbAddTenantAddress
+            // 
+            this.cbAddTenantAddress.FormattingEnabled = true;
+            this.cbAddTenantAddress.Location = new System.Drawing.Point(287, 250);
+            this.cbAddTenantAddress.Name = "cbAddTenantAddress";
+            this.cbAddTenantAddress.Size = new System.Drawing.Size(200, 21);
+            this.cbAddTenantAddress.TabIndex = 19;
+            this.cbAddTenantAddress.SelectedIndexChanged += new System.EventHandler(this.CbAddTenantAddress_SelectedIndexChanged);
+            // 
+            // lbAddTenantAddress
+
             // lbPassword
+
             // 
             this.lbPassword.AutoSize = true;
             this.lbPassword.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -272,15 +347,15 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.AddTenant);
-            this.tabControl1.Controls.Add(this.RemoveTenant);
-            this.tabControl1.Controls.Add(this.ShowComplaints);
-            this.tabControl1.Controls.Add(this.ShowTenantDetails);
-            this.tabControl1.Location = new System.Drawing.Point(6, 6);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(788, 438);
-            this.tabControl1.TabIndex = 10;
+            //this.tabControl1.Controls.Add(this.AddTenant);
+            //this.tabControl1.Controls.Add(this.RemoveTenant);
+            //this.tabControl1.Controls.Add(this.ShowComplaints);
+            //this.tabControl1.Controls.Add(this.ShowTenantDetails);
+            //this.tabControl1.Location = new System.Drawing.Point(6, 6);
+            //this.tabControl1.Name = "tabControl1";
+            //this.tabControl1.SelectedIndex = 0;
+            //this.tabControl1.Size = new System.Drawing.Size(788, 438);
+            //this.tabControl1.TabIndex = 10;
             // 
             // CompanyApp
             // 

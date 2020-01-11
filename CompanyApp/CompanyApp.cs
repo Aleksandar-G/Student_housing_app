@@ -7,12 +7,17 @@ namespace CompanyApp
 {
     public partial class CompanyApp : Form
     {
+        List<Building> buildings;
+
         public CompanyApp()
         {
             InitializeComponent();
         }
-        List<Building> buildings;
 
+        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
         private void BtnAddTenant_Click(object sender, EventArgs e)
         {
             string name = tbAddTenantName.Text;
@@ -40,6 +45,7 @@ namespace CompanyApp
 
         private void CbAddTenantAddress_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cbAddTenantRoomNumber.Items.Clear();
             Building selectedBuilding = buildings.Find(b => cbAddTenantAddress.SelectedItem.ToString() == b.Address);
             List<Room> rooms = new List<Room>(Room.GetRooms(selectedBuilding.Id));
             rooms.ForEach(r => cbAddTenantRoomNumber.Items.Add(r.Id));
