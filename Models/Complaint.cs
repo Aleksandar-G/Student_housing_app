@@ -34,7 +34,8 @@ namespace Models
 
         public string SelectFromDB()
         {
-            return "SELECT * FROM Complaints ORDER BY id ASC";
+            return "SELECT * FROM Complaints ORDER BY id DESC";
+            //TEST
         }
     }
 }
