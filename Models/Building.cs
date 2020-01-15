@@ -92,5 +92,34 @@ namespace Models
 
             return buildings;
         }
+
+       public static Building GetBuildingByUser(int userId)
+       {
+            Database db = new Database();
+            Building building = null;
+            try
+            {
+                db = new Database();
+                db.Connection.Open();
+
+                MySqlCommand cmd = new MySqlCommand(
+                    $"SELECT b.id, b.address FROM Buildings b INNER JOIN BuildingRooms br ON b.id = br.buildingId WHERE br.userId = {userId};",
+                    db.Connection
+                );
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                dataReader.Read();
+
+                building = new Building(Convert.ToInt32(dataReader["id"]), dataReader["address"].ToString());
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                db.Connection.Close();
+            }
+
+            return building;
+        }
     }
 }

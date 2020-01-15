@@ -55,15 +55,10 @@
             this.Notifications = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
-
             this.ShowAppointments.SuspendLayout();
-
-
             this.SplitBill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBill)).BeginInit();
-
             this.CreateComplaint.SuspendLayout();
-
             this.SuspendLayout();
             // 
             // tabControl1
@@ -77,11 +72,8 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(788, 438);
             this.tabControl1.TabIndex = 1;
-
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabControl1_Selected);
-
             this.tabControl1.TabIndexChanged += new System.EventHandler(this.TabControl1_TabIndexChanged);
-
             // 
             // ShowAppointments
             // 
@@ -92,7 +84,7 @@
             this.ShowAppointments.Controls.Add(this.lbAppoitments);
             this.ShowAppointments.Location = new System.Drawing.Point(4, 22);
             this.ShowAppointments.Name = "ShowAppointments";
-            this.ShowAppointments.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.ShowAppointments.Padding = new System.Windows.Forms.Padding(3);
             this.ShowAppointments.Size = new System.Drawing.Size(780, 412);
             this.ShowAppointments.TabIndex = 3;
             this.ShowAppointments.Text = "Show Appointments";
@@ -135,7 +127,6 @@
             this.btnGoCreateAppoitment.UseVisualStyleBackColor = true;
             this.btnGoCreateAppoitment.Click += new System.EventHandler(this.BtnCreateAppoitment_Click);
             // 
-
             // lbAppoitments
             // 
             this.lbAppoitments.FormattingEnabled = true;
@@ -144,7 +135,6 @@
             this.lbAppoitments.Size = new System.Drawing.Size(375, 199);
             this.lbAppoitments.TabIndex = 0;
             this.lbAppoitments.DoubleClick += new System.EventHandler(this.LbAppoitments_DoubleClick);
-
             // 
             // SplitBill
             // 
@@ -157,15 +147,7 @@
             this.SplitBill.Controls.Add(this.lblGroceries);
             this.SplitBill.Location = new System.Drawing.Point(4, 22);
             this.SplitBill.Name = "SplitBill";
-
-
-            this.SplitBill.Padding = new System.Windows.Forms.Padding(3);
-
-            this.SplitBill.Padding = new System.Windows.Forms.Padding(2);
-
-
-            this.SplitBill.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
-
+            this.SplitBill.Padding = new System.Windows.Forms.Padding(1);
             this.SplitBill.Size = new System.Drawing.Size(780, 412);
             this.SplitBill.TabIndex = 4;
             this.SplitBill.Text = "Split Bill";
@@ -174,7 +156,7 @@
             // pbBill
             // 
             this.pbBill.Location = new System.Drawing.Point(197, 116);
-            this.pbBill.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbBill.Margin = new System.Windows.Forms.Padding(2);
             this.pbBill.Name = "pbBill";
             this.pbBill.Size = new System.Drawing.Size(277, 246);
             this.pbBill.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -184,18 +166,19 @@
             // btnSplit
             // 
             this.btnSplit.Location = new System.Drawing.Point(627, 250);
-            this.btnSplit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSplit.Margin = new System.Windows.Forms.Padding(2);
             this.btnSplit.Name = "btnSplit";
             this.btnSplit.Size = new System.Drawing.Size(107, 31);
             this.btnSplit.TabIndex = 6;
             this.btnSplit.Text = "Split bill";
             this.btnSplit.UseVisualStyleBackColor = true;
+            this.btnSplit.Click += new System.EventHandler(this.BtnSplit_Click);
             // 
             // btnBrowse
             // 
             this.btnBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBrowse.Location = new System.Drawing.Point(44, 148);
-            this.btnBrowse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBrowse.Margin = new System.Windows.Forms.Padding(2);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(99, 29);
             this.btnBrowse.TabIndex = 4;
@@ -206,7 +189,7 @@
             // tbPrice
             // 
             this.tbPrice.Location = new System.Drawing.Point(627, 203);
-            this.tbPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbPrice.Margin = new System.Windows.Forms.Padding(2);
             this.tbPrice.Name = "tbPrice";
             this.tbPrice.Size = new System.Drawing.Size(108, 20);
             this.tbPrice.TabIndex = 3;
@@ -266,7 +249,7 @@
             // 
             this.cbBuildingId.FormattingEnabled = true;
             this.cbBuildingId.Location = new System.Drawing.Point(439, 111);
-            this.cbBuildingId.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.cbBuildingId.Margin = new System.Windows.Forms.Padding(1);
             this.cbBuildingId.Name = "cbBuildingId";
             this.cbBuildingId.Size = new System.Drawing.Size(163, 28);
             this.cbBuildingId.TabIndex = 7;
@@ -280,13 +263,12 @@
             this.label4.Size = new System.Drawing.Size(69, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "Building:";
-
-    // 
+            // 
             // btnSubmitComplaint
             // 
             this.btnSubmitComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmitComplaint.Location = new System.Drawing.Point(292, 317);
-            this.btnSubmitComplaint.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnSubmitComplaint.Margin = new System.Windows.Forms.Padding(1);
             this.btnSubmitComplaint.Name = "btnSubmitComplaint";
             this.btnSubmitComplaint.Size = new System.Drawing.Size(177, 30);
             this.btnSubmitComplaint.TabIndex = 5;
@@ -297,7 +279,7 @@
             // tbMessage
             // 
             this.tbMessage.Location = new System.Drawing.Point(172, 175);
-            this.tbMessage.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.tbMessage.Margin = new System.Windows.Forms.Padding(1);
             this.tbMessage.Multiline = true;
             this.tbMessage.Name = "tbMessage";
             this.tbMessage.Size = new System.Drawing.Size(430, 123);
@@ -316,7 +298,7 @@
             // tbTitle
             // 
             this.tbTitle.Location = new System.Drawing.Point(172, 111);
-            this.tbTitle.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.tbTitle.Margin = new System.Windows.Forms.Padding(1);
             this.tbTitle.Name = "tbTitle";
             this.tbTitle.Size = new System.Drawing.Size(163, 26);
             this.tbTitle.TabIndex = 2;
@@ -367,15 +349,12 @@
             this.Text = "TenantApp";
             this.Load += new System.EventHandler(this.TenantApp_Load);
             this.tabControl1.ResumeLayout(false);
-
             this.ShowAppointments.ResumeLayout(false);
-
             this.SplitBill.ResumeLayout(false);
             this.SplitBill.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBill)).EndInit();
             this.CreateComplaint.ResumeLayout(false);
             this.CreateComplaint.PerformLayout();
-
             this.ResumeLayout(false);
 
         }

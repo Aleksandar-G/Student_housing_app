@@ -167,5 +167,28 @@ namespace TenantApp
 
             pbBill.ImageLocation = openFileDialog1.FileName;
         }
+
+        private void BtnSplit_Click(object sender, EventArgs e)
+        {
+            if (tbPrice.Text == "")
+            {
+                MessageBox.Show("Please provide a total price.");
+                return;
+            }
+
+            if (pbBill.ImageLocation == null)
+            {
+                MessageBox.Show("Please provide an image.");
+                return;
+            }
+
+            decimal totalPrice = Convert.ToDecimal(tbPrice.Text);
+            Bill bill = new Bill(currentUser.Id, totalPrice, pbBill.ImageLocation);
+            bill.InsertIntoDB();
+            MessageBox.Show("Split bill request sent successfully!");
+
+            tbPrice.Text = "";
+            pbBill.ImageLocation = null;
+        }
     }
 }
