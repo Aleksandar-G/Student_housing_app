@@ -92,5 +92,14 @@ namespace Models
 
             return buildings;
         }
+
+        public static int GetBuildingIdByAddress(string address)
+        {
+            List < Building > buildings = GetBuildings();
+
+            int id = buildings.Select(x => x).Where(x => x.Address == address).First().Id;
+
+            return id;
+        }
     }
 }

@@ -51,6 +51,11 @@
             this.lbAddTenantName = new System.Windows.Forms.Label();
             this.lbEmail = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.cbBuildings = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ShowTenantDetails.SuspendLayout();
             this.RemoveTenant.SuspendLayout();
             this.AddTenant.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -58,6 +63,10 @@
             // 
             // ShowTenantDetails
             // 
+            this.ShowTenantDetails.Controls.Add(this.label2);
+            this.ShowTenantDetails.Controls.Add(this.listBox1);
+            this.ShowTenantDetails.Controls.Add(this.label1);
+            this.ShowTenantDetails.Controls.Add(this.cbBuildings);
             this.ShowTenantDetails.Location = new System.Drawing.Point(4, 22);
             this.ShowTenantDetails.Name = "ShowTenantDetails";
             this.ShowTenantDetails.Size = new System.Drawing.Size(780, 412);
@@ -282,6 +291,44 @@
             this.tabControl1.Size = new System.Drawing.Size(788, 438);
             this.tabControl1.TabIndex = 10;
             // 
+            // cbBuildings
+            // 
+            this.cbBuildings.FormattingEnabled = true;
+            this.cbBuildings.Location = new System.Drawing.Point(262, 68);
+            this.cbBuildings.Name = "cbBuildings";
+            this.cbBuildings.Size = new System.Drawing.Size(227, 21);
+            this.cbBuildings.TabIndex = 0;
+            this.cbBuildings.SelectedIndexChanged += new System.EventHandler(this.CbBuildings_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.label1.Location = new System.Drawing.Point(342, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 22);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Buildings";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(156, 161);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(484, 238);
+            this.listBox1.TabIndex = 2;
+            this.listBox1.DoubleClick += new System.EventHandler(this.ListBox1_DoubleClick);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.label2.Location = new System.Drawing.Point(315, 123);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(128, 22);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Tenant Names";
+            // 
             // CompanyApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -291,6 +338,8 @@
             this.Name = "CompanyApp";
             this.Text = "CompanyApp";
             this.Load += new System.EventHandler(this.CompanyApp_Load);
+            this.ShowTenantDetails.ResumeLayout(false);
+            this.ShowTenantDetails.PerformLayout();
             this.RemoveTenant.ResumeLayout(false);
             this.RemoveTenant.PerformLayout();
             this.AddTenant.ResumeLayout(false);
@@ -325,6 +374,10 @@
         private System.Windows.Forms.Label lbRemoveTenantAddress;
         private System.Windows.Forms.ComboBox cbRemoveTenantAddress;
         private System.Windows.Forms.Button btnRemoveTenant;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbBuildings;
     }
 }
 

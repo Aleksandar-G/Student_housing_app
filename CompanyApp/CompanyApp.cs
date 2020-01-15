@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Models;
+using MySql.Data.MySqlClient;
 
 namespace CompanyApp
 {
@@ -36,6 +37,7 @@ namespace CompanyApp
                 cbAddTenantAddress.Items.Add(b.Address);
                 cbRemoveTenantAddress.Items.Add(b.Address);
             });
+            ShowTenantDetail();
         }
 
         private void CbAddTenantAddress_SelectedIndexChanged(object sender, EventArgs e)
@@ -60,6 +62,72 @@ namespace CompanyApp
             users.Find(u => cbRemoveTenantEmail.SelectedItem.ToString() == u.Email).DeleteFromDB();
             cbRemoveTenantEmail.Items.RemoveAt(cbRemoveTenantEmail.SelectedIndex);
             cbRemoveTenantEmail.Text = "";
+        }
+
+        private void ShowTenantDetail()
+        {
+            Building_ShowTenantDetails();
+        }
+
+        public void Building_ShowTenantDetails()
+        {
+            //cb Fill from DB
+
+            Database db = new Database();
+
+            db.Connection.Open();
+            List<string> result = new List<string>();
+            string query = "SELECT address FROM Buildings";
+            MySqlCommand cmd = new MySqlCommand(query, db.Connection);
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+            while (dataReader.Read())
+            {
+                result.Add(dataReader["address"].ToString());
+            }
+            foreach (var item in result)
+            {
+                cbBuildings.Items.Add(item);
+            }
+            dataReader.Close();
+            db.Connection.Close();
+        }
+
+        private void CbBuildings_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = Models.Building.GetBuildingIdByAddress(cbBuildings.SelectedItem.ToString());
+            
+
+           List<User>usersInBuilding = User.GetUsersByBuilding(id);
+
+            listBox1.Items.Clear();
+            foreach (var item in usersInBuilding)
+            {
+                listBox1.Items.Add(item.Name);
+            }
+        }
+
+        private void ListBox1_DoubleClick(object sender, EventArgs e)
+        {
+            string name = listBox1.SelectedItem.ToString();
+            int id = Models.Building.GetBuildingIdByAddress(cbBuildings.SelectedItem.ToString());
+            List<User> usersInBuilding = User.GetUsersByBuilding(id);
+            User user;
+            foreach (var item in usersInBuilding)
+            {
+                if (item.Name == name)
+                {
+                    user = item;
+                    TenantDetailsForm tenantDetailsForm = new TenantDetailsForm(user);
+                    tenantDetailsForm.Show();
+                    break;
+                }
+            }
+
+            
+
+            
+
+
         }
     }
 }
