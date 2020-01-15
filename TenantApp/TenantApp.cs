@@ -59,7 +59,6 @@ namespace TenantApp
         {
             CultureInfo ci = new CultureInfo(CultureInfo.CurrentCulture.Name);
 
-            // ci.DateTimeFormat.ShortDatePattern = "dd'/'MM'/'yyyy";
 
             ci.DateTimeFormat.ShortDatePattern = "yyyy'-'MM'-'dd";
 
@@ -76,10 +75,6 @@ namespace TenantApp
         public void TabControl1_Selected(object sender, TabControlEventArgs e)
         {
 
-            //ShowAppointmentsForDate();
-            //Appointments appointments = new Appointments();
-
-            //List<string> recentAppoitments= appointments.ShowAppointment();
         }
 
         private void BtnNextDate_Click(object sender, EventArgs e)
@@ -119,19 +114,11 @@ namespace TenantApp
 
         private void LbAppoitments_DoubleClick(object sender, EventArgs e)
         {
-            //List<string> appointmentList = lbAppoitments.SelectedItem.ToString().Split(' ').ToList();
+            
 
             Appointment selectedAppointment = appointmentsForDate[lbAppoitments.SelectedIndex];
 
-            //int userIDFromAppointment = Convert.ToInt32(appointmentList[1]);
-            //string startDateOfAppointment = appointmentList[appointmentList.Count - 1];
-            //string endDateOfAppointment = appointmentList[appointmentList.Count - 3];
-            //string descriptionAppointment = appointment.SearchForDescription(userIDFromAppointment, startDateOfAppointment, endDateOfAppointment); 
-            //string room = appointmentList[3];
-            //for (int i = 2; i < appointmentList.Count-3; i++)
-            //{
-            //    descriptionAppointment += appointmentList[i]+ " ";
-            //}
+            
              int userIDFromAppointment = Convert.ToInt32(selectedAppointment.UserID);
              DateTime startDateOfAppointment = selectedAppointment.AppointmentStartDate;
              DateTime endDateOfAppointment = selectedAppointment.AppointmentEndDate;

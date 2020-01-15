@@ -31,17 +31,7 @@ namespace Models
 
         public Appointment()
         {
-            //CultureInfo ci = new CultureInfo(CultureInfo.CurrentCulture.Name);
-            //
-            //// ci.DateTimeFormat.ShortDatePattern = "dd'/'MM'/'yyyy";
-            //
-            //ci.DateTimeFormat.ShortDatePattern = "yyyy'-'MM'-'dd";
-            //
-            //ci.DateTimeFormat.LongTimePattern = "hh:mm:ss";
-            //
-            //Thread.CurrentThread.CurrentCulture = ci;
-            //
-            //Thread.CurrentThread.CurrentUICulture = ci;
+            
         }
 
         public void AddAppointment(int userId, string description, string StartDate, string EndDate, string room,int buildingId)
@@ -71,7 +61,6 @@ namespace Models
 
             List<Appointment> result = new List<Appointment>();
 
-            //DBConnection con = new DBConnection();
 
             Database database = new Database();
 
@@ -84,10 +73,7 @@ namespace Models
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    
-                    DateTime startDate = Convert.ToDateTime(dataReader["startDate"]);
-                    DateTime endDate = Convert.ToDateTime(dataReader["endDate"]);
-                    // result.Add("UserID: " + dataReader["userId"] + " in "+dataReader["room"]+" " + $"from: { startDate.ToShortDateString()}" + $" ends: {endDate.ToShortDateString()}" );
+                                                        
                     Appointment appointment = new Appointment(
                         Convert.ToInt32(dataReader["id"]),
                         Convert.ToInt32(dataReader["userId"]),

@@ -25,20 +25,15 @@ namespace TenantApp
             this.appointmetsForDate  = appointmentsForDate;
             dtpStartDate.Value = DateTime.Today.AddDays(daysChange);
             dtpEndDate.Value = DateTime.Today.AddDays(daysChange);
-            //dtpCreateAppoitment.Format = DateTimePickerFormat.Long;
-            // dtpCreateAppoitment.ShowUpDown = true;
+            
         }
 
         private void BtnCreateAppoitment_Click(object sender, EventArgs e)
         {
-            // dtpStartDate.Format = DateTimePickerFormat.Custom;
-            // dtpStartDate.CustomFormat = "YYYY-MM-DD";
-            //dtpStartDate.CustomFormat = "u";
-            //dtpCreateAppoitment.Format = DateTimePickerFormat.Time;
-            //dtpCreateAppoitment.ShowUpDown = true;
+            
 
             Appointment appointments = new Appointment();
-            //dtpStartDate.CustomFormat = "yyyy-MM-dd";
+            
             string description = rtbCreateAppoitment.Text;
             if (description == "")
             {
@@ -96,7 +91,7 @@ namespace TenantApp
         {
             CultureInfo ci = new CultureInfo(CultureInfo.CurrentCulture.Name);
 
-            // ci.DateTimeFormat.ShortDatePattern = "dd'/'MM'/'yyyy";
+            
 
             ci.DateTimeFormat.ShortDatePattern = "yyyy'-'MM'-'dd";
 
