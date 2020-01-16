@@ -11,7 +11,7 @@ namespace Models
     {
         public string title { get; }
         public string description { get; }
-        public string buildingAddress { get; }
+        public string buildingAddress { get; set; }
         public DateTime CreatedAt { get; set; }
         public int Id { get; set; }
 
@@ -34,10 +34,10 @@ namespace Models
             db.Connection.Close();
         }
 
-        public string SelectFromDB()
+        public static string SelectFromDB()
         {
-            return "SELECT * FROM Complaints ORDER BY id DESC";
-            //TEST
+            return "SELECT buildingId,Complaints.id,description,createdAt,title,address from Complaints INNER JOIN Buildings ON Complaints.buildingId = Buildings.id;";
+
         }
         public static void RemoveComplaint(int id)
         {
@@ -53,7 +53,7 @@ namespace Models
         {
             Database localdb = new Database();
             localdb.Connection.Open();
-            string query = "SELECT * FROM Complaints";
+            string query = Complaint.SelectFromDB();
             List<Complaint> resultToShow = new List<Complaint>();
             MySqlCommand cmd = new MySqlCommand(query, localdb.Connection);
             MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -62,6 +62,7 @@ namespace Models
                 Complaint c = new Complaint(dataReader["title"].ToString(), dataReader["description"].ToString(), dataReader["buildingId"].ToString());
                 c.Id = Convert.ToInt32(dataReader["id"]);
                 c.CreatedAt = Convert.ToDateTime(dataReader["createdAt"]);
+                c.buildingAddress = dataReader["address"].ToString();
                 resultToShow.Add(c);
             }
             localdb.Connection.Close();
