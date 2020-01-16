@@ -31,7 +31,8 @@ namespace Models
                 return this.name;
             }
         }
-        public string Email {
+        public string Email
+        {
             get
             {
                 return this.email;
@@ -51,7 +52,8 @@ namespace Models
                 return this.phone;
             }
         }
-        public string PictureUrl {
+        public string PictureUrl
+        {
             get
             {
                 return this.pictureUrl;
@@ -245,6 +247,37 @@ namespace Models
             }
 
             return users;
+        }
+        public static int GetUsersBuildingId(int userId)
+        {
+            string query = $"SELECT buildingId FROM BuildingRooms AS br inner join Users as u on br.userId = u.id WHERE userid = {userId};";
+
+            int userBuildingId = 0;
+
+            Database database = new Database();
+
+            if (database.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, database.Connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    userBuildingId =Convert.ToInt32(dataReader["buildingId"]);
+                }
+
+                dataReader.Close();
+
+                database.CloseConnection();
+
+                return userBuildingId;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }
