@@ -71,6 +71,8 @@ namespace TenantApp
             Building_Complaints();
 
             ShowAppointmentsForDate();
+
+            this.showHouseRules(currentUser.Id);
         }
 
         public void TabControl1_Selected(object sender, TabControlEventArgs e)

@@ -38,13 +38,10 @@ namespace Models
         public static string ShowHouseRules(int userid)
         {
             int buildingid = User.GetUserBuildingId(userid);
-
-            string query = $"select description from HouseRules WHERE buildingId = {buildingid}";
+            string query = $"SELECT description FROM HouseRules WHERE buildingId = {buildingid}";
 
             string houserules = "";
-
             Database db = new Database();
-            User user = null;
 
             try
             {

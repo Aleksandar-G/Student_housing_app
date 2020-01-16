@@ -114,7 +114,7 @@ namespace CompanyApp
             HouseRule houseRule = new HouseRule(tbHouseRules.Text, addressId);
 
             houseRule.AddHouseRuleToDB();
-            MessageBox.Show("New house rule was created successfully!");
+            MessageBox.Show("New house rule(s) was created successfully!");
 
         }
 
