@@ -64,7 +64,9 @@ namespace Models
                 c.CreatedAt = Convert.ToDateTime(dataReader["createdAt"]);
                 resultToShow.Add(c);
             }
+            localdb.Connection.Close();
             return resultToShow;
+
         }
         
     }
