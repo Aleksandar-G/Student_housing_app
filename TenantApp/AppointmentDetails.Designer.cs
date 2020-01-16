@@ -51,7 +51,7 @@
             this.LbUserName.Size = new System.Drawing.Size(46, 17);
             this.LbUserName.TabIndex = 0;
             this.LbUserName.Text = "label1";
-            this.LbUserName.Click += new System.EventHandler(this.LbUserName_Click);
+            //this.LbUserName.Click += new System.EventHandler(this.LbUserName_Click);
             // 
             // lbDateTime
             // 
@@ -83,7 +83,7 @@
             this.lbEndDate.Size = new System.Drawing.Size(46, 17);
             this.lbEndDate.TabIndex = 3;
             this.lbEndDate.Text = "label1";
-            this.lbEndDate.Click += new System.EventHandler(this.Label1_Click);
+            //this.lbEndDate.Click += new System.EventHandler(this.Label1_Click);
             // 
             // lbRoom
             // 

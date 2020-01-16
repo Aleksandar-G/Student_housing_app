@@ -98,11 +98,10 @@ namespace TenantApp
         public void ShowAppointmentsForDate()
         {
             
-            Appointment appointments = new Appointment();
             string dateOfAppointments = dtpShowAppointments.Value.Date.ToShortDateString();
            
 
-            List<Appointment> recentAppoitments = appointments.ShowAppointments(dateOfAppointments,User.GetUsersBuildingId(currentUser.Id));
+            List<Appointment> recentAppoitments = Appointment.ShowAppointments(dateOfAppointments,User.GetUsersBuildingId(currentUser.Id));
             lbAppoitments.Items.Clear();
             appointmentsForDate.Clear();
             foreach (var item in recentAppoitments)

@@ -29,12 +29,7 @@ namespace Models
             this.BuildingId = buildingId;
         }
 
-        public Appointment()
-        {
-            
-        }
-
-        public void AddAppointment(int userId, string description, string StartDate, string EndDate, string room,int buildingId)
+        public static void AddAppointment(int userId, string description, string StartDate, string EndDate, string room,int buildingId)
         {
             string query = $"INSERT INTO Appointments (userId,description,StartDate,EndDate,room,buildingId) VALUES('{userId}', '{description}', '{StartDate}', '{EndDate}', '{room}', '{buildingId}' )";
  
@@ -54,13 +49,11 @@ namespace Models
             }
         }
 
-        public List<Appointment> ShowAppointments(string StartdateOfappointments,int buildingId)
+        public static List<Appointment> ShowAppointments(string StartdateOfappointments,int buildingId)
         {
             string query = $"SELECT * FROM Appointments WHERE StartDate LIKE \'{StartdateOfappointments}%\' AND buildingId = {buildingId} ORDER BY StartDate";
 
-
             List<Appointment> result = new List<Appointment>();
-
 
             Database database = new Database();
 
@@ -103,10 +96,10 @@ namespace Models
 
         }
 
-        public string SearchForDescription(int userId, string startDate,string endDate)
+        public static string SearchForDescription(int userId, string startDate,string endDate)
         {
             string query = $"SELECT description FROM Appointments WHERE userId = {userId} AND DATE(startDate) = '{startDate}' AND DATE(endDate) = '{endDate}' LIMIT 1";
-
+            
             string description = "";
 
             Database database = new Database();
@@ -114,14 +107,12 @@ namespace Models
             if (database.OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, database.Connection);
-
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
                 while (dataReader.Read())
                 {
                     description = dataReader["description"].ToString();
                 }
-
 
                 //close Data Reader
                 dataReader.Close();
@@ -138,10 +129,9 @@ namespace Models
             }
         }
 
-        public string SearchForName(int userId)
+        public static string SearchForName(int userId)
         {
             string query = $"SELECT name FROM Users WHERE id = {userId}";
-
             string name = "";
 
             Database database = new Database();
@@ -149,7 +139,6 @@ namespace Models
             if (database.OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, database.Connection);
-
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
                 while (dataReader.Read())

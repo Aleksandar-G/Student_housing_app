@@ -18,18 +18,16 @@ namespace TenantApp
         private List<Appointment> appointmetsForDate;
         public FormCreateAppoitment(int daysChange,User currUser,List<Appointment> appointmentsForDate)
         {           
+
             InitializeComponent();
+
             this.CurrUser = currUser;
-            this.appointmetsForDate  = appointmentsForDate;
+            this.appointmetsForDate = appointmentsForDate;
             dtpStartDate.Value = DateTime.Today.AddDays(daysChange);
-            //dtpEndDate.Value = DateTime.Today.AddDays(daysChange);            
         }
 
         private void BtnCreateAppoitment_Click(object sender, EventArgs e)
-        {
-            
-            Appointment appointments = new Appointment();
-            
+        {           
             string description = rtbCreateAppoitment.Text;
             if (description == "")
             {
@@ -45,6 +43,7 @@ namespace TenantApp
                 MessageBox.Show("Please input a correct date of the start and the end of the appointment");
                 return;
             }
+
             string room = "";
             try
             {
@@ -54,12 +53,11 @@ namespace TenantApp
             {
                 MessageBox.Show("Please select a room for the appointment");
                 return;
-                
             }
 
-            List<Appointment> appo =  appointmetsForDate.Select(x => x).Where(x => x.room == room).ToList();
+            List<Appointment> appointments = appointmetsForDate.Select(x => x).Where(x => x.room == room).ToList();
 
-            foreach (var item in appo)
+            foreach (var item in appointments)
             {
                 if (Convert.ToDateTime(appointmentEndDateTime) >= item.AppointmentStartDate && Convert.ToDateTime(appointmentEndDateTime) <= item.AppointmentEndDate)
                 {
@@ -72,8 +70,8 @@ namespace TenantApp
                     return;
                 }
             }
-            
-            appointments.AddAppointment(CurrUser.Id, description, appointmentStartDateTime, appointmentEndDateTime, room,User.GetUsersBuildingId(CurrUser.Id));
+
+            Appointment.AddAppointment(CurrUser.Id, description, appointmentStartDateTime, appointmentEndDateTime, room, User.GetUsersBuildingId(CurrUser.Id));
 
             this.Close();
 
@@ -89,13 +87,10 @@ namespace TenantApp
             CultureInfo ci = new CultureInfo(CultureInfo.CurrentCulture.Name);
 
             ci.DateTimeFormat.ShortDatePattern = "yyyy'-'MM'-'dd";
-
             ci.DateTimeFormat.LongTimePattern = "hh:mm:ss";
 
             Thread.CurrentThread.CurrentCulture = ci;
-
             Thread.CurrentThread.CurrentUICulture = ci;
         }
-         
     }
 }

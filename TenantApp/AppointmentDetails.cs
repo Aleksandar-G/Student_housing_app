@@ -29,9 +29,7 @@ namespace TenantApp
             this.Description = description;
             this.Room = room;
 
-            Appointment appointment = new Appointment();
-
-            LbUserName.Text ="Author: "+ appointment.SearchForName(this.UserId);
+            LbUserName.Text ="Author: "+ Appointment.SearchForName(this.UserId);
             lbDateTime.Text ="From: "+ this.StartDateTime.ToString("HH:mm");
             lbEndDate.Text ="To: "+ this.EndDateTime.ToString("HH:mm");
             lbDescription.Text = this.Description;
@@ -39,17 +37,6 @@ namespace TenantApp
             lbRoom.Left = panel1.Width / 2 - (lbRoom.Width / 2);
             LbUserName.Anchor = AnchorStyles.None;
             LbUserName.Left = panel1.Width / 2 - (LbUserName.Width/2);
-
-        }
-
-        private void LbUserName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
