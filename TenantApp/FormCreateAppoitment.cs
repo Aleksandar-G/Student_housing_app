@@ -17,21 +17,17 @@ namespace TenantApp
         private User CurrUser;
         private List<Appointment> appointmetsForDate;
         public FormCreateAppoitment(int daysChange,User currUser,List<Appointment> appointmentsForDate)
-        {
-
-            
+        {           
             InitializeComponent();
             this.CurrUser = currUser;
             this.appointmetsForDate  = appointmentsForDate;
             dtpStartDate.Value = DateTime.Today.AddDays(daysChange);
-            dtpEndDate.Value = DateTime.Today.AddDays(daysChange);
-            
+            //dtpEndDate.Value = DateTime.Today.AddDays(daysChange);            
         }
 
         private void BtnCreateAppoitment_Click(object sender, EventArgs e)
         {
             
-
             Appointment appointments = new Appointment();
             
             string description = rtbCreateAppoitment.Text;
@@ -41,7 +37,8 @@ namespace TenantApp
                 return;
             }
             string appointmentStartDateTime = dtpStartDate.Value.ToShortDateString() +" " + dtpStartTime.Value.ToString("HH:mm:ss");
-            string appointmentEndDateTime = dtpEndDate.Value.ToShortDateString() + " " + dtpEndTime.Value.ToString("HH:mm:ss");
+            string appointmentEndDateTime = dtpStartDate.Value.ToShortDateString() + " " + dtpEndTime.Value.ToString("HH:mm:ss");
+            //string appointmentEndDateTime = appointmentStartDateTime;
 
             if (Convert.ToDateTime(appointmentStartDateTime) > Convert.ToDateTime(appointmentEndDateTime))
             {
@@ -91,12 +88,9 @@ namespace TenantApp
         {
             CultureInfo ci = new CultureInfo(CultureInfo.CurrentCulture.Name);
 
-            
-
             ci.DateTimeFormat.ShortDatePattern = "yyyy'-'MM'-'dd";
 
             ci.DateTimeFormat.LongTimePattern = "hh:mm:ss";
-
 
             Thread.CurrentThread.CurrentCulture = ci;
 
