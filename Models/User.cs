@@ -341,5 +341,37 @@ namespace Models
                 return 0;
             }
         }
+
+        public static int GetUserRoomRent(int userId)
+        {
+            string query = $"SELECT rent FROM BuildingRooms  WHERE userid  = {userId};";
+
+            int rent = 0;
+
+            Database database = new Database();
+
+            if (database.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, database.Connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    rent = Convert.ToInt32(dataReader["rent"]);
+                }
+
+                dataReader.Close();
+
+                database.CloseConnection();
+
+                return rent;
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }
