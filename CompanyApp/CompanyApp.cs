@@ -8,7 +8,7 @@ namespace CompanyApp
     public partial class CompanyApp : Form
     {
         List<Building> buildings;
-
+        List<Complaint> complaints = new List<Complaint>();
         public CompanyApp()
         {
             InitializeComponent();
@@ -41,6 +41,13 @@ namespace CompanyApp
                 cbAddTenantAddress.Items.Add(b.Address);
                 cbRemoveTenantAddress.Items.Add(b.Address);
             });
+
+            //Fill Show All Complaints Listbox
+            foreach (var item in Complaint.ShowComplaintContent())
+            {
+                lbShowAllComplaints.Items.Add(item.title + " --- " + item.CreatedAt);
+            }
+
         }
 
         private void CbAddTenantAddress_SelectedIndexChanged(object sender, EventArgs e)
@@ -66,6 +73,37 @@ namespace CompanyApp
             users.Find(u => cbRemoveTenantEmail.SelectedItem.ToString() == u.Email).DeleteFromDB();
             cbRemoveTenantEmail.Items.RemoveAt(cbRemoveTenantEmail.SelectedIndex);
             cbRemoveTenantEmail.Text = "";
+        }
+
+        private void BtnShowCurrentComplaint_Click(object sender, EventArgs e)
+        {
+            if (lbShowAllComplaints.SelectedItem != null)
+            {
+                Complaint c = Complaint.ShowComplaintContent()[lbShowAllComplaints.SelectedIndex];
+                MessageBox.Show(c.description, c.title);
+            }
+            else
+            {
+                MessageBox.Show("You have not selected a complaint");
+            }
+        }
+
+        private void BtnRemoveComplaint_Click(object sender, EventArgs e)
+        {
+            if (lbShowAllComplaints.SelectedItem!=null)
+            {
+                int del_id = Complaint.ShowComplaintContent()[lbShowAllComplaints.SelectedIndex].Id;
+                Complaint.RemoveComplaint(del_id);
+                lbShowAllComplaints.Items.Clear();
+                foreach (var item in Complaint.ShowComplaintContent())
+                {
+                    lbShowAllComplaints.Items.Add(item.title + " --- " + item.CreatedAt);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select complaint");
+            }
         }
     }
 }
