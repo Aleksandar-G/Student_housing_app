@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Models;
+using MySql.Data.MySqlClient;
 
 namespace CompanyApp
 {
@@ -121,6 +122,13 @@ namespace CompanyApp
         private void LbAddTenantName_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void CbHouseRulesAddress_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tbHouseRules.Text = HouseRule.GetHouseRules(cbHouseRulesAddress.SelectedItem.ToString());
+
+           
         }
     }
 }
