@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.ShowTenantDetails = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lbTenants = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbBuildings = new System.Windows.Forms.ComboBox();
             this.ShowComplaints = new System.Windows.Forms.TabPage();
             this.RemoveTenant = new System.Windows.Forms.TabPage();
             this.btnRemoveTenant = new System.Windows.Forms.Button();
@@ -51,10 +55,6 @@
             this.lbAddTenantName = new System.Windows.Forms.Label();
             this.lbEmail = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.cbBuildings = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.ShowTenantDetails.SuspendLayout();
             this.RemoveTenant.SuspendLayout();
             this.AddTenant.SuspendLayout();
@@ -64,7 +64,7 @@
             // ShowTenantDetails
             // 
             this.ShowTenantDetails.Controls.Add(this.label2);
-            this.ShowTenantDetails.Controls.Add(this.listBox1);
+            this.ShowTenantDetails.Controls.Add(this.lbTenants);
             this.ShowTenantDetails.Controls.Add(this.label1);
             this.ShowTenantDetails.Controls.Add(this.cbBuildings);
             this.ShowTenantDetails.Location = new System.Drawing.Point(4, 22);
@@ -73,6 +73,44 @@
             this.ShowTenantDetails.TabIndex = 4;
             this.ShowTenantDetails.Text = "Show Tenant Details";
             this.ShowTenantDetails.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.label2.Location = new System.Drawing.Point(315, 123);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(128, 22);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Tenant Names";
+            // 
+            // lbTenants
+            // 
+            this.lbTenants.FormattingEnabled = true;
+            this.lbTenants.Location = new System.Drawing.Point(156, 161);
+            this.lbTenants.Name = "lbTenants";
+            this.lbTenants.Size = new System.Drawing.Size(484, 238);
+            this.lbTenants.TabIndex = 2;
+            this.lbTenants.DoubleClick += new System.EventHandler(this.ListBox1_DoubleClick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.label1.Location = new System.Drawing.Point(342, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 22);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Buildings";
+            // 
+            // cbBuildings
+            // 
+            this.cbBuildings.FormattingEnabled = true;
+            this.cbBuildings.Location = new System.Drawing.Point(262, 68);
+            this.cbBuildings.Name = "cbBuildings";
+            this.cbBuildings.Size = new System.Drawing.Size(227, 21);
+            this.cbBuildings.TabIndex = 0;
+            this.cbBuildings.SelectedIndexChanged += new System.EventHandler(this.CbBuildings_SelectedIndexChanged);
             // 
             // ShowComplaints
             // 
@@ -197,7 +235,7 @@
             this.cbAddTenantAddress.Location = new System.Drawing.Point(287, 250);
             this.cbAddTenantAddress.Name = "cbAddTenantAddress";
             this.cbAddTenantAddress.Size = new System.Drawing.Size(200, 21);
-            this.cbAddTenantAddress.TabIndex = 5;
+            this.cbAddTenantAddress.TabIndex = 19;
             this.cbAddTenantAddress.SelectedIndexChanged += new System.EventHandler(this.CbAddTenantAddress_SelectedIndexChanged);
             // 
             // btnAddTenant
@@ -205,7 +243,7 @@
             this.btnAddTenant.Location = new System.Drawing.Point(287, 345);
             this.btnAddTenant.Name = "btnAddTenant";
             this.btnAddTenant.Size = new System.Drawing.Size(200, 23);
-            this.btnAddTenant.TabIndex = 7;
+            this.btnAddTenant.TabIndex = 15;
             this.btnAddTenant.Text = "Add Tenant";
             this.btnAddTenant.UseVisualStyleBackColor = true;
             this.btnAddTenant.Click += new System.EventHandler(this.BtnAddTenant_Click);
@@ -215,7 +253,7 @@
             this.tbAddTenantPhone.Location = new System.Drawing.Point(287, 202);
             this.tbAddTenantPhone.Name = "tbAddTenantPhone";
             this.tbAddTenantPhone.Size = new System.Drawing.Size(200, 20);
-            this.tbAddTenantPhone.TabIndex = 4;
+            this.tbAddTenantPhone.TabIndex = 17;
             // 
             // tbAddTenantName
             // 
@@ -285,49 +323,11 @@
             this.tabControl1.Controls.Add(this.RemoveTenant);
             this.tabControl1.Controls.Add(this.ShowComplaints);
             this.tabControl1.Controls.Add(this.ShowTenantDetails);
-            this.tabControl1.Location = new System.Drawing.Point(6, 6);
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(788, 438);
             this.tabControl1.TabIndex = 10;
-            // 
-            // cbBuildings
-            // 
-            this.cbBuildings.FormattingEnabled = true;
-            this.cbBuildings.Location = new System.Drawing.Point(262, 68);
-            this.cbBuildings.Name = "cbBuildings";
-            this.cbBuildings.Size = new System.Drawing.Size(227, 21);
-            this.cbBuildings.TabIndex = 0;
-            this.cbBuildings.SelectedIndexChanged += new System.EventHandler(this.CbBuildings_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.label1.Location = new System.Drawing.Point(342, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 22);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Buildings";
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(156, 161);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(484, 238);
-            this.listBox1.TabIndex = 2;
-            this.listBox1.DoubleClick += new System.EventHandler(this.ListBox1_DoubleClick);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.label2.Location = new System.Drawing.Point(315, 123);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 22);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Tenant Names";
             // 
             // CompanyApp
             // 
@@ -375,7 +375,7 @@
         private System.Windows.Forms.ComboBox cbRemoveTenantAddress;
         private System.Windows.Forms.Button btnRemoveTenant;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lbTenants;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbBuildings;
     }

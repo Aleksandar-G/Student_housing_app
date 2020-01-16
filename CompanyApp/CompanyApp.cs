@@ -8,12 +8,12 @@ namespace CompanyApp
 {
     public partial class CompanyApp : Form
     {
+        List<Building> buildings;
+
         public CompanyApp()
         {
             InitializeComponent();
         }
-        List<Building> buildings;
-
         private void BtnAddTenant_Click(object sender, EventArgs e)
         {
             string name = tbAddTenantName.Text;
@@ -42,6 +42,7 @@ namespace CompanyApp
 
         private void CbAddTenantAddress_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cbAddTenantRoomNumber.Items.Clear();
             Building selectedBuilding = buildings.Find(b => cbAddTenantAddress.SelectedItem.ToString() == b.Address);
             List<Room> rooms = new List<Room>(Room.GetRooms(selectedBuilding.Id));
             rooms.ForEach(r => cbAddTenantRoomNumber.Items.Add(r.Id));
@@ -54,7 +55,6 @@ namespace CompanyApp
             List<User> users = new List<User>(User.GetUsersByBuilding(selectedBuilding.Id));
             users.ForEach(u => cbRemoveTenantEmail.Items.Add(u.Email));
         }
-
         private void BtnRemoveTenant_Click(object sender, EventArgs e)
         {
             Building selectedBuilding = buildings.Find(b => cbRemoveTenantAddress.SelectedItem.ToString() == b.Address);
@@ -63,12 +63,10 @@ namespace CompanyApp
             cbRemoveTenantEmail.Items.RemoveAt(cbRemoveTenantEmail.SelectedIndex);
             cbRemoveTenantEmail.Text = "";
         }
-
         private void ShowTenantDetail()
         {
             Building_ShowTenantDetails();
         }
-
         public void Building_ShowTenantDetails()
         {
             //cb Fill from DB
@@ -91,7 +89,6 @@ namespace CompanyApp
             dataReader.Close();
             db.Connection.Close();
         }
-
         private void CbBuildings_SelectedIndexChanged(object sender, EventArgs e)
         {
             int id = Models.Building.GetBuildingIdByAddress(cbBuildings.SelectedItem.ToString());
@@ -99,16 +96,15 @@ namespace CompanyApp
 
            List<User>usersInBuilding = User.GetUsersByBuilding(id);
 
-            listBox1.Items.Clear();
+            lbTenants.Items.Clear();
             foreach (var item in usersInBuilding)
             {
-                listBox1.Items.Add(item.Name);
+                lbTenants.Items.Add(item.Name);
             }
         }
-
         private void ListBox1_DoubleClick(object sender, EventArgs e)
         {
-            string name = listBox1.SelectedItem.ToString();
+            string name = lbTenants.SelectedItem.ToString();
             int id = Models.Building.GetBuildingIdByAddress(cbBuildings.SelectedItem.ToString());
             List<User> usersInBuilding = User.GetUsersByBuilding(id);
             User user;
@@ -122,12 +118,6 @@ namespace CompanyApp
                     break;
                 }
             }
-
-            
-
-            
-
-
         }
     }
 }

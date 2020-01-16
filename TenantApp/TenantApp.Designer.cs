@@ -30,7 +30,11 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ShowAppointments = new System.Windows.Forms.TabPage();
-            this.CreateAppointment = new System.Windows.Forms.TabPage();
+            this.dtpShowAppointments = new System.Windows.Forms.DateTimePicker();
+            this.btnNextDate = new System.Windows.Forms.Button();
+            this.btnPrevDate = new System.Windows.Forms.Button();
+            this.btnGoCreateAppoitment = new System.Windows.Forms.Button();
+            this.lbAppoitments = new System.Windows.Forms.ListBox();
             this.SplitBill = new System.Windows.Forms.TabPage();
             this.pbBill = new System.Windows.Forms.PictureBox();
             this.btnSplit = new System.Windows.Forms.Button();
@@ -51,15 +55,20 @@
             this.Notifications = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
+
+            this.ShowAppointments.SuspendLayout();
+
+
             this.SplitBill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBill)).BeginInit();
+
             this.CreateComplaint.SuspendLayout();
+
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.ShowAppointments);
-            this.tabControl1.Controls.Add(this.CreateAppointment);
             this.tabControl1.Controls.Add(this.SplitBill);
             this.tabControl1.Controls.Add(this.CreateComplaint);
             this.tabControl1.Controls.Add(this.Notifications);
@@ -68,10 +77,19 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(788, 438);
             this.tabControl1.TabIndex = 1;
+
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabControl1_Selected);
+
             this.tabControl1.TabIndexChanged += new System.EventHandler(this.TabControl1_TabIndexChanged);
+
             // 
             // ShowAppointments
             // 
+            this.ShowAppointments.Controls.Add(this.dtpShowAppointments);
+            this.ShowAppointments.Controls.Add(this.btnNextDate);
+            this.ShowAppointments.Controls.Add(this.btnPrevDate);
+            this.ShowAppointments.Controls.Add(this.btnGoCreateAppoitment);
+            this.ShowAppointments.Controls.Add(this.lbAppoitments);
             this.ShowAppointments.Location = new System.Drawing.Point(4, 22);
             this.ShowAppointments.Name = "ShowAppointments";
             this.ShowAppointments.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
@@ -80,15 +98,53 @@
             this.ShowAppointments.Text = "Show Appointments";
             this.ShowAppointments.UseVisualStyleBackColor = true;
             // 
-            // CreateAppointment
+            // dtpShowAppointments
             // 
-            this.CreateAppointment.Location = new System.Drawing.Point(4, 22);
-            this.CreateAppointment.Name = "CreateAppointment";
-            this.CreateAppointment.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.CreateAppointment.Size = new System.Drawing.Size(780, 412);
-            this.CreateAppointment.TabIndex = 1;
-            this.CreateAppointment.Text = "Create Appointments";
-            this.CreateAppointment.UseVisualStyleBackColor = true;
+            this.dtpShowAppointments.Location = new System.Drawing.Point(296, 41);
+            this.dtpShowAppointments.Name = "dtpShowAppointments";
+            this.dtpShowAppointments.Size = new System.Drawing.Size(200, 20);
+            this.dtpShowAppointments.TabIndex = 4;
+            // 
+            // btnNextDate
+            // 
+            this.btnNextDate.Location = new System.Drawing.Point(513, 41);
+            this.btnNextDate.Name = "btnNextDate";
+            this.btnNextDate.Size = new System.Drawing.Size(36, 20);
+            this.btnNextDate.TabIndex = 3;
+            this.btnNextDate.Text = ">";
+            this.btnNextDate.UseVisualStyleBackColor = true;
+            this.btnNextDate.Click += new System.EventHandler(this.BtnNextDate_Click);
+            // 
+            // btnPrevDate
+            // 
+            this.btnPrevDate.Location = new System.Drawing.Point(242, 42);
+            this.btnPrevDate.Name = "btnPrevDate";
+            this.btnPrevDate.Size = new System.Drawing.Size(32, 20);
+            this.btnPrevDate.TabIndex = 2;
+            this.btnPrevDate.Text = "<";
+            this.btnPrevDate.UseVisualStyleBackColor = true;
+            this.btnPrevDate.Click += new System.EventHandler(this.BtnPrevDate_Click);
+            // 
+            // btnGoCreateAppoitment
+            // 
+            this.btnGoCreateAppoitment.Location = new System.Drawing.Point(329, 347);
+            this.btnGoCreateAppoitment.Name = "btnGoCreateAppoitment";
+            this.btnGoCreateAppoitment.Size = new System.Drawing.Size(167, 40);
+            this.btnGoCreateAppoitment.TabIndex = 1;
+            this.btnGoCreateAppoitment.Text = "Create Appointment";
+            this.btnGoCreateAppoitment.UseVisualStyleBackColor = true;
+            this.btnGoCreateAppoitment.Click += new System.EventHandler(this.BtnCreateAppoitment_Click);
+            // 
+
+            // lbAppoitments
+            // 
+            this.lbAppoitments.FormattingEnabled = true;
+            this.lbAppoitments.Location = new System.Drawing.Point(219, 108);
+            this.lbAppoitments.Name = "lbAppoitments";
+            this.lbAppoitments.Size = new System.Drawing.Size(375, 199);
+            this.lbAppoitments.TabIndex = 0;
+            this.lbAppoitments.DoubleClick += new System.EventHandler(this.LbAppoitments_DoubleClick);
+
             // 
             // SplitBill
             // 
@@ -101,7 +157,15 @@
             this.SplitBill.Controls.Add(this.lblGroceries);
             this.SplitBill.Location = new System.Drawing.Point(4, 22);
             this.SplitBill.Name = "SplitBill";
+
+
+            this.SplitBill.Padding = new System.Windows.Forms.Padding(3);
+
+            this.SplitBill.Padding = new System.Windows.Forms.Padding(2);
+
+
             this.SplitBill.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+
             this.SplitBill.Size = new System.Drawing.Size(780, 412);
             this.SplitBill.TabIndex = 4;
             this.SplitBill.Text = "Split Bill";
@@ -216,7 +280,8 @@
             this.label4.Size = new System.Drawing.Size(69, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "Building:";
-            // 
+
+    // 
             // btnSubmitComplaint
             // 
             this.btnSubmitComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -302,11 +367,15 @@
             this.Text = "TenantApp";
             this.Load += new System.EventHandler(this.TenantApp_Load);
             this.tabControl1.ResumeLayout(false);
+
+            this.ShowAppointments.ResumeLayout(false);
+
             this.SplitBill.ResumeLayout(false);
             this.SplitBill.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBill)).EndInit();
             this.CreateComplaint.ResumeLayout(false);
             this.CreateComplaint.PerformLayout();
+
             this.ResumeLayout(false);
 
         }
@@ -315,10 +384,16 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage ShowAppointments;
-        private System.Windows.Forms.TabPage CreateAppointment;
         private System.Windows.Forms.TabPage SplitBill;
         private System.Windows.Forms.TabPage CreateComplaint;
         private System.Windows.Forms.TabPage Notifications;
+
+        private System.Windows.Forms.DateTimePicker dtpShowAppointments;
+        private System.Windows.Forms.Button btnNextDate;
+        private System.Windows.Forms.Button btnPrevDate;
+        private System.Windows.Forms.Button btnGoCreateAppoitment;
+        private System.Windows.Forms.ListBox lbAppoitments;
+
         private System.Windows.Forms.Button btnSplit;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.TextBox tbPrice;
