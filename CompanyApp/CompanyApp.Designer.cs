@@ -34,6 +34,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbBuildings = new System.Windows.Forms.ComboBox();
             this.ShowComplaints = new System.Windows.Forms.TabPage();
+            this.btnRemoveComplaint = new System.Windows.Forms.Button();
+            this.btnShowCurrentComplaint = new System.Windows.Forms.Button();
+            this.lbShowAllComplaints = new System.Windows.Forms.ListBox();
             this.RemoveTenant = new System.Windows.Forms.TabPage();
             this.btnRemoveTenant = new System.Windows.Forms.Button();
             this.lbRemoveTenantName = new System.Windows.Forms.Label();
@@ -56,6 +59,7 @@
             this.lbEmail = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ShowTenantDetails.SuspendLayout();
+            this.ShowComplaints.SuspendLayout();
             this.RemoveTenant.SuspendLayout();
             this.AddTenant.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -78,7 +82,8 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.label2.Location = new System.Drawing.Point(315, 123);
+            this.label2.Location = new System.Drawing.Point(327, 112);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(128, 22);
             this.label2.TabIndex = 3;
@@ -87,9 +92,10 @@
             // lbTenants
             // 
             this.lbTenants.FormattingEnabled = true;
-            this.lbTenants.Location = new System.Drawing.Point(156, 161);
+            this.lbTenants.Location = new System.Drawing.Point(217, 145);
+            this.lbTenants.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lbTenants.Name = "lbTenants";
-            this.lbTenants.Size = new System.Drawing.Size(484, 238);
+            this.lbTenants.Size = new System.Drawing.Size(364, 186);
             this.lbTenants.TabIndex = 2;
             this.lbTenants.DoubleClick += new System.EventHandler(this.ListBox1_DoubleClick);
             // 
@@ -97,7 +103,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.label1.Location = new System.Drawing.Point(342, 36);
+            this.label1.Location = new System.Drawing.Point(347, 41);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 22);
             this.label1.TabIndex = 1;
@@ -106,20 +113,57 @@
             // cbBuildings
             // 
             this.cbBuildings.FormattingEnabled = true;
-            this.cbBuildings.Location = new System.Drawing.Point(262, 68);
+            this.cbBuildings.Location = new System.Drawing.Point(272, 65);
+            this.cbBuildings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbBuildings.Name = "cbBuildings";
-            this.cbBuildings.Size = new System.Drawing.Size(227, 21);
+            this.cbBuildings.Size = new System.Drawing.Size(239, 21);
             this.cbBuildings.TabIndex = 0;
             this.cbBuildings.SelectedIndexChanged += new System.EventHandler(this.CbBuildings_SelectedIndexChanged);
             // 
             // ShowComplaints
             // 
+            this.ShowComplaints.Controls.Add(this.btnRemoveComplaint);
+            this.ShowComplaints.Controls.Add(this.btnShowCurrentComplaint);
+            this.ShowComplaints.Controls.Add(this.lbShowAllComplaints);
             this.ShowComplaints.Location = new System.Drawing.Point(4, 22);
             this.ShowComplaints.Name = "ShowComplaints";
             this.ShowComplaints.Size = new System.Drawing.Size(780, 412);
             this.ShowComplaints.TabIndex = 2;
             this.ShowComplaints.Text = "Show Complaints";
             this.ShowComplaints.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveComplaint
+            // 
+            this.btnRemoveComplaint.BackColor = System.Drawing.Color.Red;
+            this.btnRemoveComplaint.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnRemoveComplaint.Location = new System.Drawing.Point(323, 97);
+            this.btnRemoveComplaint.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRemoveComplaint.Name = "btnRemoveComplaint";
+            this.btnRemoveComplaint.Size = new System.Drawing.Size(124, 50);
+            this.btnRemoveComplaint.TabIndex = 2;
+            this.btnRemoveComplaint.Text = "Remove Complaint";
+            this.btnRemoveComplaint.UseVisualStyleBackColor = false;
+            this.btnRemoveComplaint.Click += new System.EventHandler(this.BtnRemoveComplaint_Click);
+            // 
+            // btnShowCurrentComplaint
+            // 
+            this.btnShowCurrentComplaint.Location = new System.Drawing.Point(323, 18);
+            this.btnShowCurrentComplaint.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnShowCurrentComplaint.Name = "btnShowCurrentComplaint";
+            this.btnShowCurrentComplaint.Size = new System.Drawing.Size(124, 50);
+            this.btnShowCurrentComplaint.TabIndex = 1;
+            this.btnShowCurrentComplaint.Text = "Show";
+            this.btnShowCurrentComplaint.UseVisualStyleBackColor = true;
+            this.btnShowCurrentComplaint.Click += new System.EventHandler(this.BtnShowCurrentComplaint_Click);
+            // 
+            // lbShowAllComplaints
+            // 
+            this.lbShowAllComplaints.FormattingEnabled = true;
+            this.lbShowAllComplaints.Location = new System.Drawing.Point(16, 18);
+            this.lbShowAllComplaints.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbShowAllComplaints.Name = "lbShowAllComplaints";
+            this.lbShowAllComplaints.Size = new System.Drawing.Size(280, 381);
+            this.lbShowAllComplaints.TabIndex = 0;
             // 
             // RemoveTenant
             // 
@@ -197,7 +241,7 @@
             this.AddTenant.Controls.Add(this.lbEmail);
             this.AddTenant.Location = new System.Drawing.Point(4, 22);
             this.AddTenant.Name = "AddTenant";
-            this.AddTenant.Padding = new System.Windows.Forms.Padding(3);
+            this.AddTenant.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.AddTenant.Size = new System.Drawing.Size(780, 412);
             this.AddTenant.TabIndex = 1;
             this.AddTenant.Text = "Add Tenant";
@@ -340,6 +384,7 @@
             this.Load += new System.EventHandler(this.CompanyApp_Load);
             this.ShowTenantDetails.ResumeLayout(false);
             this.ShowTenantDetails.PerformLayout();
+            this.ShowComplaints.ResumeLayout(false);
             this.RemoveTenant.ResumeLayout(false);
             this.RemoveTenant.PerformLayout();
             this.AddTenant.ResumeLayout(false);
@@ -378,6 +423,9 @@
         private System.Windows.Forms.ListBox lbTenants;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbBuildings;
+        private System.Windows.Forms.ListBox lbShowAllComplaints;
+        private System.Windows.Forms.Button btnShowCurrentComplaint;
+        private System.Windows.Forms.Button btnRemoveComplaint;
     }
 }
 
