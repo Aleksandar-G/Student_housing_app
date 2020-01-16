@@ -50,7 +50,7 @@ namespace TenantApp
 
         private void BtnCreateAppoitment_Click(object sender, EventArgs e)
         {
-            FormCreateAppoitment formCreateAppoitment = new FormCreateAppoitment(dtpDate);
+            FormCreateAppoitment formCreateAppoitment = new FormCreateAppoitment(dtpDate,currentUser, appointmentsForDate);
 
             formCreateAppoitment.Show();
 
@@ -59,7 +59,6 @@ namespace TenantApp
         {
             CultureInfo ci = new CultureInfo(CultureInfo.CurrentCulture.Name);
 
-            // ci.DateTimeFormat.ShortDatePattern = "dd'/'MM'/'yyyy";
 
             ci.DateTimeFormat.ShortDatePattern = "yyyy'-'MM'-'dd";
 
@@ -70,15 +69,12 @@ namespace TenantApp
             Thread.CurrentThread.CurrentUICulture = ci;
 
             Building_Complaints();
+            ShowAppointmentsForDate();
         }
 
         public void TabControl1_Selected(object sender, TabControlEventArgs e)
         {
 
-            ShowAppointmentsForDate();
-            //Appointments appointments = new Appointments();
-
-            //List<string> recentAppoitments= appointments.ShowAppointment();
         }
 
         private void BtnNextDate_Click(object sender, EventArgs e)
@@ -101,11 +97,11 @@ namespace TenantApp
 
         public void ShowAppointmentsForDate()
         {
-            Appointment appointments = new Appointment();
+            
             string dateOfAppointments = dtpShowAppointments.Value.Date.ToShortDateString();
            
 
-            List<Appointment> recentAppoitments = appointments.ShowAppointments(dateOfAppointments);
+            List<Appointment> recentAppoitments = Appointment.ShowAppointments(dateOfAppointments,User.GetUsersBuildingId(currentUser.Id));
             lbAppoitments.Items.Clear();
             appointmentsForDate.Clear();
             foreach (var item in recentAppoitments)
@@ -117,19 +113,11 @@ namespace TenantApp
 
         private void LbAppoitments_DoubleClick(object sender, EventArgs e)
         {
-            //List<string> appointmentList = lbAppoitments.SelectedItem.ToString().Split(' ').ToList();
+            
 
             Appointment selectedAppointment = appointmentsForDate[lbAppoitments.SelectedIndex];
 
-            //int userIDFromAppointment = Convert.ToInt32(appointmentList[1]);
-            //string startDateOfAppointment = appointmentList[appointmentList.Count - 1];
-            //string endDateOfAppointment = appointmentList[appointmentList.Count - 3];
-            //string descriptionAppointment = appointment.SearchForDescription(userIDFromAppointment, startDateOfAppointment, endDateOfAppointment); 
-            //string room = appointmentList[3];
-            //for (int i = 2; i < appointmentList.Count-3; i++)
-            //{
-            //    descriptionAppointment += appointmentList[i]+ " ";
-            //}
+            
              int userIDFromAppointment = Convert.ToInt32(selectedAppointment.UserID);
              DateTime startDateOfAppointment = selectedAppointment.AppointmentStartDate;
              DateTime endDateOfAppointment = selectedAppointment.AppointmentEndDate;
