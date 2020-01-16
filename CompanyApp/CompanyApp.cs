@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Models;
+using MySql.Data.MySqlClient;
 
 namespace CompanyApp
 {
@@ -12,11 +13,6 @@ namespace CompanyApp
         public CompanyApp()
         {
             InitializeComponent();
-        }
-
-        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
         }
         private void BtnAddTenant_Click(object sender, EventArgs e)
         {
@@ -42,6 +38,8 @@ namespace CompanyApp
                 cbRemoveTenantAddress.Items.Add(b.Address);
             });
 
+            ShowTenantDetail();
+
             //Fill Show All Complaints Listbox
             foreach (var item in Complaint.ShowComplaintContent())
             {
@@ -65,7 +63,6 @@ namespace CompanyApp
             List<User> users = new List<User>(User.GetUsersByBuilding(selectedBuilding.Id));
             users.ForEach(u => cbRemoveTenantEmail.Items.Add(u.Email));
         }
-
         private void BtnRemoveTenant_Click(object sender, EventArgs e)
         {
             Building selectedBuilding = buildings.Find(b => cbRemoveTenantAddress.SelectedItem.ToString() == b.Address);
@@ -73,6 +70,62 @@ namespace CompanyApp
             users.Find(u => cbRemoveTenantEmail.SelectedItem.ToString() == u.Email).DeleteFromDB();
             cbRemoveTenantEmail.Items.RemoveAt(cbRemoveTenantEmail.SelectedIndex);
             cbRemoveTenantEmail.Text = "";
+        }
+        private void ShowTenantDetail()
+        {
+            Building_ShowTenantDetails();
+        }
+        public void Building_ShowTenantDetails()
+        {
+            //cb Fill from DB
+
+            Database db = new Database();
+
+            db.Connection.Open();
+            List<string> result = new List<string>();
+            string query = "SELECT address FROM Buildings";
+            MySqlCommand cmd = new MySqlCommand(query, db.Connection);
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+            while (dataReader.Read())
+            {
+                result.Add(dataReader["address"].ToString());
+            }
+            foreach (var item in result)
+            {
+                cbBuildings.Items.Add(item);
+            }
+            dataReader.Close();
+            db.Connection.Close();
+        }
+        private void CbBuildings_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = Models.Building.GetBuildingIdByAddress(cbBuildings.SelectedItem.ToString());
+            
+
+           List<User>usersInBuilding = User.GetUsersByBuilding(id);
+
+            lbTenants.Items.Clear();
+            foreach (var item in usersInBuilding)
+            {
+                lbTenants.Items.Add(item.Name);
+            }
+        }
+        private void ListBox1_DoubleClick(object sender, EventArgs e)
+        {
+            string name = lbTenants.SelectedItem.ToString();
+            int id = Models.Building.GetBuildingIdByAddress(cbBuildings.SelectedItem.ToString());
+            List<User> usersInBuilding = User.GetUsersByBuilding(id);
+            User user;
+            foreach (var item in usersInBuilding)
+            {
+                if (item.Name == name)
+                {
+                    user = item;
+                    TenantDetailsForm tenantDetailsForm = new TenantDetailsForm(user);
+                    tenantDetailsForm.Show();
+                    break;
+                }
+            }
         }
 
         private void BtnShowCurrentComplaint_Click(object sender, EventArgs e)

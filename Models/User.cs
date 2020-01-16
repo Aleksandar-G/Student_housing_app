@@ -248,6 +248,68 @@ namespace Models
 
             return users;
         }
+
+        public static string GetUserAddress(int userid)
+        {
+            string query = $"select address from Buildings WHERE id = (SELECT buildingId FROM BuildingRooms WHERE userid = {userid}); ";
+
+            string address = "";
+
+            Database db = new Database();
+
+            try
+            {
+                db.Connection.Open();
+                
+                MySqlCommand cmd = new MySqlCommand(query, db.Connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    address = dataReader["address"].ToString();
+                }
+
+                dataReader.Close();
+            }
+            catch (Exception) { }
+            finally
+            {
+                db.Connection.Close();
+            }
+
+            return address;
+        }
+
+        public static int GetUserRoom(int userId)
+        {
+            string query = $"SELECT id FROM BuildingRooms  WHERE userid  = {userId};";
+
+            string roomid = "";
+
+            Database db = new Database();
+
+            try
+            {
+                db.Connection.Open();
+
+                MySqlCommand cmd = new MySqlCommand(query, db.Connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    roomid = dataReader["id"].ToString();
+                }
+
+                dataReader.Close();
+            }
+            catch (Exception) { }
+            finally
+            {
+                db.Connection.Close();
+            }
+
+            return Convert.ToInt32(roomid);
+        }
         public static int GetUsersBuildingId(int userId)
         {
             string query = $"SELECT buildingId FROM BuildingRooms AS br inner join Users as u on br.userId = u.id WHERE userid = {userId};";
