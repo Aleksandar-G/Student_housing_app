@@ -33,6 +33,7 @@
             this.lbphone = new System.Windows.Forms.Label();
             this.lbaddress = new System.Windows.Forms.Label();
             this.lbroom = new System.Windows.Forms.Label();
+            this.lbRoomRent = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbname
@@ -79,23 +80,34 @@
             // 
             this.lbroom.AutoSize = true;
             this.lbroom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lbroom.Location = new System.Drawing.Point(191, 245);
+            this.lbroom.Location = new System.Drawing.Point(191, 242);
             this.lbroom.Name = "lbroom";
             this.lbroom.Size = new System.Drawing.Size(46, 17);
             this.lbroom.TabIndex = 4;
             this.lbroom.Text = "label1";
             // 
-            // TenantDetails
+            // lbRoomRent
+            // 
+            this.lbRoomRent.AutoSize = true;
+            this.lbRoomRent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbRoomRent.Location = new System.Drawing.Point(191, 282);
+            this.lbRoomRent.Name = "lbRoomRent";
+            this.lbRoomRent.Size = new System.Drawing.Size(46, 17);
+            this.lbRoomRent.TabIndex = 5;
+            this.lbRoomRent.Text = "label1";
+            // 
+            // TenantDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 371);
+            this.Controls.Add(this.lbRoomRent);
             this.Controls.Add(this.lbroom);
             this.Controls.Add(this.lbaddress);
             this.Controls.Add(this.lbphone);
             this.Controls.Add(this.lbemail);
             this.Controls.Add(this.lbname);
-            this.Name = "TenantDetails";
+            this.Name = "TenantDetailsForm";
             this.Text = "TenantDetails";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -109,5 +121,6 @@
         private System.Windows.Forms.Label lbphone;
         private System.Windows.Forms.Label lbaddress;
         private System.Windows.Forms.Label lbroom;
+        private System.Windows.Forms.Label lbRoomRent;
     }
 }

@@ -22,6 +22,7 @@ namespace CompanyApp
             lbphone.Text ="Phone: "+ user.Phone;
             lbaddress.Text ="Address: "+ User.GetUserAddress(user.Id);
             lbroom.Text ="Room ID: "+ User.GetUserRoom(user.Id).ToString();
+            lbRoomRent.Text = "Rent: " + User.GetUserRoomRent(user.Id).ToString();
         }
     }
 }
