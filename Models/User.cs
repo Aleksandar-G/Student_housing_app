@@ -248,6 +248,7 @@ namespace Models
 
             return users;
         }
+
         public static int GetUsersBuildingId(int userId)
         {
             string query = $"SELECT buildingId FROM BuildingRooms AS br inner join Users as u on br.userId = u.id WHERE userid = {userId};";
@@ -265,7 +266,7 @@ namespace Models
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    userBuildingId =Convert.ToInt32(dataReader["buildingId"]);
+                    userBuildingId = Convert.ToInt32(dataReader["buildingId"]);
                 }
 
                 dataReader.Close();
@@ -278,6 +279,37 @@ namespace Models
             {
                 return 0;
             }
+        }
+
+        public static int GetUserBuildingId(int userId)
+        {
+            string query = $"SELECT buildingId FROM BuildingRooms WHERE userId = {userId};";
+            string buildingId = "";
+            Database db = new Database();
+
+            try
+            {
+                db.Connection.Open();
+
+                MySqlCommand cmd = new MySqlCommand(
+                    query,
+                    db.Connection
+                );
+                cmd.ExecuteNonQuery();
+
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                dataReader.Read();
+                buildingId = dataReader["buildingId"].ToString();
+                dataReader.Close();
+
+            }
+            catch (Exception) { }
+            finally
+            {
+                db.Connection.Close();
+            }
+
+            return Convert.ToInt32(buildingId);
         }
     }
 }

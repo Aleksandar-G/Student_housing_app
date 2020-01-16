@@ -19,7 +19,7 @@ namespace TenantApp
 
         int dtpDate = 0;
         List<Appointment> appointmentsForDate = new List<Appointment>();
-        
+
         private User currentUser;
 
         public TenantApp(User user)
@@ -50,7 +50,7 @@ namespace TenantApp
 
         private void BtnCreateAppoitment_Click(object sender, EventArgs e)
         {
-            FormCreateAppoitment formCreateAppoitment = new FormCreateAppoitment(dtpDate,currentUser, appointmentsForDate);
+            FormCreateAppoitment formCreateAppoitment = new FormCreateAppoitment(dtpDate, currentUser, appointmentsForDate);
 
             formCreateAppoitment.Show();
 
@@ -69,6 +69,7 @@ namespace TenantApp
             Thread.CurrentThread.CurrentUICulture = ci;
 
             Building_Complaints();
+
             ShowAppointmentsForDate();
         }
 
@@ -83,7 +84,7 @@ namespace TenantApp
 
             dtpShowAppointments.Value = DateTime.Today.AddDays(dtpDate);
             ShowAppointmentsForDate();
-            
+
         }
 
         private void BtnPrevDate_Click(object sender, EventArgs e)
@@ -97,40 +98,39 @@ namespace TenantApp
 
         public void ShowAppointmentsForDate()
         {
-            
-            string dateOfAppointments = dtpShowAppointments.Value.Date.ToShortDateString();
-           
 
-            List<Appointment> recentAppoitments = Appointment.ShowAppointments(dateOfAppointments,User.GetUsersBuildingId(currentUser.Id));
+            string dateOfAppointments = dtpShowAppointments.Value.Date.ToShortDateString();
+
+
+            List<Appointment> recentAppoitments = Appointment.ShowAppointments(dateOfAppointments, User.GetUsersBuildingId(currentUser.Id));
             lbAppoitments.Items.Clear();
             appointmentsForDate.Clear();
             foreach (var item in recentAppoitments)
             {
                 appointmentsForDate.Add(item);
-                lbAppoitments.Items.Add($"{item.room} from: {item.AppointmentStartDate.ToString("HH:mm")} to:{item.AppointmentEndDate.ToString("HH:mm")}" );
+                lbAppoitments.Items.Add($"{item.room} from: {item.AppointmentStartDate.ToString("HH:mm")} to:{item.AppointmentEndDate.ToString("HH:mm")}");
             }
         }
 
         private void LbAppoitments_DoubleClick(object sender, EventArgs e)
         {
-            
-
             Appointment selectedAppointment = appointmentsForDate[lbAppoitments.SelectedIndex];
 
-            
-             int userIDFromAppointment = Convert.ToInt32(selectedAppointment.UserID);
-             DateTime startDateOfAppointment = selectedAppointment.AppointmentStartDate;
-             DateTime endDateOfAppointment = selectedAppointment.AppointmentEndDate;
+            int userIDFromAppointment = Convert.ToInt32(selectedAppointment.UserID);
+            DateTime startDateOfAppointment = selectedAppointment.AppointmentStartDate;
+            DateTime endDateOfAppointment = selectedAppointment.AppointmentEndDate;
             string descriptionAppointment = selectedAppointment.Description;
             string room = selectedAppointment.room;
-            AppointmentDetails appointmentDetails = new AppointmentDetails(userIDFromAppointment, startDateOfAppointment, endDateOfAppointment, descriptionAppointment,room);
+            AppointmentDetails appointmentDetails = new AppointmentDetails(userIDFromAppointment, startDateOfAppointment, endDateOfAppointment, descriptionAppointment, room);
 
             appointmentDetails.Show();
+
+            showHouseRules(currentUser.Id);
         }
 
         private void TabControl1_TabIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void BtnSubmitComplaint_Click(object sender, EventArgs e)
@@ -177,6 +177,11 @@ namespace TenantApp
 
             tbPrice.Text = "";
             pbBill.ImageLocation = null;
+        }
+
+        private void showHouseRules(int userId)
+        {
+            tbHouseRules.Text = HouseRule.ShowHouseRules(currentUser.Id);
         }
     }
 }

@@ -53,12 +53,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Notifications = new System.Windows.Forms.TabPage();
+            this.HouseRules = new System.Windows.Forms.TabPage();
+            this.tbHouseRules = new System.Windows.Forms.TextBox();
+            this.lblHouseRules = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.ShowAppointments.SuspendLayout();
             this.SplitBill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBill)).BeginInit();
             this.CreateComplaint.SuspendLayout();
+            this.HouseRules.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -67,10 +71,12 @@
             this.tabControl1.Controls.Add(this.SplitBill);
             this.tabControl1.Controls.Add(this.CreateComplaint);
             this.tabControl1.Controls.Add(this.Notifications);
-            this.tabControl1.Location = new System.Drawing.Point(6, 6);
+            this.tabControl1.Controls.Add(this.HouseRules);
+            this.tabControl1.Location = new System.Drawing.Point(9, 9);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(788, 438);
+            this.tabControl1.Size = new System.Drawing.Size(1182, 674);
             this.tabControl1.TabIndex = 1;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabControl1_Selected);
             this.tabControl1.TabIndexChanged += new System.EventHandler(this.TabControl1_TabIndexChanged);
@@ -82,26 +88,26 @@
             this.ShowAppointments.Controls.Add(this.btnPrevDate);
             this.ShowAppointments.Controls.Add(this.btnGoCreateAppoitment);
             this.ShowAppointments.Controls.Add(this.lbAppoitments);
-            this.ShowAppointments.Location = new System.Drawing.Point(4, 22);
+            this.ShowAppointments.Location = new System.Drawing.Point(4, 29);
             this.ShowAppointments.Name = "ShowAppointments";
             this.ShowAppointments.Padding = new System.Windows.Forms.Padding(3);
-            this.ShowAppointments.Size = new System.Drawing.Size(780, 412);
+            this.ShowAppointments.Size = new System.Drawing.Size(1174, 641);
             this.ShowAppointments.TabIndex = 3;
             this.ShowAppointments.Text = "Show Appointments";
             this.ShowAppointments.UseVisualStyleBackColor = true;
             // 
             // dtpShowAppointments
             // 
-            this.dtpShowAppointments.Location = new System.Drawing.Point(296, 41);
+            this.dtpShowAppointments.Location = new System.Drawing.Point(352, 51);
             this.dtpShowAppointments.Name = "dtpShowAppointments";
-            this.dtpShowAppointments.Size = new System.Drawing.Size(200, 20);
+            this.dtpShowAppointments.Size = new System.Drawing.Size(362, 26);
             this.dtpShowAppointments.TabIndex = 4;
             // 
             // btnNextDate
             // 
-            this.btnNextDate.Location = new System.Drawing.Point(513, 41);
+            this.btnNextDate.Location = new System.Drawing.Point(737, 42);
             this.btnNextDate.Name = "btnNextDate";
-            this.btnNextDate.Size = new System.Drawing.Size(36, 20);
+            this.btnNextDate.Size = new System.Drawing.Size(33, 48);
             this.btnNextDate.TabIndex = 3;
             this.btnNextDate.Text = ">";
             this.btnNextDate.UseVisualStyleBackColor = true;
@@ -109,9 +115,9 @@
             // 
             // btnPrevDate
             // 
-            this.btnPrevDate.Location = new System.Drawing.Point(242, 42);
+            this.btnPrevDate.Location = new System.Drawing.Point(283, 42);
             this.btnPrevDate.Name = "btnPrevDate";
-            this.btnPrevDate.Size = new System.Drawing.Size(32, 20);
+            this.btnPrevDate.Size = new System.Drawing.Size(31, 47);
             this.btnPrevDate.TabIndex = 2;
             this.btnPrevDate.Text = "<";
             this.btnPrevDate.UseVisualStyleBackColor = true;
@@ -119,9 +125,9 @@
             // 
             // btnGoCreateAppoitment
             // 
-            this.btnGoCreateAppoitment.Location = new System.Drawing.Point(329, 347);
+            this.btnGoCreateAppoitment.Location = new System.Drawing.Point(419, 393);
             this.btnGoCreateAppoitment.Name = "btnGoCreateAppoitment";
-            this.btnGoCreateAppoitment.Size = new System.Drawing.Size(167, 40);
+            this.btnGoCreateAppoitment.Size = new System.Drawing.Size(216, 59);
             this.btnGoCreateAppoitment.TabIndex = 1;
             this.btnGoCreateAppoitment.Text = "Create Appointment";
             this.btnGoCreateAppoitment.UseVisualStyleBackColor = true;
@@ -130,9 +136,10 @@
             // lbAppoitments
             // 
             this.lbAppoitments.FormattingEnabled = true;
+            this.lbAppoitments.ItemHeight = 20;
             this.lbAppoitments.Location = new System.Drawing.Point(219, 108);
             this.lbAppoitments.Name = "lbAppoitments";
-            this.lbAppoitments.Size = new System.Drawing.Size(375, 199);
+            this.lbAppoitments.Size = new System.Drawing.Size(602, 244);
             this.lbAppoitments.TabIndex = 0;
             this.lbAppoitments.DoubleClick += new System.EventHandler(this.LbAppoitments_DoubleClick);
             // 
@@ -145,10 +152,11 @@
             this.SplitBill.Controls.Add(this.lblPicture);
             this.SplitBill.Controls.Add(this.lblPrice);
             this.SplitBill.Controls.Add(this.lblGroceries);
-            this.SplitBill.Location = new System.Drawing.Point(4, 22);
+            this.SplitBill.Location = new System.Drawing.Point(4, 29);
+            this.SplitBill.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SplitBill.Name = "SplitBill";
             this.SplitBill.Padding = new System.Windows.Forms.Padding(1);
-            this.SplitBill.Size = new System.Drawing.Size(780, 412);
+            this.SplitBill.Size = new System.Drawing.Size(1174, 641);
             this.SplitBill.TabIndex = 4;
             this.SplitBill.Text = "Split Bill";
             this.SplitBill.UseVisualStyleBackColor = true;
@@ -158,17 +166,17 @@
             this.pbBill.Location = new System.Drawing.Point(197, 116);
             this.pbBill.Margin = new System.Windows.Forms.Padding(2);
             this.pbBill.Name = "pbBill";
-            this.pbBill.Size = new System.Drawing.Size(277, 246);
+            this.pbBill.Size = new System.Drawing.Size(416, 378);
             this.pbBill.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbBill.TabIndex = 7;
             this.pbBill.TabStop = false;
             // 
             // btnSplit
             // 
-            this.btnSplit.Location = new System.Drawing.Point(627, 250);
+            this.btnSplit.Location = new System.Drawing.Point(825, 259);
             this.btnSplit.Margin = new System.Windows.Forms.Padding(2);
             this.btnSplit.Name = "btnSplit";
-            this.btnSplit.Size = new System.Drawing.Size(107, 31);
+            this.btnSplit.Size = new System.Drawing.Size(160, 48);
             this.btnSplit.TabIndex = 6;
             this.btnSplit.Text = "Split bill";
             this.btnSplit.UseVisualStyleBackColor = true;
@@ -177,10 +185,10 @@
             // btnBrowse
             // 
             this.btnBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowse.Location = new System.Drawing.Point(44, 148);
+            this.btnBrowse.Location = new System.Drawing.Point(32, 157);
             this.btnBrowse.Margin = new System.Windows.Forms.Padding(2);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(99, 29);
+            this.btnBrowse.Size = new System.Drawing.Size(148, 45);
             this.btnBrowse.TabIndex = 4;
             this.btnBrowse.Text = "Browse picture";
             this.btnBrowse.UseVisualStyleBackColor = true;
@@ -188,20 +196,19 @@
             // 
             // tbPrice
             // 
-            this.tbPrice.Location = new System.Drawing.Point(627, 203);
+            this.tbPrice.Location = new System.Drawing.Point(825, 207);
             this.tbPrice.Margin = new System.Windows.Forms.Padding(2);
             this.tbPrice.Name = "tbPrice";
-            this.tbPrice.Size = new System.Drawing.Size(108, 20);
+            this.tbPrice.Size = new System.Drawing.Size(160, 26);
             this.tbPrice.TabIndex = 3;
             // 
             // lblPicture
             // 
             this.lblPicture.AutoSize = true;
             this.lblPicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPicture.Location = new System.Drawing.Point(41, 116);
-            this.lblPicture.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPicture.Location = new System.Drawing.Point(39, 116);
             this.lblPicture.Name = "lblPicture";
-            this.lblPicture.Size = new System.Drawing.Size(85, 20);
+            this.lblPicture.Size = new System.Drawing.Size(132, 29);
             this.lblPicture.TabIndex = 2;
             this.lblPicture.Text = "Bill picture:";
             // 
@@ -209,10 +216,9 @@
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(527, 203);
-            this.lblPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPrice.Location = new System.Drawing.Point(838, 164);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(82, 20);
+            this.lblPrice.Size = new System.Drawing.Size(128, 29);
             this.lblPrice.TabIndex = 1;
             this.lblPrice.Text = "Total price";
             // 
@@ -220,10 +226,9 @@
             // 
             this.lblGroceries.AutoSize = true;
             this.lblGroceries.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGroceries.Location = new System.Drawing.Point(258, 31);
-            this.lblGroceries.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblGroceries.Location = new System.Drawing.Point(387, 48);
             this.lblGroceries.Name = "lblGroceries";
-            this.lblGroceries.Size = new System.Drawing.Size(183, 26);
+            this.lblGroceries.Size = new System.Drawing.Size(267, 37);
             this.lblGroceries.TabIndex = 0;
             this.lblGroceries.Text = "Split groceries bill";
             // 
@@ -238,9 +243,10 @@
             this.CreateComplaint.Controls.Add(this.label2);
             this.CreateComplaint.Controls.Add(this.label1);
             this.CreateComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateComplaint.Location = new System.Drawing.Point(4, 22);
+            this.CreateComplaint.Location = new System.Drawing.Point(4, 29);
+            this.CreateComplaint.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CreateComplaint.Name = "CreateComplaint";
-            this.CreateComplaint.Size = new System.Drawing.Size(780, 412);
+            this.CreateComplaint.Size = new System.Drawing.Size(1174, 641);
             this.CreateComplaint.TabIndex = 5;
             this.CreateComplaint.Text = "Create Compaint";
             this.CreateComplaint.UseVisualStyleBackColor = true;
@@ -248,29 +254,29 @@
             // cbBuildingId
             // 
             this.cbBuildingId.FormattingEnabled = true;
-            this.cbBuildingId.Location = new System.Drawing.Point(439, 111);
+            this.cbBuildingId.Location = new System.Drawing.Point(705, 172);
             this.cbBuildingId.Margin = new System.Windows.Forms.Padding(1);
             this.cbBuildingId.Name = "cbBuildingId";
-            this.cbBuildingId.Size = new System.Drawing.Size(163, 28);
+            this.cbBuildingId.Size = new System.Drawing.Size(242, 37);
             this.cbBuildingId.TabIndex = 7;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(368, 115);
-            this.label4.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label4.Location = new System.Drawing.Point(583, 172);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 20);
+            this.label4.Size = new System.Drawing.Size(107, 29);
             this.label4.TabIndex = 6;
             this.label4.Text = "Building:";
             // 
             // btnSubmitComplaint
             // 
             this.btnSubmitComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmitComplaint.Location = new System.Drawing.Point(292, 317);
+            this.btnSubmitComplaint.Location = new System.Drawing.Point(462, 476);
             this.btnSubmitComplaint.Margin = new System.Windows.Forms.Padding(1);
             this.btnSubmitComplaint.Name = "btnSubmitComplaint";
-            this.btnSubmitComplaint.Size = new System.Drawing.Size(177, 30);
+            this.btnSubmitComplaint.Size = new System.Drawing.Size(266, 46);
             this.btnSubmitComplaint.TabIndex = 5;
             this.btnSubmitComplaint.Text = "Submit Complaint";
             this.btnSubmitComplaint.UseVisualStyleBackColor = true;
@@ -278,38 +284,38 @@
             // 
             // tbMessage
             // 
-            this.tbMessage.Location = new System.Drawing.Point(172, 175);
+            this.tbMessage.Location = new System.Drawing.Point(278, 247);
             this.tbMessage.Margin = new System.Windows.Forms.Padding(1);
             this.tbMessage.Multiline = true;
             this.tbMessage.Name = "tbMessage";
-            this.tbMessage.Size = new System.Drawing.Size(430, 123);
+            this.tbMessage.Size = new System.Drawing.Size(643, 187);
             this.tbMessage.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(92, 175);
-            this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label3.Location = new System.Drawing.Point(141, 259);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 20);
+            this.label3.Size = new System.Drawing.Size(118, 29);
             this.label3.TabIndex = 3;
             this.label3.Text = "Message:";
             // 
             // tbTitle
             // 
-            this.tbTitle.Location = new System.Drawing.Point(172, 111);
+            this.tbTitle.Location = new System.Drawing.Point(278, 172);
             this.tbTitle.Margin = new System.Windows.Forms.Padding(1);
             this.tbTitle.Name = "tbTitle";
-            this.tbTitle.Size = new System.Drawing.Size(163, 26);
+            this.tbTitle.Size = new System.Drawing.Size(242, 35);
             this.tbTitle.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(128, 114);
-            this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label2.Location = new System.Drawing.Point(192, 175);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 20);
+            this.label2.Size = new System.Drawing.Size(67, 29);
             this.label2.TabIndex = 1;
             this.label2.Text = "Title:";
             // 
@@ -317,21 +323,52 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(287, 64);
-            this.label1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label1.Location = new System.Drawing.Point(432, 56);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 26);
+            this.label1.Size = new System.Drawing.Size(270, 38);
             this.label1.TabIndex = 0;
             this.label1.Text = "Create Complaint";
             // 
             // Notifications
             // 
-            this.Notifications.Location = new System.Drawing.Point(4, 22);
+            this.Notifications.Location = new System.Drawing.Point(4, 29);
+            this.Notifications.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Notifications.Name = "Notifications";
-            this.Notifications.Size = new System.Drawing.Size(780, 412);
+            this.Notifications.Size = new System.Drawing.Size(1174, 641);
             this.Notifications.TabIndex = 6;
             this.Notifications.Text = "Notifications";
             this.Notifications.UseVisualStyleBackColor = true;
+            // 
+            // HouseRules
+            // 
+            this.HouseRules.Controls.Add(this.tbHouseRules);
+            this.HouseRules.Controls.Add(this.lblHouseRules);
+            this.HouseRules.Location = new System.Drawing.Point(4, 29);
+            this.HouseRules.Name = "HouseRules";
+            this.HouseRules.Size = new System.Drawing.Size(1174, 641);
+            this.HouseRules.TabIndex = 7;
+            this.HouseRules.Text = "House Rules";
+            this.HouseRules.UseVisualStyleBackColor = true;
+            // 
+            // tbHouseRules
+            // 
+            this.tbHouseRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbHouseRules.Location = new System.Drawing.Point(179, 112);
+            this.tbHouseRules.Multiline = true;
+            this.tbHouseRules.Name = "tbHouseRules";
+            this.tbHouseRules.Size = new System.Drawing.Size(725, 387);
+            this.tbHouseRules.TabIndex = 2;
+            // 
+            // lblHouseRules
+            // 
+            this.lblHouseRules.AutoSize = true;
+            this.lblHouseRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHouseRules.Location = new System.Drawing.Point(424, 46);
+            this.lblHouseRules.Name = "lblHouseRules";
+            this.lblHouseRules.Size = new System.Drawing.Size(285, 52);
+            this.lblHouseRules.TabIndex = 1;
+            this.lblHouseRules.Text = "House Rules:";
             // 
             // openFileDialog1
             // 
@@ -341,10 +378,11 @@
             // 
             // TenantApp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(837, 464);
+            this.ClientSize = new System.Drawing.Size(1256, 714);
             this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "TenantApp";
             this.Text = "TenantApp";
             this.Load += new System.EventHandler(this.TenantApp_Load);
@@ -355,6 +393,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbBill)).EndInit();
             this.CreateComplaint.ResumeLayout(false);
             this.CreateComplaint.PerformLayout();
+            this.HouseRules.ResumeLayout(false);
+            this.HouseRules.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -390,6 +430,9 @@
         private System.Windows.Forms.Button btnSubmitComplaint;
         private System.Windows.Forms.ComboBox cbBuildingId;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TabPage HouseRules;
+        private System.Windows.Forms.TextBox tbHouseRules;
+        private System.Windows.Forms.Label lblHouseRules;
     }
 }
 
