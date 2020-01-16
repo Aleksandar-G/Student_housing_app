@@ -133,7 +133,8 @@ namespace CompanyApp
             if (lbShowAllComplaints.SelectedItem != null)
             {
                 Complaint c = Complaint.ShowComplaintContent()[lbShowAllComplaints.SelectedIndex];
-                MessageBox.Show(c.description, c.title);
+                
+                MessageBox.Show("Comaplaint's description:\n"+c.description+"\n----------------------\n"+ "From:\n" + c.buildingAddress, c.title);
             }
             else
             {
