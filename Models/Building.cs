@@ -50,7 +50,8 @@ namespace Models
                 );
                 cmd.ExecuteNonQuery();
                 result = true;
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 result = false;
             }
@@ -84,7 +85,7 @@ namespace Models
 
                 dataReader.Close();
             }
-            catch(Exception) { }
+            catch (Exception) { }
             finally
             {
                 db.Connection.Close();
@@ -93,8 +94,16 @@ namespace Models
             return buildings;
         }
 
-       public static Building GetBuildingByUser(int userId)
-       {
+        public static int GetBuildingIdByAddress(string address)
+        {
+            List<Building> buildings = GetBuildings();
+
+            int id = buildings.Select(x => x).Where(x => x.Address == address).First().Id;
+
+            return id;
+        }
+        public static Building GetBuildingByUser(int userId)
+        {
             Database db = new Database();
             Building building = null;
             try
