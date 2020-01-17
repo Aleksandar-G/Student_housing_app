@@ -50,7 +50,8 @@ namespace Models
                 );
                 cmd.ExecuteNonQuery();
                 result = true;
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 result = false;
             }
@@ -84,13 +85,50 @@ namespace Models
 
                 dataReader.Close();
             }
-            catch(Exception) { }
+            catch (Exception) { }
             finally
             {
                 db.Connection.Close();
             }
 
             return buildings;
+        }
+
+        public static int GetBuildingIdByAddress(string address)
+        {
+            List<Building> buildings = GetBuildings();
+
+            int id = buildings.Select(x => x).Where(x => x.Address == address).First().Id;
+
+            return id;
+        }
+        public static Building GetBuildingByUser(int userId)
+        {
+            Database db = new Database();
+            Building building = null;
+            try
+            {
+                db = new Database();
+                db.Connection.Open();
+
+                MySqlCommand cmd = new MySqlCommand(
+                    $"SELECT b.id, b.address FROM Buildings b INNER JOIN BuildingRooms br ON b.id = br.buildingId WHERE br.userId = {userId};",
+                    db.Connection
+                );
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                dataReader.Read();
+
+                building = new Building(Convert.ToInt32(dataReader["id"]), dataReader["address"].ToString());
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                db.Connection.Close();
+            }
+
+            return building;
         }
     }
 }

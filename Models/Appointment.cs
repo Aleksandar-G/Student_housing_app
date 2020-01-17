@@ -10,14 +10,15 @@ namespace Models
 {
     public class Appointment
     {
-        public int id { get;}
-        public int UserID { get;}
-        public string Description { get;}
-        public DateTime AppointmentStartDate { get;}
-        public DateTime AppointmentEndDate { get;}
+        public int id { get; }
+        public int UserID { get; }
+        public string Description { get; }
+        public DateTime AppointmentStartDate { get; }
+        public DateTime AppointmentEndDate { get; }
         public string room { get; }
+        public int BuildingId { get; private set; }
 
-        public Appointment(int Id, int UserId, string description, DateTime appointmentStartDate,DateTime appointmentEndDate, string room)
+        public Appointment(int Id, int UserId, string description, DateTime appointmentStartDate, DateTime appointmentEndDate, string room, int buildingId)
         {
             this.id = Id;
             this.UserID = UserId;
@@ -25,39 +26,13 @@ namespace Models
             this.AppointmentStartDate = appointmentStartDate;
             this.AppointmentEndDate = appointmentEndDate;
             this.room = room;
+            this.BuildingId = buildingId;
         }
 
-        public Appointment()
+        public static void AddAppointment(int userId, string description, string StartDate, string EndDate, string room, int buildingId)
         {
-            CultureInfo ci = new CultureInfo(CultureInfo.CurrentCulture.Name);
-
-            // ci.DateTimeFormat.ShortDatePattern = "dd'/'MM'/'yyyy";
-
-            ci.DateTimeFormat.ShortDatePattern = "yyyy'-'MM'-'dd";
-
-            ci.DateTimeFormat.LongTimePattern = "hh:mm:ss";
-
-            Thread.CurrentThread.CurrentCulture = ci;
-
-            Thread.CurrentThread.CurrentUICulture = ci;
-        }
-
-        public void AddAppointment(int userId, string description, string StartDate, string EndDate, string room)
-        {
-            string query = $"INSERT INTO Appointments (userId,description,StartDate,EndDate,room) VALUES('{userId}', '{description}', '{StartDate}', '{EndDate}', '{room}' )";
-            //DBConnection con = new DBConnection();
+            string query = $"INSERT INTO Appointments (userId,description,StartDate,EndDate,room,buildingId) VALUES('{userId}', '{description}', '{StartDate}', '{EndDate}', '{room}', '{buildingId}' )";
             Database database = new Database();
-            //if (con.OpenConnection() == true)
-            //{
-            //    //create command and assign the query and connection from the constructor
-            //    MySqlCommand cmd = new MySqlCommand(query, con.con);
-
-            //    //Execute command
-            //    cmd.ExecuteNonQuery();
-
-            //    //close connection
-            //    con.CloseConnection();
-            //}
 
             if (database.OpenConnection() == true)
             {
@@ -70,16 +45,25 @@ namespace Models
                 //close connection
                 database.CloseConnection();
             }
+
+            List<User> users = User.GetUsersByBuilding(buildingId);
+
+            users.ForEach(user =>
+            {
+                if (user.Id != userId)
+                {
+                    string notificationDescription = $"{user.Name} has added appointment for {room} from {StartDate} to {EndDate}";
+                    Notification notification = new Notification("New Appointment", notificationDescription, user.Id);
+                    notification.InsertIntoDB();
+                }
+            });
         }
 
-        public List<Appointment> ShowAppointments(string StartdateOfappointments)
+        public static List<Appointment> ShowAppointments(string StartdateOfappointments, int buildingId)
         {
-            string query = $"SELECT id, userId,description,StartDate,endDate,room FROM Appointments WHERE StartDate LIKE \'{StartdateOfappointments}%\' ORDER BY StartDate";
-
+            string query = $"SELECT * FROM Appointments WHERE StartDate LIKE \'{StartdateOfappointments}%\' AND buildingId = {buildingId} ORDER BY StartDate";
 
             List<Appointment> result = new List<Appointment>();
-
-            //DBConnection con = new DBConnection();
 
             Database database = new Database();
 
@@ -92,17 +76,15 @@ namespace Models
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    
-                    DateTime startDate = Convert.ToDateTime(dataReader["startDate"]);
-                    DateTime endDate = Convert.ToDateTime(dataReader["endDate"]);
-                   // result.Add("UserID: " + dataReader["userId"] + " in "+dataReader["room"]+" " + $"from: { startDate.ToShortDateString()}" + $" ends: {endDate.ToShortDateString()}" );
+
                     Appointment appointment = new Appointment(
                         Convert.ToInt32(dataReader["id"]),
-                        Convert.ToInt32( dataReader["userId"]), 
+                        Convert.ToInt32(dataReader["userId"]),
                         dataReader["description"].ToString(),
                         Convert.ToDateTime(dataReader["startDate"]),
-                        Convert.ToDateTime(dataReader["endDate"]) ,
-                        dataReader["room"].ToString()
+                        Convert.ToDateTime(dataReader["endDate"]),
+                        dataReader["room"].ToString(),
+                        Convert.ToInt32(dataReader["buildingId"])
                     );
 
                     result.Add(appointment);
@@ -124,25 +106,23 @@ namespace Models
 
         }
 
-        public string SearchForDescription(int userId, string startDate,string endDate)
+        public static string SearchForDescription(int userId, string startDate, string endDate)
         {
             string query = $"SELECT description FROM Appointments WHERE userId = {userId} AND DATE(startDate) = '{startDate}' AND DATE(endDate) = '{endDate}' LIMIT 1";
 
-            string desctiptoon = "";
+            string description = "";
 
             Database database = new Database();
 
             if (database.OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, database.Connection);
-
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
                 while (dataReader.Read())
                 {
-                    desctiptoon = dataReader["description"].ToString();
+                    description = dataReader["description"].ToString();
                 }
-
 
                 //close Data Reader
                 dataReader.Close();
@@ -150,7 +130,7 @@ namespace Models
                 //close Connection
                 database.CloseConnection();
 
-                return desctiptoon;
+                return description;
 
             }
             else
@@ -159,10 +139,9 @@ namespace Models
             }
         }
 
-        public string SearchForName(int userId)
+        public static string SearchForName(int userId)
         {
             string query = $"SELECT name FROM Users WHERE id = {userId}";
-
             string name = "";
 
             Database database = new Database();
@@ -170,7 +149,6 @@ namespace Models
             if (database.OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, database.Connection);
-
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
                 while (dataReader.Read())

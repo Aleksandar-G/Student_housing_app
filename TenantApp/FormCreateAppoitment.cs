@@ -14,34 +14,28 @@ namespace TenantApp
 {
     public partial class FormCreateAppoitment : Form
     {
-        public FormCreateAppoitment(int daysChange)
+        private User CurrUser;
+        private List<Appointment> appointmetsForDate;
+        public FormCreateAppoitment(int daysChange, User currUser, List<Appointment> appointmentsForDate)
         {
-
-            
             InitializeComponent();
+
+            this.CurrUser = currUser;
+            this.appointmetsForDate = appointmentsForDate;
             dtpStartDate.Value = DateTime.Today.AddDays(daysChange);
             dtpEndDate.Value = DateTime.Today.AddDays(daysChange);
-            //dtpCreateAppoitment.Format = DateTimePickerFormat.Long;
-            // dtpCreateAppoitment.ShowUpDown = true;
         }
 
         private void BtnCreateAppoitment_Click(object sender, EventArgs e)
         {
-            // dtpStartDate.Format = DateTimePickerFormat.Custom;
-            // dtpStartDate.CustomFormat = "YYYY-MM-DD";
-            //dtpStartDate.CustomFormat = "u";
-            //dtpCreateAppoitment.Format = DateTimePickerFormat.Time;
-            //dtpCreateAppoitment.ShowUpDown = true;
-
-            Appointment appointments = new Appointment();
-            //dtpStartDate.CustomFormat = "yyyy-MM-dd";
             string description = rtbCreateAppoitment.Text;
             if (description == "")
             {
                 MessageBox.Show("Please give a desccription for the appointment");
                 return;
             }
-            string appointmentStartDateTime = dtpStartDate.Value.ToShortDateString() +" " + dtpStartTime.Value.ToString("HH:mm:ss");
+
+            string appointmentStartDateTime = dtpStartDate.Value.ToShortDateString() + " " + dtpStartTime.Value.ToString("HH:mm:ss");
             string appointmentEndDateTime = dtpEndDate.Value.ToShortDateString() + " " + dtpEndTime.Value.ToString("HH:mm:ss");
 
             if (Convert.ToDateTime(appointmentStartDateTime) > Convert.ToDateTime(appointmentEndDateTime))
@@ -49,6 +43,7 @@ namespace TenantApp
                 MessageBox.Show("Please input a correct date of the start and the end of the appointment");
                 return;
             }
+
             string room = "";
             try
             {
@@ -58,22 +53,35 @@ namespace TenantApp
             {
                 MessageBox.Show("Please select a room for the appointment");
                 return;
-                
             }
-            
-            
-            appointments.AddAppointment(13, description, appointmentStartDateTime, appointmentEndDateTime, room);
+
+            List<Appointment> appointments = appointmetsForDate.Select(x => x).Where(x => x.room == room).ToList();
+
+            foreach (var item in appointments)
+            {
+                (System.Windows.Forms.Application.OpenForms["TenantApp"] as TenantApp).ShowAppointmentsForDate();
+                (System.Windows.Forms.Application.OpenForms["TenantApp"] as TenantApp).ShowNotificationsFordate();
+
+                if (Convert.ToDateTime(appointmentEndDateTime) >= item.AppointmentStartDate && Convert.ToDateTime(appointmentEndDateTime) <= item.AppointmentEndDate)
+                {
+                    MessageBox.Show("There is another appointment at that time in that room");
+                    return;
+                }
+                else if (Convert.ToDateTime(appointmentStartDateTime) >= item.AppointmentStartDate && Convert.ToDateTime(appointmentStartDateTime) <= item.AppointmentEndDate)
+                {
+                    MessageBox.Show("There is another appointment at that time in that room");
+                    return;
+                }
+            }
+
+            Appointment.AddAppointment(CurrUser.Id, description, appointmentStartDateTime, appointmentEndDateTime, room, User.GetUsersBuildingId(CurrUser.Id));
 
             this.Close();
 
             if (System.Windows.Forms.Application.OpenForms["TenantApp"] != null)
             {
                 (System.Windows.Forms.Application.OpenForms["TenantApp"] as TenantApp).ShowAppointmentsForDate();
-                (System.Windows.Forms.Application.OpenForms["TenantApp"] as TenantApp).ShowNotificationsFordate();
             }
-
-
-
         }
 
 
@@ -81,17 +89,11 @@ namespace TenantApp
         {
             CultureInfo ci = new CultureInfo(CultureInfo.CurrentCulture.Name);
 
-            // ci.DateTimeFormat.ShortDatePattern = "dd'/'MM'/'yyyy";
-
             ci.DateTimeFormat.ShortDatePattern = "yyyy'-'MM'-'dd";
-
             ci.DateTimeFormat.LongTimePattern = "hh:mm:ss";
 
-
             Thread.CurrentThread.CurrentCulture = ci;
-
             Thread.CurrentThread.CurrentUICulture = ci;
         }
-         
     }
 }
