@@ -54,11 +54,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label2.Location = new System.Drawing.Point(81, 30);
+            this.label2.Location = new System.Drawing.Point(101, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(118, 17);
+            this.label2.Size = new System.Drawing.Size(84, 17);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Pick a Start Date:";
+            this.label2.Text = "Pick a Date:";
             // 
             // dtpStartDate
             // 

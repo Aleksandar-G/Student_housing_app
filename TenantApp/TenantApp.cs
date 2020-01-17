@@ -27,25 +27,25 @@ namespace TenantApp
             InitializeComponent();
             this.currentUser = user;
         }
-        public void Building_Complaints()
-        {
-            //cb Fill from DB
-            db.Connection.Open();
-            List<string> result = new List<string>();
-            string query = "SELECT address FROM Buildings";
-            MySqlCommand cmd = new MySqlCommand(query, db.Connection);
-            MySqlDataReader dataReader = cmd.ExecuteReader();
-            while (dataReader.Read())
-            {
-                result.Add(dataReader["address"].ToString());
-            }
-            foreach (var item in result)
-            {
-                cbBuildingId.Items.Add(item);
-            }
-            dataReader.Close();
-            db.Connection.Close();
-        }
+        //public void Building_Complaints()
+        //{
+        //    //cb Fill from DB
+        //    db.Connection.Open();
+        //    List<string> result = new List<string>();
+        //    string query = "SELECT address FROM Buildings";
+        //    MySqlCommand cmd = new MySqlCommand(query, db.Connection);
+        //    MySqlDataReader dataReader = cmd.ExecuteReader();
+        //    while (dataReader.Read())
+        //    {
+        //        result.Add(dataReader["address"].ToString());
+        //    }
+        //    foreach (var item in result)
+        //    {
+        //        cbBuildingId.Items.Add(item);
+        //    }
+        //    dataReader.Close();
+        //    db.Connection.Close();
+        //}
 
 
         private void BtnCreateAppoitment_Click(object sender, EventArgs e)
@@ -67,8 +67,6 @@ namespace TenantApp
             Thread.CurrentThread.CurrentCulture = ci;
 
             Thread.CurrentThread.CurrentUICulture = ci;
-
-            Building_Complaints();
 
             ShowAppointmentsForDate();
 
@@ -153,7 +151,7 @@ namespace TenantApp
 
         private void BtnSubmitComplaint_Click(object sender, EventArgs e)
         {
-            Complaint complaint = new Complaint(tbTitle.Text, tbMessage.Text, cbBuildingId.SelectedItem.ToString());
+            Complaint complaint = new Complaint(tbTitle.Text, tbMessage.Text, Building.GetBuildingByUser(currentUser.Id).Address);
             complaint.InsertIntoDB();
 
             MessageBox.Show("Your compaint was sent successfully!");
