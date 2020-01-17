@@ -35,5 +35,10 @@ namespace TenantApp
                 MessageBox.Show("Wrong credentials!");
             }
         }
+
+        private void PictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

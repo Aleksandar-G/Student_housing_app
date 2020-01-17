@@ -76,12 +76,15 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(802, 420);
+            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 1;
+            this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TabControl1_DrawItem);
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabControl1_Selected);
             this.tabControl1.TabIndexChanged += new System.EventHandler(this.TabControl1_TabIndexChanged);
             // 
             // ShowAppointments
             // 
+            this.ShowAppointments.BackColor = System.Drawing.SystemColors.Window;
             this.ShowAppointments.Controls.Add(this.dtpShowAppointments);
             this.ShowAppointments.Controls.Add(this.btnNextDate);
             this.ShowAppointments.Controls.Add(this.btnPrevDate);
@@ -94,56 +97,70 @@
             this.ShowAppointments.Size = new System.Drawing.Size(794, 394);
             this.ShowAppointments.TabIndex = 3;
             this.ShowAppointments.Text = "Show Appointments";
-            this.ShowAppointments.UseVisualStyleBackColor = true;
             // 
             // dtpShowAppointments
             // 
-            this.dtpShowAppointments.Location = new System.Drawing.Point(235, 33);
+            this.dtpShowAppointments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.dtpShowAppointments.Location = new System.Drawing.Point(280, 42);
             this.dtpShowAppointments.Margin = new System.Windows.Forms.Padding(2);
             this.dtpShowAppointments.Name = "dtpShowAppointments";
-            this.dtpShowAppointments.Size = new System.Drawing.Size(243, 20);
+            this.dtpShowAppointments.Size = new System.Drawing.Size(243, 21);
             this.dtpShowAppointments.TabIndex = 4;
             // 
             // btnNextDate
             // 
-            this.btnNextDate.Location = new System.Drawing.Point(491, 27);
+            this.btnNextDate.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnNextDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNextDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnNextDate.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnNextDate.Location = new System.Drawing.Point(537, 39);
             this.btnNextDate.Margin = new System.Windows.Forms.Padding(2);
             this.btnNextDate.Name = "btnNextDate";
-            this.btnNextDate.Size = new System.Drawing.Size(22, 31);
+            this.btnNextDate.Size = new System.Drawing.Size(33, 33);
             this.btnNextDate.TabIndex = 3;
             this.btnNextDate.Text = ">";
-            this.btnNextDate.UseVisualStyleBackColor = true;
+            this.btnNextDate.UseVisualStyleBackColor = false;
             this.btnNextDate.Click += new System.EventHandler(this.BtnNextDate_Click);
             // 
             // btnPrevDate
             // 
-            this.btnPrevDate.Location = new System.Drawing.Point(189, 27);
+            this.btnPrevDate.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnPrevDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnPrevDate.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnPrevDate.Location = new System.Drawing.Point(231, 39);
             this.btnPrevDate.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrevDate.Name = "btnPrevDate";
-            this.btnPrevDate.Size = new System.Drawing.Size(21, 31);
+            this.btnPrevDate.Size = new System.Drawing.Size(33, 33);
             this.btnPrevDate.TabIndex = 2;
             this.btnPrevDate.Text = "<";
-            this.btnPrevDate.UseVisualStyleBackColor = true;
+            this.btnPrevDate.UseVisualStyleBackColor = false;
             this.btnPrevDate.Click += new System.EventHandler(this.BtnPrevDate_Click);
             // 
             // btnGoCreateAppoitment
             // 
-            this.btnGoCreateAppoitment.Location = new System.Drawing.Point(279, 255);
+            this.btnGoCreateAppoitment.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnGoCreateAppoitment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGoCreateAppoitment.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnGoCreateAppoitment.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnGoCreateAppoitment.Location = new System.Drawing.Point(299, 305);
             this.btnGoCreateAppoitment.Margin = new System.Windows.Forms.Padding(2);
             this.btnGoCreateAppoitment.Name = "btnGoCreateAppoitment";
-            this.btnGoCreateAppoitment.Size = new System.Drawing.Size(144, 38);
+            this.btnGoCreateAppoitment.Size = new System.Drawing.Size(199, 59);
             this.btnGoCreateAppoitment.TabIndex = 1;
             this.btnGoCreateAppoitment.Text = "Create Appointment";
-            this.btnGoCreateAppoitment.UseVisualStyleBackColor = true;
+            this.btnGoCreateAppoitment.UseVisualStyleBackColor = false;
             this.btnGoCreateAppoitment.Click += new System.EventHandler(this.BtnCreateAppoitment_Click);
             // 
             // lbAppoitments
             // 
+            this.lbAppoitments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lbAppoitments.FormattingEnabled = true;
-            this.lbAppoitments.Location = new System.Drawing.Point(146, 70);
+            this.lbAppoitments.ItemHeight = 15;
+            this.lbAppoitments.Location = new System.Drawing.Point(166, 95);
             this.lbAppoitments.Margin = new System.Windows.Forms.Padding(2);
             this.lbAppoitments.Name = "lbAppoitments";
-            this.lbAppoitments.Size = new System.Drawing.Size(403, 160);
+            this.lbAppoitments.Size = new System.Drawing.Size(470, 184);
             this.lbAppoitments.TabIndex = 0;
             this.lbAppoitments.DoubleClick += new System.EventHandler(this.LbAppoitments_DoubleClick);
             // 
@@ -159,7 +176,7 @@
             this.SplitBill.Location = new System.Drawing.Point(4, 22);
             this.SplitBill.Name = "SplitBill";
             this.SplitBill.Padding = new System.Windows.Forms.Padding(1);
-            this.SplitBill.Size = new System.Drawing.Size(704, 329);
+            this.SplitBill.Size = new System.Drawing.Size(794, 394);
             this.SplitBill.TabIndex = 4;
             this.SplitBill.Text = "Split Bill";
             this.SplitBill.UseVisualStyleBackColor = true;
@@ -176,25 +193,32 @@
             // 
             // btnSplit
             // 
+            this.btnSplit.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnSplit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSplit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnSplit.ForeColor = System.Drawing.SystemColors.Control;
             this.btnSplit.Location = new System.Drawing.Point(550, 168);
             this.btnSplit.Margin = new System.Windows.Forms.Padding(1);
             this.btnSplit.Name = "btnSplit";
             this.btnSplit.Size = new System.Drawing.Size(107, 31);
             this.btnSplit.TabIndex = 6;
             this.btnSplit.Text = "Split bill";
-            this.btnSplit.UseVisualStyleBackColor = true;
+            this.btnSplit.UseVisualStyleBackColor = false;
             this.btnSplit.Click += new System.EventHandler(this.BtnSplit_Click);
             // 
             // btnBrowse
             // 
+            this.btnBrowse.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrowse.ForeColor = System.Drawing.SystemColors.Control;
             this.btnBrowse.Location = new System.Drawing.Point(21, 102);
             this.btnBrowse.Margin = new System.Windows.Forms.Padding(1);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(99, 29);
             this.btnBrowse.TabIndex = 4;
             this.btnBrowse.Text = "Browse picture";
-            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.UseVisualStyleBackColor = false;
             this.btnBrowse.Click += new System.EventHandler(this.BtnBrowse_Click);
             // 
             // tbPrice
@@ -251,7 +275,7 @@
             this.CreateComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateComplaint.Location = new System.Drawing.Point(4, 22);
             this.CreateComplaint.Name = "CreateComplaint";
-            this.CreateComplaint.Size = new System.Drawing.Size(704, 329);
+            this.CreateComplaint.Size = new System.Drawing.Size(794, 394);
             this.CreateComplaint.TabIndex = 5;
             this.CreateComplaint.Text = "Create Compaint";
             this.CreateComplaint.UseVisualStyleBackColor = true;
@@ -277,14 +301,17 @@
             // 
             // btnSubmitComplaint
             // 
+            this.btnSubmitComplaint.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnSubmitComplaint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSubmitComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmitComplaint.Location = new System.Drawing.Point(308, 309);
+            this.btnSubmitComplaint.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSubmitComplaint.Location = new System.Drawing.Point(293, 308);
             this.btnSubmitComplaint.Margin = new System.Windows.Forms.Padding(1);
             this.btnSubmitComplaint.Name = "btnSubmitComplaint";
-            this.btnSubmitComplaint.Size = new System.Drawing.Size(177, 30);
+            this.btnSubmitComplaint.Size = new System.Drawing.Size(205, 52);
             this.btnSubmitComplaint.TabIndex = 5;
             this.btnSubmitComplaint.Text = "Submit Complaint";
-            this.btnSubmitComplaint.UseVisualStyleBackColor = true;
+            this.btnSubmitComplaint.UseVisualStyleBackColor = false;
             this.btnSubmitComplaint.Click += new System.EventHandler(this.BtnSubmitComplaint_Click);
             // 
             // tbMessage
@@ -341,7 +368,7 @@
             this.Notifications.Location = new System.Drawing.Point(4, 22);
             this.Notifications.Margin = new System.Windows.Forms.Padding(2);
             this.Notifications.Name = "Notifications";
-            this.Notifications.Size = new System.Drawing.Size(704, 329);
+            this.Notifications.Size = new System.Drawing.Size(794, 394);
             this.Notifications.TabIndex = 6;
             this.Notifications.Text = "Notifications";
             this.Notifications.UseVisualStyleBackColor = true;
@@ -353,7 +380,7 @@
             this.HouseRules.Location = new System.Drawing.Point(4, 22);
             this.HouseRules.Margin = new System.Windows.Forms.Padding(2);
             this.HouseRules.Name = "HouseRules";
-            this.HouseRules.Size = new System.Drawing.Size(704, 329);
+            this.HouseRules.Size = new System.Drawing.Size(794, 394);
             this.HouseRules.TabIndex = 7;
             this.HouseRules.Text = "House Rules";
             this.HouseRules.UseVisualStyleBackColor = true;
@@ -363,7 +390,8 @@
             this.tbHouseRules.BackColor = System.Drawing.Color.White;
             this.tbHouseRules.Enabled = false;
             this.tbHouseRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbHouseRules.Location = new System.Drawing.Point(112, 58);
+            this.tbHouseRules.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.tbHouseRules.Location = new System.Drawing.Point(166, 74);
             this.tbHouseRules.Margin = new System.Windows.Forms.Padding(2);
             this.tbHouseRules.Multiline = true;
             this.tbHouseRules.Name = "tbHouseRules";
@@ -374,7 +402,7 @@
             // 
             this.lblHouseRules.AutoSize = true;
             this.lblHouseRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHouseRules.Location = new System.Drawing.Point(253, 10);
+            this.lblHouseRules.Location = new System.Drawing.Point(307, 26);
             this.lblHouseRules.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHouseRules.Name = "lblHouseRules";
             this.lblHouseRules.Size = new System.Drawing.Size(194, 36);
@@ -392,7 +420,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(820, 427);
+            this.ClientSize = new System.Drawing.Size(814, 427);
             this.Controls.Add(this.tabControl1);
             this.Name = "TenantApp";
             this.Text = "TenantApp";

@@ -204,7 +204,7 @@ namespace TenantApp
 
         public void ShowNotificationsFordate()
         {
-            //List<Notification> notificationsForDate = Notification.GetNotificationForDate(DateTime.Today.ToShortDateString());
+            
             List<Notification> notifications = Notification.GetNotificationsByUser(currentUser.Id);
 
             for (int i = 1; i <= notifications.Count; i++)
@@ -214,25 +214,59 @@ namespace TenantApp
                 Label title = new Label();
                 title.Text = notifications[i - 1].Title;
                 title.Location = new Point(10, 10);
-                // desc.Text = $ "{notificationForDate}{}" \n {notificationsForDate[i-1].Description}";
+                title.Width = 450;
+                title.ForeColor = Color.White;
+                title.Font = new Font("Miscrosoft Tai Lee",10, FontStyle.Bold);
                 desc.Text = notifications[i - 1].Description;
                 desc.Location = new Point(10, 35);
-                desc.Width = 450;
+                desc.ForeColor = Color.White;
+                desc.BackColor = Color.FromArgb(58, 175, 222);
+                desc.Width = 650;
                 desc.Height = 30;
                 desc.ReadOnly = true;
                 desc.BorderStyle = 0;
                 desc.TabStop = false;
                 desc.Multiline = true;
+                desc.Font = new Font("Miscrosoft Tai Lee", 9);
 
                 panel.Controls.Add(title);
                 panel.Controls.Add(desc);
                 panel.Height = 100;
-                panel.Width = 500;
+                panel.Width = 700;
                 panel.Visible = true;
-                panel.Location = new Point(150, ((i - 1) * 110) + 30);
-                panel.BackColor = Color.LightGray;
+                panel.Location = new Point(50, ((i - 1) * 110) + 30);
+                panel.BackColor = Color.FromArgb(58, 175, 222);
+
+              
                 this.tabControl1.TabPages[3].Controls.Add(panel);
             }
+        }
+
+        private void TabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            switch (e.Index)
+            {
+                case 0:
+                    e.Graphics.FillRectangle(new SolidBrush(Color.Blue), e.Bounds);
+                    break;
+                case 1:
+                    e.Graphics.FillRectangle(new SolidBrush(Color.Blue), e.Bounds);
+                    break;
+                case 2:
+                    e.Graphics.FillRectangle(new SolidBrush(Color.Blue), e.Bounds);
+                    break;
+                case 3:
+                    e.Graphics.FillRectangle(new SolidBrush(Color.Blue), e.Bounds);
+                    break;
+                default:
+                    break;
+            }
+
+            // Then draw the current tab button text 
+            Rectangle paddedBounds = e.Bounds;
+            paddedBounds.Inflate(-2, -2);
+            e.Graphics.DrawString(tabControl1.TabPages[e.Index].Text, this.Font, SystemBrushes.HighlightText, paddedBounds);
+
         }
     }
 }

@@ -34,8 +34,8 @@
             this.lbEndDate = new System.Windows.Forms.Label();
             this.lbRoom = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.lbDescriptionTitile = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -45,13 +45,12 @@
             this.LbUserName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LbUserName.AutoSize = true;
             this.LbUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.LbUserName.Location = new System.Drawing.Point(155, 35);
+            this.LbUserName.Location = new System.Drawing.Point(24, 24);
             this.LbUserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LbUserName.Name = "LbUserName";
             this.LbUserName.Size = new System.Drawing.Size(46, 17);
             this.LbUserName.TabIndex = 0;
             this.LbUserName.Text = "label1";
-            //this.LbUserName.Click += new System.EventHandler(this.LbUserName_Click);
             // 
             // lbDateTime
             // 
@@ -83,7 +82,6 @@
             this.lbEndDate.Size = new System.Drawing.Size(46, 17);
             this.lbEndDate.TabIndex = 3;
             this.lbEndDate.Text = "label1";
-            //this.lbEndDate.Click += new System.EventHandler(this.Label1_Click);
             // 
             // lbRoom
             // 
@@ -97,26 +95,17 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel1.Controls.Add(this.lbDescriptionTitile);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.LbUserName);
             this.panel1.Controls.Add(this.lbRoom);
             this.panel1.Controls.Add(this.lbDateTime);
             this.panel1.Controls.Add(this.lbEndDate);
-            this.panel1.Location = new System.Drawing.Point(24, 24);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(404, 321);
             this.panel1.TabIndex = 5;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.LightGray;
-            this.panel2.Controls.Add(this.lbDescription);
-            this.panel2.Location = new System.Drawing.Point(27, 219);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(352, 92);
-            this.panel2.TabIndex = 5;
             // 
             // lbDescriptionTitile
             // 
@@ -127,15 +116,24 @@
             this.lbDescriptionTitile.TabIndex = 6;
             this.lbDescriptionTitile.Text = "Description";
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.Controls.Add(this.lbDescription);
+            this.panel2.Location = new System.Drawing.Point(27, 219);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(352, 92);
+            this.panel2.TabIndex = 5;
+            // 
             // AppointmentDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSlateGray;
-            this.ClientSize = new System.Drawing.Size(450, 371);
+            this.BackColor = System.Drawing.Color.RoyalBlue;
+            this.ClientSize = new System.Drawing.Size(432, 349);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AppointmentDetails";
             this.Text = "AppointmentDetails";
             this.panel1.ResumeLayout(false);
