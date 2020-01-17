@@ -147,7 +147,7 @@
             this.SplitBill.Controls.Add(this.lblGroceries);
             this.SplitBill.Location = new System.Drawing.Point(4, 22);
             this.SplitBill.Name = "SplitBill";
-            this.SplitBill.Padding = new System.Windows.Forms.Padding(1);
+            this.SplitBill.Padding = new System.Windows.Forms.Padding(2);
             this.SplitBill.Size = new System.Drawing.Size(780, 412);
             this.SplitBill.TabIndex = 4;
             this.SplitBill.Text = "Split Bill";
@@ -326,6 +326,7 @@
             // 
             // Notifications
             // 
+            this.Notifications.AutoScroll = true;
             this.Notifications.Location = new System.Drawing.Point(4, 22);
             this.Notifications.Name = "Notifications";
             this.Notifications.Size = new System.Drawing.Size(780, 412);
@@ -343,6 +344,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(837, 464);
             this.Controls.Add(this.tabControl1);
             this.Name = "TenantApp";

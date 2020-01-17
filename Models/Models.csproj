@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Bill.cs" />
     <Compile Include="Building.cs" />
+    <Compile Include="Notification.cs" />
     <Compile Include="Complaint.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Appointment.cs" />

@@ -69,6 +69,13 @@ namespace Models
                         db.Connection
                     );
                     sqlCommand.ExecuteNonQuery();
+
+                    if (roomate.Id != buyerId)
+                    {
+                        string billDescription = $"{roomate.Name} has bought groceries for total of €{totalPrice}\n{pictureUrl}";
+                        Notification notification = new Notification("New Bill added", billDescription, roomate.Id);
+                        notification.InsertIntoDB();
+                    }
                 });
             }
             catch (Exception) { }

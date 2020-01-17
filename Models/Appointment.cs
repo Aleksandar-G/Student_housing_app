@@ -10,15 +10,15 @@ namespace Models
 {
     public class Appointment
     {
-        public int id { get;}
-        public int UserID { get;}
-        public string Description { get;}
-        public DateTime AppointmentStartDate { get;}
-        public DateTime AppointmentEndDate { get;}
+        public int id { get; }
+        public int UserID { get; }
+        public string Description { get; }
+        public DateTime AppointmentStartDate { get; }
+        public DateTime AppointmentEndDate { get; }
         public string room { get; }
         public int BuildingId { get; private set; }
 
-        public Appointment(int Id, int UserId, string description, DateTime appointmentStartDate,DateTime appointmentEndDate, string room,int buildingId)
+        public Appointment(int Id, int UserId, string description, DateTime appointmentStartDate, DateTime appointmentEndDate, string room, int buildingId)
         {
             this.id = Id;
             this.UserID = UserId;
@@ -29,12 +29,10 @@ namespace Models
             this.BuildingId = buildingId;
         }
 
-        public static void AddAppointment(int userId, string description, string StartDate, string EndDate, string room,int buildingId)
+        public static void AddAppointment(int userId, string description, string StartDate, string EndDate, string room, int buildingId)
         {
             string query = $"INSERT INTO Appointments (userId,description,StartDate,EndDate,room,buildingId) VALUES('{userId}', '{description}', '{StartDate}', '{EndDate}', '{room}', '{buildingId}' )";
- 
             Database database = new Database();
-           
 
             if (database.OpenConnection() == true)
             {
@@ -47,9 +45,21 @@ namespace Models
                 //close connection
                 database.CloseConnection();
             }
+
+            List<User> users = User.GetUsersByBuilding(buildingId);
+
+            users.ForEach(user =>
+            {
+                if (user.Id != userId)
+                {
+                    string notificationDescription = $"{user.Name} has added appointment for {room} from {StartDate} to {EndDate}";
+                    Notification notification = new Notification("New Appointment", notificationDescription, user.Id);
+                    notification.InsertIntoDB();
+                }
+            });
         }
 
-        public static List<Appointment> ShowAppointments(string StartdateOfappointments,int buildingId)
+        public static List<Appointment> ShowAppointments(string StartdateOfappointments, int buildingId)
         {
             string query = $"SELECT * FROM Appointments WHERE StartDate LIKE \'{StartdateOfappointments}%\' AND buildingId = {buildingId} ORDER BY StartDate";
 
@@ -66,7 +76,7 @@ namespace Models
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                                                        
+
                     Appointment appointment = new Appointment(
                         Convert.ToInt32(dataReader["id"]),
                         Convert.ToInt32(dataReader["userId"]),
@@ -75,7 +85,7 @@ namespace Models
                         Convert.ToDateTime(dataReader["endDate"]),
                         dataReader["room"].ToString(),
                         Convert.ToInt32(dataReader["buildingId"])
-                    ) ;
+                    );
 
                     result.Add(appointment);
                 }
@@ -96,10 +106,10 @@ namespace Models
 
         }
 
-        public static string SearchForDescription(int userId, string startDate,string endDate)
+        public static string SearchForDescription(int userId, string startDate, string endDate)
         {
             string query = $"SELECT description FROM Appointments WHERE userId = {userId} AND DATE(startDate) = '{startDate}' AND DATE(endDate) = '{endDate}' LIMIT 1";
-            
+
             string description = "";
 
             Database database = new Database();

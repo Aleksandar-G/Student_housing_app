@@ -59,6 +59,9 @@ namespace TenantApp
 
             foreach (var item in appointments)
             {
+                (System.Windows.Forms.Application.OpenForms["TenantApp"] as TenantApp).ShowAppointmentsForDate();
+                (System.Windows.Forms.Application.OpenForms["TenantApp"] as TenantApp).ShowNotificationsFordate();
+
                 if (Convert.ToDateTime(appointmentEndDateTime) >= item.AppointmentStartDate && Convert.ToDateTime(appointmentEndDateTime) <= item.AppointmentEndDate)
                 {
                     MessageBox.Show("There is another appointment at that time in that room");
