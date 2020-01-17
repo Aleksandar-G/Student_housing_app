@@ -72,7 +72,7 @@ namespace Models
 
                     if (roomate.Id != buyerId)
                     {
-                        string billDescription = $"{roomate.Name} has bought groceries for total of €{totalPrice}\n{pictureUrl}";
+                        string billDescription = $"{roomate.Name} has bought groceries for total of €{totalPrice}\r\n{pictureUrl}";
                         Notification notification = new Notification("New Bill added", billDescription, roomate.Id);
                         notification.InsertIntoDB();
                     }

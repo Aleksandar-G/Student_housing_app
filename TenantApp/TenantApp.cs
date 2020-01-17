@@ -210,21 +210,26 @@ namespace TenantApp
             for (int i = 1; i <= notifications.Count; i++)
             {
                 Panel panel = new Panel();
-                Label desc = new Label();
+                TextBox desc = new TextBox();
                 Label title = new Label();
                 title.Text = notifications[i - 1].Title;
                 title.Location = new Point(10, 10);
                 // desc.Text = $ "{notificationForDate}{}" \n {notificationsForDate[i-1].Description}";
                 desc.Text = notifications[i - 1].Description;
                 desc.Location = new Point(10, 35);
-                desc.Width = 300;
-                desc.Height = 60;
+                desc.Width = 450;
+                desc.Height = 30;
+                desc.ReadOnly = true;
+                desc.BorderStyle = 0;
+                desc.TabStop = false;
+                desc.Multiline = true;
+
                 panel.Controls.Add(title);
                 panel.Controls.Add(desc);
                 panel.Height = 100;
-                panel.Width = 300;
+                panel.Width = 500;
                 panel.Visible = true;
-                panel.Location = new Point(250, ((i - 1) * 110) + 30);
+                panel.Location = new Point(150, ((i - 1) * 110) + 30);
                 panel.BackColor = Color.LightGray;
                 this.tabControl1.TabPages[3].Controls.Add(panel);
             }
