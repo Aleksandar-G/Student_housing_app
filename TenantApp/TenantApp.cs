@@ -69,7 +69,10 @@ namespace TenantApp
             Thread.CurrentThread.CurrentUICulture = ci;
 
             Building_Complaints();
+
             ShowAppointmentsForDate();
+
+            this.showHouseRules(currentUser.Id);
         }
 
         public void TabControl1_Selected(object sender, TabControlEventArgs e)
@@ -139,6 +142,8 @@ namespace TenantApp
             AppointmentDetails appointmentDetails = new AppointmentDetails(userIDFromAppointment, startDateOfAppointment, endDateOfAppointment, descriptionAppointment, room);
 
             appointmentDetails.Show();
+
+            showHouseRules(currentUser.Id);
         }
 
         private void TabControl1_TabIndexChanged(object sender, EventArgs e)
@@ -190,6 +195,11 @@ namespace TenantApp
 
             tbPrice.Text = "";
             pbBill.ImageLocation = null;
+        }
+
+        private void showHouseRules(int userId)
+        {
+            tbHouseRules.Text = HouseRule.ShowHouseRules(currentUser.Id);
         }
 
         public void ShowNotificationsFordate()

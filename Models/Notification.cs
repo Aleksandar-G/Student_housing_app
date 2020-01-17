@@ -51,38 +51,5 @@ namespace Models
             db.Connection.Close();
             return notifications;
         }
-
-        //public static List<Notification> GetNotificationForDate(string date)
-        //{
-        //    string query = $"SELECT * from Appointments WHERE date(startDate) LIKE '{date}';";
-
-        //    List<Notification> result = new List<Notification>();
-
-        //    Database database = new Database();
-
-        //    if (database.OpenConnection() == true)
-        //    {
-        //        MySqlCommand cmd = new MySqlCommand(query, database.Connection);
-        //        //Create a data reader and Execute the command
-        //        MySqlDataReader dataReader = cmd.ExecuteReader();
-
-        //        while (dataReader.Read())
-        //        {
-        //            Notification notification = new Notification("Appointment",dataReader["description"].ToString(), user);
-
-        //            result.Add(notification);
-        //        }
-
-        //        dataReader.Close();
-
-        //        database.CloseConnection();
-
-        //        return result;
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
     }
 }

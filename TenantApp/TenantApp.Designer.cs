@@ -53,12 +53,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Notifications = new System.Windows.Forms.TabPage();
+            this.HouseRules = new System.Windows.Forms.TabPage();
+            this.tbHouseRules = new System.Windows.Forms.TextBox();
+            this.lblHouseRules = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.ShowAppointments.SuspendLayout();
             this.SplitBill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBill)).BeginInit();
             this.CreateComplaint.SuspendLayout();
+            this.HouseRules.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -67,10 +71,11 @@
             this.tabControl1.Controls.Add(this.SplitBill);
             this.tabControl1.Controls.Add(this.CreateComplaint);
             this.tabControl1.Controls.Add(this.Notifications);
+            this.tabControl1.Controls.Add(this.HouseRules);
             this.tabControl1.Location = new System.Drawing.Point(6, 6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(788, 438);
+            this.tabControl1.Size = new System.Drawing.Size(802, 420);
             this.tabControl1.TabIndex = 1;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabControl1_Selected);
             this.tabControl1.TabIndexChanged += new System.EventHandler(this.TabControl1_TabIndexChanged);
@@ -83,25 +88,28 @@
             this.ShowAppointments.Controls.Add(this.btnGoCreateAppoitment);
             this.ShowAppointments.Controls.Add(this.lbAppoitments);
             this.ShowAppointments.Location = new System.Drawing.Point(4, 22);
+            this.ShowAppointments.Margin = new System.Windows.Forms.Padding(2);
             this.ShowAppointments.Name = "ShowAppointments";
-            this.ShowAppointments.Padding = new System.Windows.Forms.Padding(3);
-            this.ShowAppointments.Size = new System.Drawing.Size(780, 412);
+            this.ShowAppointments.Padding = new System.Windows.Forms.Padding(2);
+            this.ShowAppointments.Size = new System.Drawing.Size(794, 394);
             this.ShowAppointments.TabIndex = 3;
             this.ShowAppointments.Text = "Show Appointments";
             this.ShowAppointments.UseVisualStyleBackColor = true;
             // 
             // dtpShowAppointments
             // 
-            this.dtpShowAppointments.Location = new System.Drawing.Point(296, 41);
+            this.dtpShowAppointments.Location = new System.Drawing.Point(235, 33);
+            this.dtpShowAppointments.Margin = new System.Windows.Forms.Padding(2);
             this.dtpShowAppointments.Name = "dtpShowAppointments";
-            this.dtpShowAppointments.Size = new System.Drawing.Size(200, 20);
+            this.dtpShowAppointments.Size = new System.Drawing.Size(243, 20);
             this.dtpShowAppointments.TabIndex = 4;
             // 
             // btnNextDate
             // 
-            this.btnNextDate.Location = new System.Drawing.Point(513, 41);
+            this.btnNextDate.Location = new System.Drawing.Point(491, 27);
+            this.btnNextDate.Margin = new System.Windows.Forms.Padding(2);
             this.btnNextDate.Name = "btnNextDate";
-            this.btnNextDate.Size = new System.Drawing.Size(36, 20);
+            this.btnNextDate.Size = new System.Drawing.Size(22, 31);
             this.btnNextDate.TabIndex = 3;
             this.btnNextDate.Text = ">";
             this.btnNextDate.UseVisualStyleBackColor = true;
@@ -109,9 +117,10 @@
             // 
             // btnPrevDate
             // 
-            this.btnPrevDate.Location = new System.Drawing.Point(242, 42);
+            this.btnPrevDate.Location = new System.Drawing.Point(189, 27);
+            this.btnPrevDate.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrevDate.Name = "btnPrevDate";
-            this.btnPrevDate.Size = new System.Drawing.Size(32, 20);
+            this.btnPrevDate.Size = new System.Drawing.Size(21, 31);
             this.btnPrevDate.TabIndex = 2;
             this.btnPrevDate.Text = "<";
             this.btnPrevDate.UseVisualStyleBackColor = true;
@@ -119,9 +128,10 @@
             // 
             // btnGoCreateAppoitment
             // 
-            this.btnGoCreateAppoitment.Location = new System.Drawing.Point(329, 347);
+            this.btnGoCreateAppoitment.Location = new System.Drawing.Point(279, 255);
+            this.btnGoCreateAppoitment.Margin = new System.Windows.Forms.Padding(2);
             this.btnGoCreateAppoitment.Name = "btnGoCreateAppoitment";
-            this.btnGoCreateAppoitment.Size = new System.Drawing.Size(167, 40);
+            this.btnGoCreateAppoitment.Size = new System.Drawing.Size(144, 38);
             this.btnGoCreateAppoitment.TabIndex = 1;
             this.btnGoCreateAppoitment.Text = "Create Appointment";
             this.btnGoCreateAppoitment.UseVisualStyleBackColor = true;
@@ -130,9 +140,10 @@
             // lbAppoitments
             // 
             this.lbAppoitments.FormattingEnabled = true;
-            this.lbAppoitments.Location = new System.Drawing.Point(219, 108);
+            this.lbAppoitments.Location = new System.Drawing.Point(146, 70);
+            this.lbAppoitments.Margin = new System.Windows.Forms.Padding(2);
             this.lbAppoitments.Name = "lbAppoitments";
-            this.lbAppoitments.Size = new System.Drawing.Size(375, 199);
+            this.lbAppoitments.Size = new System.Drawing.Size(403, 160);
             this.lbAppoitments.TabIndex = 0;
             this.lbAppoitments.DoubleClick += new System.EventHandler(this.LbAppoitments_DoubleClick);
             // 
@@ -147,16 +158,16 @@
             this.SplitBill.Controls.Add(this.lblGroceries);
             this.SplitBill.Location = new System.Drawing.Point(4, 22);
             this.SplitBill.Name = "SplitBill";
-            this.SplitBill.Padding = new System.Windows.Forms.Padding(2);
-            this.SplitBill.Size = new System.Drawing.Size(780, 412);
+            this.SplitBill.Padding = new System.Windows.Forms.Padding(1);
+            this.SplitBill.Size = new System.Drawing.Size(704, 329);
             this.SplitBill.TabIndex = 4;
             this.SplitBill.Text = "Split Bill";
             this.SplitBill.UseVisualStyleBackColor = true;
             // 
             // pbBill
             // 
-            this.pbBill.Location = new System.Drawing.Point(197, 116);
-            this.pbBill.Margin = new System.Windows.Forms.Padding(2);
+            this.pbBill.Location = new System.Drawing.Point(131, 75);
+            this.pbBill.Margin = new System.Windows.Forms.Padding(1);
             this.pbBill.Name = "pbBill";
             this.pbBill.Size = new System.Drawing.Size(277, 246);
             this.pbBill.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -165,8 +176,8 @@
             // 
             // btnSplit
             // 
-            this.btnSplit.Location = new System.Drawing.Point(627, 250);
-            this.btnSplit.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSplit.Location = new System.Drawing.Point(550, 168);
+            this.btnSplit.Margin = new System.Windows.Forms.Padding(1);
             this.btnSplit.Name = "btnSplit";
             this.btnSplit.Size = new System.Drawing.Size(107, 31);
             this.btnSplit.TabIndex = 6;
@@ -177,8 +188,8 @@
             // btnBrowse
             // 
             this.btnBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowse.Location = new System.Drawing.Point(44, 148);
-            this.btnBrowse.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBrowse.Location = new System.Drawing.Point(21, 102);
+            this.btnBrowse.Margin = new System.Windows.Forms.Padding(1);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(99, 29);
             this.btnBrowse.TabIndex = 4;
@@ -188,8 +199,8 @@
             // 
             // tbPrice
             // 
-            this.tbPrice.Location = new System.Drawing.Point(627, 203);
-            this.tbPrice.Margin = new System.Windows.Forms.Padding(2);
+            this.tbPrice.Location = new System.Drawing.Point(550, 135);
+            this.tbPrice.Margin = new System.Windows.Forms.Padding(1);
             this.tbPrice.Name = "tbPrice";
             this.tbPrice.Size = new System.Drawing.Size(108, 20);
             this.tbPrice.TabIndex = 3;
@@ -198,7 +209,7 @@
             // 
             this.lblPicture.AutoSize = true;
             this.lblPicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPicture.Location = new System.Drawing.Point(41, 116);
+            this.lblPicture.Location = new System.Drawing.Point(26, 75);
             this.lblPicture.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPicture.Name = "lblPicture";
             this.lblPicture.Size = new System.Drawing.Size(85, 20);
@@ -209,7 +220,7 @@
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(527, 203);
+            this.lblPrice.Location = new System.Drawing.Point(559, 107);
             this.lblPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(82, 20);
@@ -240,7 +251,7 @@
             this.CreateComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateComplaint.Location = new System.Drawing.Point(4, 22);
             this.CreateComplaint.Name = "CreateComplaint";
-            this.CreateComplaint.Size = new System.Drawing.Size(780, 412);
+            this.CreateComplaint.Size = new System.Drawing.Size(704, 329);
             this.CreateComplaint.TabIndex = 5;
             this.CreateComplaint.Text = "Create Compaint";
             this.CreateComplaint.UseVisualStyleBackColor = true;
@@ -248,7 +259,7 @@
             // cbBuildingId
             // 
             this.cbBuildingId.FormattingEnabled = true;
-            this.cbBuildingId.Location = new System.Drawing.Point(439, 111);
+            this.cbBuildingId.Location = new System.Drawing.Point(470, 112);
             this.cbBuildingId.Margin = new System.Windows.Forms.Padding(1);
             this.cbBuildingId.Name = "cbBuildingId";
             this.cbBuildingId.Size = new System.Drawing.Size(163, 28);
@@ -257,7 +268,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(368, 115);
+            this.label4.Location = new System.Drawing.Point(389, 112);
             this.label4.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 20);
@@ -267,7 +278,7 @@
             // btnSubmitComplaint
             // 
             this.btnSubmitComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmitComplaint.Location = new System.Drawing.Point(292, 317);
+            this.btnSubmitComplaint.Location = new System.Drawing.Point(308, 309);
             this.btnSubmitComplaint.Margin = new System.Windows.Forms.Padding(1);
             this.btnSubmitComplaint.Name = "btnSubmitComplaint";
             this.btnSubmitComplaint.Size = new System.Drawing.Size(177, 30);
@@ -278,7 +289,7 @@
             // 
             // tbMessage
             // 
-            this.tbMessage.Location = new System.Drawing.Point(172, 175);
+            this.tbMessage.Location = new System.Drawing.Point(185, 161);
             this.tbMessage.Margin = new System.Windows.Forms.Padding(1);
             this.tbMessage.Multiline = true;
             this.tbMessage.Name = "tbMessage";
@@ -288,7 +299,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(92, 175);
+            this.label3.Location = new System.Drawing.Point(94, 168);
             this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 20);
@@ -297,7 +308,7 @@
             // 
             // tbTitle
             // 
-            this.tbTitle.Location = new System.Drawing.Point(172, 111);
+            this.tbTitle.Location = new System.Drawing.Point(185, 112);
             this.tbTitle.Margin = new System.Windows.Forms.Padding(1);
             this.tbTitle.Name = "tbTitle";
             this.tbTitle.Size = new System.Drawing.Size(163, 26);
@@ -317,7 +328,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(287, 64);
+            this.label1.Location = new System.Drawing.Point(288, 36);
             this.label1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(182, 26);
@@ -328,11 +339,47 @@
             // 
             this.Notifications.AutoScroll = true;
             this.Notifications.Location = new System.Drawing.Point(4, 22);
+            this.Notifications.Margin = new System.Windows.Forms.Padding(2);
             this.Notifications.Name = "Notifications";
-            this.Notifications.Size = new System.Drawing.Size(780, 412);
+            this.Notifications.Size = new System.Drawing.Size(704, 329);
             this.Notifications.TabIndex = 6;
             this.Notifications.Text = "Notifications";
             this.Notifications.UseVisualStyleBackColor = true;
+            // 
+            // HouseRules
+            // 
+            this.HouseRules.Controls.Add(this.tbHouseRules);
+            this.HouseRules.Controls.Add(this.lblHouseRules);
+            this.HouseRules.Location = new System.Drawing.Point(4, 22);
+            this.HouseRules.Margin = new System.Windows.Forms.Padding(2);
+            this.HouseRules.Name = "HouseRules";
+            this.HouseRules.Size = new System.Drawing.Size(704, 329);
+            this.HouseRules.TabIndex = 7;
+            this.HouseRules.Text = "House Rules";
+            this.HouseRules.UseVisualStyleBackColor = true;
+            // 
+            // tbHouseRules
+            // 
+            this.tbHouseRules.BackColor = System.Drawing.Color.White;
+            this.tbHouseRules.Enabled = false;
+            this.tbHouseRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbHouseRules.Location = new System.Drawing.Point(112, 58);
+            this.tbHouseRules.Margin = new System.Windows.Forms.Padding(2);
+            this.tbHouseRules.Multiline = true;
+            this.tbHouseRules.Name = "tbHouseRules";
+            this.tbHouseRules.Size = new System.Drawing.Size(485, 238);
+            this.tbHouseRules.TabIndex = 2;
+            // 
+            // lblHouseRules
+            // 
+            this.lblHouseRules.AutoSize = true;
+            this.lblHouseRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHouseRules.Location = new System.Drawing.Point(253, 10);
+            this.lblHouseRules.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHouseRules.Name = "lblHouseRules";
+            this.lblHouseRules.Size = new System.Drawing.Size(194, 36);
+            this.lblHouseRules.TabIndex = 1;
+            this.lblHouseRules.Text = "House Rules:";
             // 
             // openFileDialog1
             // 
@@ -345,7 +392,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(837, 464);
+            this.ClientSize = new System.Drawing.Size(820, 427);
             this.Controls.Add(this.tabControl1);
             this.Name = "TenantApp";
             this.Text = "TenantApp";
@@ -357,6 +404,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbBill)).EndInit();
             this.CreateComplaint.ResumeLayout(false);
             this.CreateComplaint.PerformLayout();
+            this.HouseRules.ResumeLayout(false);
+            this.HouseRules.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -392,6 +441,9 @@
         private System.Windows.Forms.Button btnSubmitComplaint;
         private System.Windows.Forms.ComboBox cbBuildingId;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TabPage HouseRules;
+        private System.Windows.Forms.TextBox tbHouseRules;
+        private System.Windows.Forms.Label lblHouseRules;
     }
 }
 

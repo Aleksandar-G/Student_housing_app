@@ -36,6 +36,7 @@ namespace CompanyApp
             buildings.ForEach(b => {
                 cbAddTenantAddress.Items.Add(b.Address);
                 cbRemoveTenantAddress.Items.Add(b.Address);
+                cbHouseRulesAddress.Items.Add(b.Address);
             });
 
             ShowTenantDetail();
@@ -144,7 +145,7 @@ namespace CompanyApp
 
         private void BtnRemoveComplaint_Click(object sender, EventArgs e)
         {
-            if (lbShowAllComplaints.SelectedItem!=null)
+            if (lbShowAllComplaints.SelectedItem != null)
             {
                 int del_id = Complaint.ShowComplaintContent()[lbShowAllComplaints.SelectedIndex].Id;
                 Complaint.RemoveComplaint(del_id);
@@ -158,6 +159,29 @@ namespace CompanyApp
             {
                 MessageBox.Show("Please select complaint");
             }
+        }
+        private void BtnAddRule_Click(object sender, EventArgs e)
+        {
+            Building selectedBuilding = buildings.Find(b => cbHouseRulesAddress.SelectedItem.ToString() == b.Address);
+            int addressId = selectedBuilding.Id;
+
+            HouseRule houseRule = new HouseRule(tbHouseRules.Text, addressId);
+
+            houseRule.AddHouseRuleToDB();
+            MessageBox.Show("New house rule(s) was created successfully!");
+
+        }
+
+        private void LbAddTenantName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CbHouseRulesAddress_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tbHouseRules.Text = HouseRule.GetHouseRules(cbHouseRulesAddress.SelectedItem.ToString());
+
+           
         }
     }
 }

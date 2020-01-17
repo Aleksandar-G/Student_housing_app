@@ -130,5 +130,36 @@ namespace Models
 
             return building;
         }
+
+        public static int GetBuildingId(string address)
+        {
+            string query = $"SELECT id FROM Buildings  WHERE Address  = '{address}'; ";
+
+            int buildingId = 0;
+
+            Database db = new Database();
+            try
+            {
+                db = new Database();
+                db.Connection.Open();
+
+                MySqlCommand cmd = new MySqlCommand( query,db.Connection
+                );
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                dataReader.Read();
+
+                buildingId = Convert.ToInt32(dataReader["id"]);
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                db.Connection.Close();
+            }
+
+            return buildingId ;
+
+        }
     }
 }

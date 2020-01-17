@@ -58,11 +58,19 @@
             this.lbAddTenantName = new System.Windows.Forms.Label();
             this.lbEmail = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.AddHouseRules = new System.Windows.Forms.TabPage();
+            this.btnAddRule = new System.Windows.Forms.Button();
+            this.lblAddRules = new System.Windows.Forms.Label();
+            this.tbHouseRules = new System.Windows.Forms.TextBox();
+            this.cbHouseRulesAddress = new System.Windows.Forms.ComboBox();
+            this.lblSelectBuilding = new System.Windows.Forms.Label();
+
             this.ShowTenantDetails.SuspendLayout();
             this.ShowComplaints.SuspendLayout();
             this.RemoveTenant.SuspendLayout();
             this.AddTenant.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.AddHouseRules.SuspendLayout();
             this.SuspendLayout();
             // 
             // ShowTenantDetails
@@ -151,6 +159,7 @@
             this.btnShowCurrentComplaint.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnShowCurrentComplaint.Name = "btnShowCurrentComplaint";
             this.btnShowCurrentComplaint.Size = new System.Drawing.Size(124, 50);
+
             this.btnShowCurrentComplaint.TabIndex = 1;
             this.btnShowCurrentComplaint.Text = "Show";
             this.btnShowCurrentComplaint.UseVisualStyleBackColor = true;
@@ -175,6 +184,7 @@
             this.RemoveTenant.Location = new System.Drawing.Point(4, 22);
             this.RemoveTenant.Name = "RemoveTenant";
             this.RemoveTenant.Size = new System.Drawing.Size(780, 412);
+
             this.RemoveTenant.TabIndex = 3;
             this.RemoveTenant.Text = "Remove Tenant";
             this.RemoveTenant.UseVisualStyleBackColor = true;
@@ -184,6 +194,7 @@
             this.btnRemoveTenant.Location = new System.Drawing.Point(270, 271);
             this.btnRemoveTenant.Name = "btnRemoveTenant";
             this.btnRemoveTenant.Size = new System.Drawing.Size(200, 23);
+
             this.btnRemoveTenant.TabIndex = 25;
             this.btnRemoveTenant.Text = "Remove Tenant";
             this.btnRemoveTenant.UseVisualStyleBackColor = true;
@@ -300,14 +311,14 @@
             this.tbAddTenantPhone.TabIndex = 17;
             // 
             // tbAddTenantName
-            // 
+            //
             this.tbAddTenantName.Location = new System.Drawing.Point(287, 51);
             this.tbAddTenantName.Name = "tbAddTenantName";
             this.tbAddTenantName.Size = new System.Drawing.Size(200, 20);
             this.tbAddTenantName.TabIndex = 1;
             // 
             // tbAddTenantPassword
-            // 
+            //
             this.tbAddTenantPassword.Location = new System.Drawing.Point(287, 151);
             this.tbAddTenantPassword.Name = "tbAddTenantPassword";
             this.tbAddTenantPassword.PasswordChar = '*';
@@ -325,6 +336,7 @@
             // 
             this.lbAddTenantPhone.AutoSize = true;
             this.lbAddTenantPhone.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+
             this.lbAddTenantPhone.Location = new System.Drawing.Point(368, 186);
             this.lbAddTenantPhone.Name = "lbAddTenantPhone";
             this.lbAddTenantPhone.Size = new System.Drawing.Size(38, 13);
@@ -350,6 +362,7 @@
             this.lbAddTenantName.Size = new System.Drawing.Size(35, 13);
             this.lbAddTenantName.TabIndex = 16;
             this.lbAddTenantName.Text = "Name";
+            this.lbAddTenantName.Click += new System.EventHandler(this.LbAddTenantName_Click);
             // 
             // lbEmail
             // 
@@ -367,11 +380,84 @@
             this.tabControl1.Controls.Add(this.RemoveTenant);
             this.tabControl1.Controls.Add(this.ShowComplaints);
             this.tabControl1.Controls.Add(this.ShowTenantDetails);
+            this.tabControl1.Controls.Add(this.AddHouseRules);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(809, 453);
+            this.tabControl1.TabIndex = 10;
+            //this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
+            // 
+            // AddHouseRules
+            // 
+            this.AddHouseRules.Controls.Add(this.btnAddRule);
+            this.AddHouseRules.Controls.Add(this.lblAddRules);
+            this.AddHouseRules.Controls.Add(this.tbHouseRules);
+            this.AddHouseRules.Controls.Add(this.cbHouseRulesAddress);
+            this.AddHouseRules.Controls.Add(this.lblSelectBuilding);
+            this.AddHouseRules.Location = new System.Drawing.Point(4, 22);
+            this.AddHouseRules.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddHouseRules.Name = "AddHouseRules";
+            this.AddHouseRules.Size = new System.Drawing.Size(801, 427);
+            this.AddHouseRules.TabIndex = 5;
+            this.AddHouseRules.Text = "Add House Rules";
+            this.AddHouseRules.UseVisualStyleBackColor = true;
+            // 
+            // btnAddRule
+            // 
+            this.btnAddRule.Location = new System.Drawing.Point(529, 359);
+            this.btnAddRule.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddRule.Name = "btnAddRule";
+            this.btnAddRule.Size = new System.Drawing.Size(116, 39);
+            this.btnAddRule.TabIndex = 4;
+            this.btnAddRule.Text = "Add Rules:";
+            this.btnAddRule.UseVisualStyleBackColor = true;
+            this.btnAddRule.Click += new System.EventHandler(this.BtnAddRule_Click);
+            // 
+            // lblAddRules
+            // 
+            this.lblAddRules.AutoSize = true;
+            this.lblAddRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddRules.Location = new System.Drawing.Point(525, 70);
+            this.lblAddRules.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblAddRules.Name = "lblAddRules";
+            this.lblAddRules.Size = new System.Drawing.Size(87, 20);
+            this.lblAddRules.TabIndex = 3;
+            this.lblAddRules.Text = "Add Rules:";
+            // 
+            // tbHouseRules
+            // 
+            this.tbHouseRules.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbHouseRules.Location = new System.Drawing.Point(385, 105);
+            this.tbHouseRules.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbHouseRules.Multiline = true;
+            this.tbHouseRules.Name = "tbHouseRules";
+            this.tbHouseRules.Size = new System.Drawing.Size(371, 243);
+            this.tbHouseRules.TabIndex = 2;
+            // 
+            // cbHouseRulesAddress
+            // 
+            this.cbHouseRulesAddress.FormattingEnabled = true;
+            this.cbHouseRulesAddress.Location = new System.Drawing.Point(37, 92);
+            this.cbHouseRulesAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbHouseRulesAddress.Name = "cbHouseRulesAddress";
+            this.cbHouseRulesAddress.Size = new System.Drawing.Size(297, 21);
+            this.cbHouseRulesAddress.TabIndex = 1;
+            this.cbHouseRulesAddress.SelectedIndexChanged += new System.EventHandler(this.CbHouseRulesAddress_SelectedIndexChanged);
+            // 
+            // lblSelectBuilding
+            // 
+            this.lblSelectBuilding.AutoSize = true;
+            this.lblSelectBuilding.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectBuilding.Location = new System.Drawing.Point(125, 70);
+            this.lblSelectBuilding.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSelectBuilding.Name = "lblSelectBuilding";
+            this.lblSelectBuilding.Size = new System.Drawing.Size(116, 20);
+            this.lblSelectBuilding.TabIndex = 0;
+            this.lblSelectBuilding.Text = "Select building:";
             this.tabControl1.Size = new System.Drawing.Size(788, 438);
             this.tabControl1.TabIndex = 10;
+
             // 
             // CompanyApp
             // 
@@ -390,6 +476,8 @@
             this.AddTenant.ResumeLayout(false);
             this.AddTenant.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.AddHouseRules.ResumeLayout(false);
+            this.AddHouseRules.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -426,6 +514,12 @@
         private System.Windows.Forms.ListBox lbShowAllComplaints;
         private System.Windows.Forms.Button btnShowCurrentComplaint;
         private System.Windows.Forms.Button btnRemoveComplaint;
+        private System.Windows.Forms.TabPage AddHouseRules;
+        private System.Windows.Forms.Label lblAddRules;
+        private System.Windows.Forms.TextBox tbHouseRules;
+        private System.Windows.Forms.ComboBox cbHouseRulesAddress;
+        private System.Windows.Forms.Label lblSelectBuilding;
+        private System.Windows.Forms.Button btnAddRule;
     }
 }
 
