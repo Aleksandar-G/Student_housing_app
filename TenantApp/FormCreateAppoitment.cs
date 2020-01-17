@@ -23,7 +23,6 @@ namespace TenantApp
             this.CurrUser = currUser;
             this.appointmetsForDate = appointmentsForDate;
             dtpStartDate.Value = DateTime.Today.AddDays(daysChange);
-            dtpEndDate.Value = DateTime.Today.AddDays(daysChange);
         }
 
         private void BtnCreateAppoitment_Click(object sender, EventArgs e)
@@ -36,7 +35,7 @@ namespace TenantApp
             }
 
             string appointmentStartDateTime = dtpStartDate.Value.ToShortDateString() + " " + dtpStartTime.Value.ToString("HH:mm:ss");
-            string appointmentEndDateTime = dtpEndDate.Value.ToShortDateString() + " " + dtpEndTime.Value.ToString("HH:mm:ss");
+            string appointmentEndDateTime = dtpStartDate.Value.ToShortDateString() + " " + dtpEndTime.Value.ToString("HH:mm:ss");
 
             if (Convert.ToDateTime(appointmentStartDateTime) > Convert.ToDateTime(appointmentEndDateTime))
             {
